@@ -83,7 +83,7 @@
                               <Font name="System Bold" size="18.0" />
                            </font>
                         </Label>
-                        <Button mnemonicParsing="false" prefHeight="52.0" prefWidth="139.0" text="OK" GridPane.rowIndex="11">
+                        <Button mnemonicParsing="false" prefHeight="52.0" prefWidth="139.0" text="Lisää" GridPane.rowIndex="11">
                            <font>
                               <Font size="24.0" />
                            </font>
