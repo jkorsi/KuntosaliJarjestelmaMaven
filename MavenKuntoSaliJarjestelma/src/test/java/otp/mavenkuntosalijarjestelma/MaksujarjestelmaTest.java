@@ -48,7 +48,7 @@ public class MaksujarjestelmaTest {
         int result = instance.annaTulot();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+//        fail("The test case is a prototype.");
     }
 
     /**
@@ -62,7 +62,7 @@ public class MaksujarjestelmaTest {
         int result = instance.annaMenot();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+//        fail("The test case is a prototype.");
     }
     
 }
