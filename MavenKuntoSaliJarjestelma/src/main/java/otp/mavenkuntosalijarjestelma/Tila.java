@@ -1,13 +1,14 @@
 package otp.mavenkuntosalijarjestelma;
 
 public class Tila {
+
     //Spam 
-	private int suosituinKuntoSaliLaite;
+    private int suosituinKuntoSaliLaite;
 
-	private int laitteidenMaara;
+    private int laitteidenMaara;
 
-	private int tilanKulut;
+    private int tilanKulut;
 
-	private Kuntosalilaite[] kuntosalilaite;
+    private Kuntosalilaite[] kuntosalilaite;
 
 }

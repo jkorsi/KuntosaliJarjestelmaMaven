@@ -2,22 +2,22 @@ package otp.mavenkuntosalijarjestelma;
 
 public class Maksujarjestelma {
 
-	private int tilillaJaljella;
+    private int tilillaJaljella;
 
-	private int tulot;
+    private int tulot;
 
-	private int menot;
+    private int menot;
 
-	private int attribute0;
+    private int attribute0;
 
-	private jasenMaksu[] jasenMaksu;
+    private jasenMaksu[] jasenMaksu;
 
-	public int annaTulot() {
-		return 0;
-	}
+    public int annaTulot() {
+        return 0;
+    }
 
-	public int annaMenot() {
-		return 0;
-	}
+    public int annaMenot() {
+        return 0;
+    }
 
 }

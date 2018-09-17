@@ -2,10 +2,10 @@ package otp.mavenkuntosalijarjestelma;
 
 public class jasenMaksu {
 
-	private int kkHinta;
+    private int kkHinta;
 
-	private int kertaHinta;
+    private int kertaHinta;
 
-	private Maksujarjestelma maksujarjestelma;
+    private Maksujarjestelma maksujarjestelma;
 
 }
