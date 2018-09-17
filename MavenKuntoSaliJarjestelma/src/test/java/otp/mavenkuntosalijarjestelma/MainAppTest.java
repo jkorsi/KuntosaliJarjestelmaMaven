@@ -18,22 +18,22 @@ import static org.junit.Assert.*;
  * @author Juho Suni
  */
 public class MainAppTest {
-    
+
     public MainAppTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -41,7 +41,6 @@ public class MainAppTest {
     /**
      * Test of start method, of class MainApp.
      */
-    
     /*/@Test
     public void testStart() throws Exception {
         System.out.println("start");
@@ -51,8 +50,7 @@ public class MainAppTest {
         // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
     }
-    */
-
+     */
     /**
      * Test of main method, of class MainApp.
      */
@@ -64,5 +62,5 @@ public class MainAppTest {
         // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
     }
-    
+
 }
