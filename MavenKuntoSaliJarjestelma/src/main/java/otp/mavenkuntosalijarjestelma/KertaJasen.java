@@ -11,6 +11,13 @@ public class KertaJasen extends Jasen {
     @Column(name = "kayntikerrat")
     private int kayntikertojaJaljella;
 
+    public KertaJasen() {
+    }
+
+    public KertaJasen(int kayntikertojaJaljella) {
+        this.kayntikertojaJaljella = kayntikertojaJaljella;
+    }
+
     public int getKayntikertojaJaljella() {
         return kayntikertojaJaljella;
     }

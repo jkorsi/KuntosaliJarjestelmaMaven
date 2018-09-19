@@ -25,8 +25,6 @@ public abstract class Kuntosalilaite {
         this.viimeisinHuoltoPvm = viimeisinHuoltoPvm;
         this.tila = tila;
     }
-    
-    
 
     public int getIka() {
         return ika;
@@ -76,5 +74,4 @@ public abstract class Kuntosalilaite {
         this.tila = tila;
     }
 
-    
 }

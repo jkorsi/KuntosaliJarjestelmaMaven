@@ -6,7 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 public class Maksujarjestelma {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "maksuJarjestelmaID")
@@ -72,7 +72,5 @@ public class Maksujarjestelma {
     public void setJasenMaksu(jasenMaksu[] jasenMaksu) {
         this.jasenMaksu = jasenMaksu;
     }
-
-    
 
 }
