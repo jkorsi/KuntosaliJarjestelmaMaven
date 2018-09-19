@@ -85,11 +85,11 @@ public abstract class Kuntosalilaite {
     }
 
     public Tila getTila() {
-        return tila;
+        return tilaID;
     }
 
     public void setTila(Tila tila) {
-        this.tila = tila;
+        this.tilaID = tila;
     }
 
 }
