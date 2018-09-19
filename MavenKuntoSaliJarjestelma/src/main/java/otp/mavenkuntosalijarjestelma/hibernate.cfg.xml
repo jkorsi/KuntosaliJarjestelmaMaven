@@ -5,13 +5,13 @@
     <session-factory>
         <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
         <property name="hibernate.connection.password">
-            erja
+            hibernoija
         </property>
         <property
             name="hibernate.connection.url">jdbc:mysql://localhost:4444/testi_hibernate?createDatabaseIfNotEx
             ist=true</property>
         <property name="hibernate.connection.username">
-            erja
+            hibernoija
         </property>
         <property name="hbm2ddl.auto">create</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>

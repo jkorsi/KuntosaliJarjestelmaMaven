@@ -5,8 +5,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
  @Entity
-public class JaseenMaksu extends MaksuTapahtuma {
-     public JaseenMaksu() {
+public class JasenMaksu extends MaksuTapahtuma {
+     public JasenMaksu() {
     }
      
     @Column(name="kkhinta")
