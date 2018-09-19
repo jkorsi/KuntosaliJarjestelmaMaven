@@ -1,7 +1,11 @@
 package otp.mavenkuntosalijarjestelma;
 
+import javax.persistence.Entity;
+
+@Entity
 public abstract class Kuntosalilaite {
 
+    
     private int ika;
 
     private String kunto;
