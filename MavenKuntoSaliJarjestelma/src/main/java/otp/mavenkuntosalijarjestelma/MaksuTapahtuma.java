@@ -10,7 +10,7 @@ import javax.persistence.Id;
 
 @Entity
 @Table(name = "maksuTapahtumat")
-public class MaksuTapahtumaItem {
+public class MaksuTapahtuma {
 
     @Column(name = "tapahtumaAika")
     private int tapahtumaAika;
@@ -32,11 +32,9 @@ public class MaksuTapahtumaItem {
     @Column(name = "maksuTapa")
     private String maksuTapa;
 
-    @Column(name = "maksuTapahtumaLista")
-    private MaksuTapahtumaLista maksuTapahtumaLista;
 
     //Konstruktori
-    public MaksuTapahtumaItem() {
+    public MaksuTapahtuma() {
     }
 
     //Getterit ja setterit    
@@ -88,12 +86,5 @@ public class MaksuTapahtumaItem {
         this.maksuTapa = maksuTapa;
     }
 
-    public MaksuTapahtumaLista getMaksuTapahtumaLista() {
-        return maksuTapahtumaLista;
-    }
-
-    public void setMaksuTapahtumaLista(MaksuTapahtumaLista maksuTapahtumaLista) {
-        this.maksuTapahtumaLista = maksuTapahtumaLista;
-    }
 
 }
