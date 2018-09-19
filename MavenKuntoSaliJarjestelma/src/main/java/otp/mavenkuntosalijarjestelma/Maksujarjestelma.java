@@ -20,7 +20,7 @@ public class Maksujarjestelma {
 
     private int attribute0;
 
-    private jasenMaksu[] jasenMaksu;
+    private JasenMaksu[] jasenMaksu;
 
     public Maksujarjestelma() {
     }
@@ -65,11 +65,11 @@ public class Maksujarjestelma {
         this.attribute0 = attribute0;
     }
 
-    public jasenMaksu[] getJasenMaksu() {
+    public JasenMaksu[] getJasenMaksu() {
         return jasenMaksu;
     }
 
-    public void setJasenMaksu(jasenMaksu[] jasenMaksu) {
+    public void setJasenMaksu(JasenMaksu[] jasenMaksu) {
         this.jasenMaksu = jasenMaksu;
     }
 
