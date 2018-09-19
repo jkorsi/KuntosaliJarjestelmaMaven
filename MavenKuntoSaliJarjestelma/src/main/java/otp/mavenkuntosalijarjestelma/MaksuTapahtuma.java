@@ -32,7 +32,6 @@ public class MaksuTapahtuma {
     @Column(name = "maksuTapa")
     private String maksuTapa;
 
-
     //Konstruktori
     public MaksuTapahtuma() {
     }
@@ -85,6 +84,5 @@ public class MaksuTapahtuma {
     public void setMaksuTapa(String maksuTapa) {
         this.maksuTapa = maksuTapa;
     }
-
 
 }
