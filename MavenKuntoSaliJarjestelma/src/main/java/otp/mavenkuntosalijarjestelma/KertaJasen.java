@@ -7,7 +7,8 @@ import javax.persistence.Entity;
 @Entity
 //@Table(name = "kerta_jasenet")
 public class KertaJasen extends Jasen {
-    @Column(name="kayntikerrat")
+
+    @Column(name = "kayntikerrat")
     private int kayntikertojaJaljella;
 
     public int getKayntikertojaJaljella() {
@@ -17,7 +18,5 @@ public class KertaJasen extends Jasen {
     public void setKayntikertojaJaljella(int kayntikertojaJaljella) {
         this.kayntikertojaJaljella = kayntikertojaJaljella;
     }
-    
-    
 
 }

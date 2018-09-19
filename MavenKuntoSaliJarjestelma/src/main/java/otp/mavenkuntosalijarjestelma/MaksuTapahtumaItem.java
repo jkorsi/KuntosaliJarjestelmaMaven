@@ -1,25 +1,38 @@
 package otp.mavenkuntosalijarjestelma;
 
 //import javax.persistence.Entity;
+import javax.persistence.Column;
 import javax.persistence.Table;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity
 @Table(name = "maksuTapahtumat")
 public class MaksuTapahtumaItem {
 
+    @Column(name = "tapahtumaAika")
     private int tapahtumaAika;
 
+    @Column(name = "maara")
     private int maara;
 
+    @Column(name = "tuloVaiMeno")
     private int tuloVaiMeno;
 
+    @Column(name = "kommentti")
     private String kommentti;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "Viite_ID")
     private int viite;
 
+    @Column(name = "maksuTapa")
     private String maksuTapa;
 
+    @Column(name = "maksuTapahtumaLista")
     private MaksuTapahtumaLista maksuTapahtumaLista;
 
     //Konstruktori

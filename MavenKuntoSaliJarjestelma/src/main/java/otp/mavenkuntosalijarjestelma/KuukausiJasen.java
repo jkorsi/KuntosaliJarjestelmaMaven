@@ -5,7 +5,8 @@ import javax.persistence.Entity;
 
 @Entity
 public class KuukausiJasen extends Jasen {
-    @Column(name="kuukaudet_jaljella")
+
+    @Column(name = "kuukaudet_jaljella")
     private int kuukausiaJaljella;
 
     public int getKuukausiaJaljella() {
@@ -15,6 +16,5 @@ public class KuukausiJasen extends Jasen {
     public void setKuukausiaJaljella(int kuukausiaJaljella) {
         this.kuukausiaJaljella = kuukausiaJaljella;
     }
-    
 
 }
