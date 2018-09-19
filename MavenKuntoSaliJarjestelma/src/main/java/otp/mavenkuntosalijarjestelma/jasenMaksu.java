@@ -15,7 +15,7 @@ public class jasenMaksu {
     private int kertaHinta;
     
     @Id
-    private int maksutapahtumaID
+    private int maksutapahtumaID;
     
     @ManyToOne
     @JoinColumn(name="jasen_ID")
