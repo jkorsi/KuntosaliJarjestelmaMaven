@@ -8,25 +8,25 @@ import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
 public abstract class Jasen {
-    
+
     @Column(name = "nimi")
     private String nimi;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "jasen_ID")
     private int jasenNro;
-    
+
     @Column(name = "maksutapa")
     private String maksuTapa;
-    
+
     @Column(name = "jasenyysvoimassa")
     private boolean onkoJasenyysVoimassa;
 
     public Jasen() {
 
     }
-    
+
     public String getNimi() {
         return nimi;
     }
@@ -35,7 +35,6 @@ public abstract class Jasen {
         this.nimi = nimi;
     }
 
-    
     public int getJasenNro() {
         return jasenNro;
     }
@@ -43,7 +42,7 @@ public abstract class Jasen {
     public void setJasenNro(int jasenNro) {
         this.jasenNro = jasenNro;
     }
-    
+
     public String getMaksuTapa() {
         return maksuTapa;
     }
@@ -59,6 +58,5 @@ public abstract class Jasen {
     public void setOnkoJasenyysVoimassa(boolean onkoJasenyysVoimassa) {
         this.onkoJasenyysVoimassa = onkoJasenyysVoimassa;
     }
-
 
 }
