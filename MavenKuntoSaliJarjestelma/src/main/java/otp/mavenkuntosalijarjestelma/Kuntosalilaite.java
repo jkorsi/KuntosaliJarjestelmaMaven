@@ -1,22 +1,36 @@
 package otp.mavenkuntosalijarjestelma;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity
 public abstract class Kuntosalilaite {
-
     
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "kuntosalilaite_ID")
+    private int kuntosalilaiteID;
+    
+    @Column(name = "ika")
     private int ika;
-
+    
+    @Column(name = "kunto")
     private String kunto;
-
+    
+    @Column(name = "tarvitseeHuollon") 
     private boolean tarvitseeHuollon;
-
+    
+    @Column(name = "kayttokerrat")
     private int kayttakerrat;
 
+    @Column(name = "Viimeisin_Huolto_Pvm")
     private String viimeisinHuoltoPvm;
 
-    private Tila tila;
+    @Column(name = "tila_ID")
+    private Tila tilaID;
 
     public Kuntosalilaite() {
     }
@@ -27,7 +41,7 @@ public abstract class Kuntosalilaite {
         this.tarvitseeHuollon = tarvitseeHuollon;
         this.kayttakerrat = kayttakerrat;
         this.viimeisinHuoltoPvm = viimeisinHuoltoPvm;
-        this.tila = tila;
+        this.tilaID = tila;
     }
 
     public int getIka() {
