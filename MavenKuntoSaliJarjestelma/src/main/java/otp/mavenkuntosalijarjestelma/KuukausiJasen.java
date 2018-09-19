@@ -6,6 +6,9 @@ import javax.persistence.Entity;
 @Entity
 public class KuukausiJasen extends Jasen {
 
+    public KuukausiJasen() {
+    }
+
     @Column(name = "kuukaudet_jaljella")
     private int kuukausiaJaljella;
 
