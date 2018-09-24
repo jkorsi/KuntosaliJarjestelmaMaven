@@ -1,26 +1,39 @@
 package otp.mavenkuntosalijarjestelma;
 
+import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-public class Tila {
+@Entity
+public class Tila implements Serializable {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "tilaID")
     private int tilaID;
 
-    private int suosituinKuntoSaliLaite;
-
+    @Column(name = "suosituinLaite_ID")
+    private int suosituinLaite_ID;
+    
+    @Column(name = "laitteidenMaara")
     private int laitteidenMaara;
-
+    
+    @Column(name = "tilanKulut")
     private int tilanKulut;
-
+    
+    @Column(name = "kuntosalilaite")
     private Kuntosalilaite[] kuntosalilaite;
-
+    
+    
     public Tila() {
     }
 
     public Tila(int tilaID, int suosituinKuntoSaliLaite, int laitteidenMaara, int tilanKulut, Kuntosalilaite[] kuntosalilaite) {
         this.tilaID = tilaID;
-        this.suosituinKuntoSaliLaite = suosituinKuntoSaliLaite;
+        this.suosituinLaite_ID = suosituinKuntoSaliLaite;
         this.laitteidenMaara = laitteidenMaara;
         this.tilanKulut = tilanKulut;
         this.kuntosalilaite = kuntosalilaite;
@@ -35,11 +48,11 @@ public class Tila {
     }
 
     public int getSuosituinKuntoSaliLaite() {
-        return suosituinKuntoSaliLaite;
+        return suosituinLaite_ID;
     }
 
     public void setSuosituinKuntoSaliLaite(int suosituinKuntoSaliLaite) {
-        this.suosituinKuntoSaliLaite = suosituinKuntoSaliLaite;
+        this.suosituinLaite_ID = suosituinKuntoSaliLaite;
     }
 
     public int getLaitteidenMaara() {
