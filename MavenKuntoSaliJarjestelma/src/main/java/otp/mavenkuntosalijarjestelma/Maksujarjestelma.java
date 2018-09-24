@@ -1,26 +1,27 @@
 package otp.mavenkuntosalijarjestelma;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+@Entity
 public class Maksujarjestelma {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "maksuJarjestelmaID")
     private int maksuJarjestelmaID;
-
+    
+    @Column(name = "tilillaJaljella")
     private int tilillaJaljella;
-
+    
+    @Column(name = "tulot")
     private int tulot;
-
+    
+    @Column(name = "menot")
     private int menot;
-
-    private int attribute0;
-
-    private JasenMaksu[] jasenMaksu;
 
     public Maksujarjestelma() {
     }
@@ -55,22 +56,6 @@ public class Maksujarjestelma {
 
     public void setMenot(int menot) {
         this.menot = menot;
-    }
-
-    public int getAttribute0() {
-        return attribute0;
-    }
-
-    public void setAttribute0(int attribute0) {
-        this.attribute0 = attribute0;
-    }
-
-    public JasenMaksu[] getJasenMaksu() {
-        return jasenMaksu;
-    }
-
-    public void setJasenMaksu(JasenMaksu[] jasenMaksu) {
-        this.jasenMaksu = jasenMaksu;
     }
 
 }
