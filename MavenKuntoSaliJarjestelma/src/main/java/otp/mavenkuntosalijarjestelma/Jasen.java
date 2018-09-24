@@ -5,8 +5,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.Table;
 
 @MappedSuperclass
+@Table(name = "jasenet")
 public abstract class Jasen {
 
     @Column(name = "nimi")

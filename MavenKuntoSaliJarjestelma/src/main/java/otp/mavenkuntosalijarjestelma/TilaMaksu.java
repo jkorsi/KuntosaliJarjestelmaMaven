@@ -5,6 +5,7 @@
  */
 package otp.mavenkuntosalijarjestelma;
 
+import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
@@ -12,6 +13,7 @@ import javax.persistence.ManyToOne;
  *
  * @author Antti Käyhkö
  */
+@Entity
 public class TilaMaksu extends MaksuTapahtuma{
 
     public TilaMaksu() {
