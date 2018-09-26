@@ -5,49 +5,48 @@
  */
 package otp.mavenkuntosalijarjestelma;
 
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.boot.Metadata;
-import org.hibernate.boot.MetadataSources;
-import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.cfg.Configuration;
+import org.hibernate.service.ServiceRegistry;
 
-/**
- * @author imssbora
- */
 public class HibernateUtil {
-  private static StandardServiceRegistry registry;
-  private static SessionFactory sessionFactory;
 
-  public static SessionFactory getSessionFactory() {
-    if (sessionFactory == null) {
-      try {
-        // Create registry
-        registry = new StandardServiceRegistryBuilder()
-            .configure()
-            .build();
+    private static SessionFactory sessionFactory = null;
 
-        // Create MetadataSources
-        MetadataSources sources = new MetadataSources(registry);
-
-        // Create Metadata
-        Metadata metadata = sources.getMetadataBuilder().build();
-
-        // Create SessionFactory
-        sessionFactory = metadata.getSessionFactoryBuilder().build();
-
-      } catch (Exception e) {
-        e.printStackTrace();
-        if (registry != null) {
-          StandardServiceRegistryBuilder.destroy(registry);
+    static {
+        try {
+            loadSessionFactory();
+        } catch (Exception e) {
+            System.err.println("Exception while initializing hibernate util.. ");
+            e.printStackTrace();
         }
-      }
     }
-    return sessionFactory;
-  }
 
-  public static void shutdown() {
-    if (registry != null) {
-      StandardServiceRegistryBuilder.destroy(registry);
+    public static void loadSessionFactory() {
+
+        Configuration configuration = new Configuration();
+        configuration.configure();
+        //configuration.addAnnotatedClass(Employee.class);
+        ServiceRegistry srvcReg = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
+        sessionFactory = configuration.buildSessionFactory(srvcReg);
     }
-  }
+
+    public static Session getSession() throws HibernateException {
+
+        Session retSession = null;
+        try {
+            retSession = sessionFactory.openSession();
+        } catch (Throwable t) {
+            System.err.println("Exception while getting session.. ");
+            t.printStackTrace();
+        }
+        if (retSession == null) {
+            System.err.println("session is discovered null");
+        }
+
+        return retSession;
+    }
 }

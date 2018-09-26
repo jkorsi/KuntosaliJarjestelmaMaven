@@ -15,7 +15,7 @@ public class MainApp extends Application {
     
     
     public void init(){
-        session = HibernateUtil.getSessionFactory().openSession();
+        HibernateUtil.loadSessionFactory();
     }
 
     @Override
