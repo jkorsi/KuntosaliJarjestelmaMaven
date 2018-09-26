@@ -1,4 +1,4 @@
-package otp.mavenkuntosalijarjestelma;
+package Entities;
 
 //import javax.persistence.Entity;
 import javax.persistence.Column;

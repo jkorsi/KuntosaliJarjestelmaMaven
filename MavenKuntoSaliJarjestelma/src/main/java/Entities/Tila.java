@@ -1,4 +1,4 @@
-package otp.mavenkuntosalijarjestelma;
+package Entities;
 
 import java.io.Serializable;
 import javax.persistence.Column;

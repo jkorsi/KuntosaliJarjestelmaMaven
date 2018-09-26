@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package otp.mavenkuntosalijarjestelma;
+package Entities;
 
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;

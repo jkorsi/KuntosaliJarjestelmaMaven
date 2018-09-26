@@ -6,8 +6,17 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.hibernate.SessionFactory;
+import org.hibernate.*;
 
 public class MainApp extends Application {
+    private static Session session;
+    
+    
+    
+    public void init(){
+        session = HibernateUtil.getSessionFactory().openSession();
+    }
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -19,6 +28,7 @@ public class MainApp extends Application {
         stage.setTitle("JavaFX and Maven");
         stage.setScene(scene);
         stage.show();
+
     }
 
     /**

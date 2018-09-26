@@ -1,4 +1,5 @@
-package otp.mavenkuntosalijarjestelma;
+package Entities;
+import Entities.MaksuTapahtuma;
  import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
