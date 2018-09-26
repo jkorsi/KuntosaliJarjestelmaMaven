@@ -17,7 +17,7 @@ public abstract class Jasen {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "jasen_ID")
-    private int jasenNro;
+    private int jasenID;
 
     @Column(name = "maksutapa")
     private String maksuTapa;
@@ -37,12 +37,12 @@ public abstract class Jasen {
         this.nimi = nimi;
     }
 
-    public int getJasenNro() {
-        return jasenNro;
+    public int getJasenID() {
+        return jasenID;
     }
 
-    public void setJasenNro(int jasenNro) {
-        this.jasenNro = jasenNro;
+    public void setJasenID(int jasenID) {
+        this.jasenID = jasenID;
     }
 
     public String getMaksuTapa() {

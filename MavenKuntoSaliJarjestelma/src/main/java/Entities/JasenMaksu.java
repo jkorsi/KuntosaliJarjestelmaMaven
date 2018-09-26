@@ -5,9 +5,13 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
- @Entity
+import javax.persistence.Table;
+
+
+@Entity
+@Table(name = "jasenmaksut")
 public class JasenMaksu extends MaksuTapahtuma {
-     public JasenMaksu() {
+    public JasenMaksu() {
     }
      
     @Column(name="kkhinta")
@@ -15,12 +19,12 @@ public class JasenMaksu extends MaksuTapahtuma {
     @Column(name="kertahinta")
     private int kertaHinta;
     
-    @Id
-    @ManyToOne
-    @JoinColumn(name="jasen_ID")
+    //HUOM!! Ei kk-jäsentä, jäsenID:tä ei voida ottaa abstraktista jasen-luokasta.
+    @ManyToOne(targetEntity = KertaJasen.class)
+    @JoinColumn(referencedColumnName="jasen_ID")
     private int jasenID;
     
-     public int getKkHinta() {
+    public int getKkHinta() {
         return kkHinta;
     }
      public void setKkHinta(int kkHinta) {

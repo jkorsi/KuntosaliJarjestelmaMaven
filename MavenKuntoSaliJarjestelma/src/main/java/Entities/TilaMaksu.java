@@ -8,18 +8,20 @@ package Entities;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 /**
  *
  * @author Antti Käyhkö
  */
 @Entity
+@Table(name = "tilamaksut")
 public class TilaMaksu extends MaksuTapahtuma{
 
     public TilaMaksu() {
     }
     
-    @ManyToOne
+    @ManyToOne(targetEntity = Tila.class)
     @JoinColumn(name="tilaID")
     private int tilaID;
 

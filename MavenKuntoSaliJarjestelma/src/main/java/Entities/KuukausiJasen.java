@@ -3,8 +3,10 @@ package Entities;
 import Entities.Jasen;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "kuukausijasenet")
 public class KuukausiJasen extends Jasen {
 
     public KuukausiJasen() {

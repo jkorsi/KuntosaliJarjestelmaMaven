@@ -18,12 +18,12 @@
         <property name="hibernate.current_session_context_class">thread</property>
         <property name="hibernate.show_sql">true</property>
         
+        <mapping class="Entities.MaksuTapahtuma"></mapping>
         <mapping class="Entities.Jasen"></mapping>
         <mapping class="Entities.JasenMaksu"></mapping>
         <mapping class="Entities.KertaJasen"></mapping>
         <mapping class="Entities.Kuntosalilaite"></mapping>
         <mapping class="Entities.KuukausiJasen"></mapping>
-        <mapping class="Entities.Maksutapahtuma"></mapping>
         <mapping class="Entities.Tila"></mapping>
         <mapping class="Entities.TilaMaksu"></mapping>
        
