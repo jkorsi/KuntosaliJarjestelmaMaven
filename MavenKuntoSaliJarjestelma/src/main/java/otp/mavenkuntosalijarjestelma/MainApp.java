@@ -10,12 +10,12 @@ import org.hibernate.SessionFactory;
 import org.hibernate.*;
 
 public class MainApp extends Application {
-    private static Session session;
+    private static SessionFactory sessionFactory;
     
     
     
     public void init(){
-        HibernateUtil.loadSessionFactory();
+       sessionFactory = HibernateUtil.getSessionFactory();
     }
 
     @Override

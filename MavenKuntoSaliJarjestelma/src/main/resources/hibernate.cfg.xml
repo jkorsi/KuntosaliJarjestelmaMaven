@@ -8,24 +8,23 @@
             hibernoija
         </property>
         <property
-            name="hibernate.connection.url">jdbc:mysql://localhost:4444/testi_hibernate?createDatabaseIfNotEx
-            ist=true</property>
+            name="hibernate.connection.url">jdbc:mysql://localhost:4444/testi_hibernate</property>
         <property name="hibernate.connection.username">
             hibernoija
         </property>
         <property name="hbm2ddl.auto">create</property>
-        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
         <property name="hibernate.current_session_context_class">thread</property>
         <property name="hibernate.show_sql">true</property>
         
-        <mapping class="Entities.MaksuTapahtuma"></mapping>
-        <mapping class="Entities.Jasen"></mapping>
-        <mapping class="Entities.JasenMaksu"></mapping>
+        <!--<mapping class="Entities.MaksuTapahtuma"></mapping>-->
+        <!--<mapping class="Entities.Jasen"></mapping>-->
+        <!--        <mapping class="Entities.JasenMaksu"></mapping>
         <mapping class="Entities.KertaJasen"></mapping>
         <mapping class="Entities.Kuntosalilaite"></mapping>
         <mapping class="Entities.KuukausiJasen"></mapping>
         <mapping class="Entities.Tila"></mapping>
-        <mapping class="Entities.TilaMaksu"></mapping>
+        <mapping class="Entities.TilaMaksu"></mapping>-->
        
     </session-factory>
 </hibernate-configuration>
