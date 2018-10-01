@@ -16,31 +16,37 @@ import static org.junit.Assert.*;
  *
  * @author Juho Suni
  */
-public class TilaTest {
-
-    public TilaTest() {
+public class ControllerTest {
+    
+    public ControllerTest() {
     }
-
+    
     @BeforeClass
     public static void setUpClass() {
     }
-
+    
     @AfterClass
     public static void tearDownClass() {
     }
-
+    
     @Before
     public void setUp() {
     }
-
+    
     @After
     public void tearDown() {
     }
 
+    /**
+     * Test of initialize method, of class Controller.
+     */
     @Test
-    public void testSomeMethod() {
+    public void testInitialize() {
+        System.out.println("initialize");
+        Controller instance = new Controller();
+        instance.initialize();
         // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
+        fail("The test case is a prototype.");
     }
-
+    
 }

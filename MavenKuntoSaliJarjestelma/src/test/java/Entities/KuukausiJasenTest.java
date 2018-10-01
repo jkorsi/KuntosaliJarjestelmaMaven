@@ -3,9 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package otp.mavenkuntosalijarjestelma;
+package Entities;
 
-import javafx.stage.Stage;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -17,9 +16,9 @@ import static org.junit.Assert.*;
  *
  * @author Juho Suni
  */
-public class MainAppTest {
+public class KuukausiJasenTest {
     
-    public MainAppTest() {
+    public KuukausiJasenTest() {
     }
     
     @BeforeClass
@@ -39,38 +38,28 @@ public class MainAppTest {
     }
 
     /**
-     * Test of init method, of class MainApp.
+     * Test of getKuukausiaJaljella method, of class KuukausiJasen.
      */
     @Test
-    public void testInit() {
-        System.out.println("init");
-        MainApp instance = new MainApp();
-        instance.init();
+    public void testGetKuukausiaJaljella() {
+        System.out.println("getKuukausiaJaljella");
+        KuukausiJasen instance = new KuukausiJasen();
+        int expResult = 0;
+        int result = instance.getKuukausiaJaljella();
+        assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of start method, of class MainApp.
+     * Test of setKuukausiaJaljella method, of class KuukausiJasen.
      */
     @Test
-    public void testStart() throws Exception {
-        System.out.println("start");
-        Stage stage = null;
-        MainApp instance = new MainApp();
-        instance.start(stage);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of main method, of class MainApp.
-     */
-    @Test
-    public void testMain() {
-        System.out.println("main");
-        String[] args = null;
-        MainApp.main(args);
+    public void testSetKuukausiaJaljella() {
+        System.out.println("setKuukausiaJaljella");
+        int kuukausiaJaljella = 0;
+        KuukausiJasen instance = new KuukausiJasen();
+        instance.setKuukausiaJaljella(kuukausiaJaljella);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
