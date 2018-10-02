@@ -12,6 +12,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Ignore;
 
 /**
  *
@@ -54,6 +55,7 @@ public class MainAppTest {
     /**
      * Test of main method, of class MainApp.
      */
+    @Ignore
     @Test
     public void testMain() {
         System.out.println("main");
