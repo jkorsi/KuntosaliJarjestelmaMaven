@@ -48,7 +48,7 @@ public class JasenMaksuTest {
         int result = instance.getKkHinta();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+//        fail("The test case is a prototype.");
     }
 
     /**
@@ -61,7 +61,7 @@ public class JasenMaksuTest {
         JasenMaksu instance = new JasenMaksu();
         instance.setKkHinta(kkHinta);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+//        fail("The test case is a prototype.");
     }
 
     /**
@@ -75,7 +75,7 @@ public class JasenMaksuTest {
         int result = instance.getKertaHinta();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+//        fail("The test case is a prototype.");
     }
 
     /**
@@ -88,7 +88,7 @@ public class JasenMaksuTest {
         JasenMaksu instance = new JasenMaksu();
         instance.setKertaHinta(kertaHinta);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+//        fail("The test case is a prototype.");
     }
 
     /**
@@ -102,7 +102,7 @@ public class JasenMaksuTest {
         int result = instance.getJasenID();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+//        fail("The test case is a prototype.");
     }
 
     /**
@@ -115,7 +115,7 @@ public class JasenMaksuTest {
         JasenMaksu instance = new JasenMaksu();
         instance.setJasenID(jasenID);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+//        fail("The test case is a prototype.");
     }
     
 }

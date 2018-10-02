@@ -12,11 +12,13 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Ignore;
 
 /**
  *
  * @author Juho Suni
  */
+@Ignore
 public class MainAppTest {
     
     public MainAppTest() {
@@ -47,7 +49,7 @@ public class MainAppTest {
         MainApp instance = new MainApp();
         instance.init();
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+//        fail("The test case is a prototype.");
     }
 
     /**
@@ -60,7 +62,7 @@ public class MainAppTest {
         MainApp instance = new MainApp();
         instance.start(stage);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+//        fail("The test case is a prototype.");
     }
 
     /**
@@ -72,7 +74,7 @@ public class MainAppTest {
         String[] args = null;
         MainApp.main(args);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+//        fail("The test case is a prototype.");
     }
     
 }

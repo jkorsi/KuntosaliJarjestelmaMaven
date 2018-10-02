@@ -48,7 +48,7 @@ public class KertaJasenTest {
         int result = instance.getKayntikertojaJaljella();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+//        fail("The test case is a prototype.");
     }
 
     /**
@@ -61,7 +61,7 @@ public class KertaJasenTest {
         KertaJasen instance = new KertaJasen();
         instance.setKayntikertojaJaljella(kayntikertojaJaljella);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+//        fail("The test case is a prototype.");
     }
     
 }

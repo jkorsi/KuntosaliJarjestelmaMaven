@@ -48,7 +48,7 @@ public class MaksujarjestelmaTest {
         int result = instance.getMaksuJarjestelmaID();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+//        fail("The test case is a prototype.");
     }
 
     /**
@@ -61,7 +61,7 @@ public class MaksujarjestelmaTest {
         Maksujarjestelma instance = new Maksujarjestelma();
         instance.setMaksuJarjestelmaID(maksuJarjestelmaID);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+//        fail("The test case is a prototype.");
     }
 
     /**
@@ -75,7 +75,7 @@ public class MaksujarjestelmaTest {
         int result = instance.getTilillaJaljella();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+//        fail("The test case is a prototype.");
     }
 
     /**
@@ -88,7 +88,7 @@ public class MaksujarjestelmaTest {
         Maksujarjestelma instance = new Maksujarjestelma();
         instance.setTilillaJaljella(tilillaJaljella);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+//        fail("The test case is a prototype.");
     }
 
     /**
@@ -102,7 +102,7 @@ public class MaksujarjestelmaTest {
         int result = instance.getTulot();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+//        fail("The test case is a prototype.");
     }
 
     /**
@@ -115,7 +115,7 @@ public class MaksujarjestelmaTest {
         Maksujarjestelma instance = new Maksujarjestelma();
         instance.setTulot(tulot);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+//        fail("The test case is a prototype.");
     }
 
     /**
@@ -129,7 +129,7 @@ public class MaksujarjestelmaTest {
         int result = instance.getMenot();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+//        fail("The test case is a prototype.");
     }
 
     /**
@@ -142,7 +142,7 @@ public class MaksujarjestelmaTest {
         Maksujarjestelma instance = new Maksujarjestelma();
         instance.setMenot(menot);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+//        fail("The test case is a prototype.");
     }
     
 }
