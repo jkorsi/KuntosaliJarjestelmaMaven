@@ -5,6 +5,7 @@
  */
 package otp.mavenkuntosalijarjestelma;
 
+import org.hibernate.SessionFactory;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -16,9 +17,9 @@ import static org.junit.Assert.*;
  *
  * @author Juho Suni
  */
-public class KulunvalvontajarjestelmaTest {
+public class HibernateUtilTest {
     
-    public KulunvalvontajarjestelmaTest() {
+    public HibernateUtilTest() {
     }
     
     @BeforeClass
@@ -38,28 +39,25 @@ public class KulunvalvontajarjestelmaTest {
     }
 
     /**
-     * Test of onkoJasenyysVoimassa method, of class Kulunvalvontajarjestelma.
+     * Test of getSessionFactory method, of class HibernateUtil.
      */
     @Test
-    public void testOnkoJasenyysVoimassa() {
-        System.out.println("onkoJasenyysVoimassa");
-        Kulunvalvontajarjestelma instance = new Kulunvalvontajarjestelma();
-        boolean expResult = false;
-        boolean result = instance.onkoJasenyysVoimassa();
+    public void testGetSessionFactory() {
+        System.out.println("getSessionFactory");
+        SessionFactory expResult = null;
+        SessionFactory result = HibernateUtil.getSessionFactory();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of avaaOvenLukitus method, of class Kulunvalvontajarjestelma.
+     * Test of shutdown method, of class HibernateUtil.
      */
     @Test
-    public void testAvaaOvenLukitus() {
-        System.out.println("avaaOvenLukitus");
-        boolean jasenyydenTila = false;
-        Kulunvalvontajarjestelma instance = new Kulunvalvontajarjestelma();
-        instance.avaaOvenLukitus(jasenyydenTila);
+    public void testShutdown() {
+        System.out.println("shutdown");
+        HibernateUtil.shutdown();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }

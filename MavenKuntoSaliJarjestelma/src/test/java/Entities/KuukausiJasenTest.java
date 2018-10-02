@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package otp.mavenkuntosalijarjestelma;
+package Entities;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -16,9 +16,9 @@ import static org.junit.Assert.*;
  *
  * @author Juho Suni
  */
-public class KulunvalvontajarjestelmaTest {
+public class KuukausiJasenTest {
     
-    public KulunvalvontajarjestelmaTest() {
+    public KuukausiJasenTest() {
     }
     
     @BeforeClass
@@ -38,28 +38,28 @@ public class KulunvalvontajarjestelmaTest {
     }
 
     /**
-     * Test of onkoJasenyysVoimassa method, of class Kulunvalvontajarjestelma.
+     * Test of getKuukausiaJaljella method, of class KuukausiJasen.
      */
     @Test
-    public void testOnkoJasenyysVoimassa() {
-        System.out.println("onkoJasenyysVoimassa");
-        Kulunvalvontajarjestelma instance = new Kulunvalvontajarjestelma();
-        boolean expResult = false;
-        boolean result = instance.onkoJasenyysVoimassa();
+    public void testGetKuukausiaJaljella() {
+        System.out.println("getKuukausiaJaljella");
+        KuukausiJasen instance = new KuukausiJasen();
+        int expResult = 0;
+        int result = instance.getKuukausiaJaljella();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of avaaOvenLukitus method, of class Kulunvalvontajarjestelma.
+     * Test of setKuukausiaJaljella method, of class KuukausiJasen.
      */
     @Test
-    public void testAvaaOvenLukitus() {
-        System.out.println("avaaOvenLukitus");
-        boolean jasenyydenTila = false;
-        Kulunvalvontajarjestelma instance = new Kulunvalvontajarjestelma();
-        instance.avaaOvenLukitus(jasenyydenTila);
+    public void testSetKuukausiaJaljella() {
+        System.out.println("setKuukausiaJaljella");
+        int kuukausiaJaljella = 0;
+        KuukausiJasen instance = new KuukausiJasen();
+        instance.setKuukausiaJaljella(kuukausiaJaljella);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
