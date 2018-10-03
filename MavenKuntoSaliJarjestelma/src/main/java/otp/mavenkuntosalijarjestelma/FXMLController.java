@@ -53,6 +53,9 @@ public class FXMLController {
     @FXML // fx:id="MaksuKateinen"
     private RadioButton MaksuKateinen; // Value injected by FXMLLoader
 
+    @FXML // fx:id="Kuukausia"
+    private ToggleGroup Kuukausia; // Value injected by FXMLLoader
+    
     @FXML // fx:id="Aikaa1KK"
     private RadioButton Aikaa1KK; // Value injected by FXMLLoader
 
