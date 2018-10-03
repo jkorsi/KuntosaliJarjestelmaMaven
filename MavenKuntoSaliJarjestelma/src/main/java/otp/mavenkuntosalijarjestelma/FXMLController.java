@@ -14,6 +14,9 @@ import javafx.scene.control.ToggleGroup;
 
 public class FXMLController {
 
+    @FXML
+    private Button JasenPoistoButton;
+
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
 
@@ -55,7 +58,7 @@ public class FXMLController {
 
     @FXML // fx:id="Kuukausia"
     private ToggleGroup Kuukausia; // Value injected by FXMLLoader
-    
+
     @FXML // fx:id="Aikaa1KK"
     private RadioButton Aikaa1KK; // Value injected by FXMLLoader
 
@@ -78,8 +81,17 @@ public class FXMLController {
     }
 
     @FXML
+    void JasenPoistoButtonAction(ActionEvent event) {
+
+    }
+
+    @FXML
     void KausiJäsenAction(ActionEvent event) {
         System.out.println("KAUSIJÄSEN");
+        Aikaa1KK.setDisable(false);
+        Aikaa3KK.setDisable(false);
+        Kerrat10.setDisable(true);
+        Kerrat1.setDisable(true);
     }
 
     @FXML
@@ -95,11 +107,16 @@ public class FXMLController {
     @FXML
     void KertaJasenAction(ActionEvent event) {
         System.out.println("KERTAJÄSEN");
+        Aikaa1KK.setDisable(true);
+        Aikaa3KK.setDisable(true);
+        Kerrat10.setDisable(false);
+        Kerrat1.setDisable(false);
     }
 
     @FXML
     void MaksutapaKorttiAction(ActionEvent event) {
         System.out.println("MAKSU KORTTI");
+
     }
 
     @FXML
@@ -120,6 +137,7 @@ public class FXMLController {
         assert MaksuKortti != null : "fx:id=\"MaksuKortti\" was not injected: check your FXML file 'Scene.fxml'.";
         assert maksutapa != null : "fx:id=\"maksutapa\" was not injected: check your FXML file 'Scene.fxml'.";
         assert MaksuKateinen != null : "fx:id=\"MaksuKateinen\" was not injected: check your FXML file 'Scene.fxml'.";
+        assert JasenPoistoButton != null : "fx:id=\"JasenPoistoButton\" was not injected: check your FXML file 'Scene.fxml'.";
 
     }
 }
