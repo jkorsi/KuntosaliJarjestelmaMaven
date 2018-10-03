@@ -95,7 +95,6 @@
                            </toggleGroup></RadioButton>
                                 <RadioButton fx:id="kertajasenRadio" mnemonicParsing="false" onAction="#KertaJasenAction" text="Kertajäsen" toggleGroup="$jasentyyppi" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
                                 <TextField GridPane.rowIndex="1" />
-                                <TextField GridPane.rowIndex="5" />
                                 <RadioButton fx:id="Kerrat10" disable="true" mnemonicParsing="false" onAction="#Kerrat10Action" text="10" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
                            <toggleGroup>
                               <ToggleGroup fx:id="kertoja" />
@@ -106,6 +105,8 @@
                               <ToggleGroup fx:id="maksutapa" />
                            </toggleGroup></RadioButton>
                                 <RadioButton fx:id="MaksuKateinen" mnemonicParsing="false" onAction="#MaksutapaKäteinenAction" text="Käteinen" toggleGroup="$maksutapa" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="CENTER" />
+                        <RadioButton fx:id="Aikaa1KK" mnemonicParsing="false" onAction="#Aikaa1KKAction" text="1KK" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
+                        <RadioButton fx:id="Aikaa3KK" mnemonicParsing="false" onAction="#Aikaa3KKAction" text="3KK" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
                             </children>
                         </GridPane>
                     </children>

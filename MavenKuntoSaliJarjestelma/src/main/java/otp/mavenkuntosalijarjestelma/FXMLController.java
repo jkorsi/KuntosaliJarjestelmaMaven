@@ -1,7 +1,6 @@
 /**
  * Sample Skeleton for 'Scene.fxml' Controller Class
  */
-
 package otp.mavenkuntosalijarjestelma;
 
 import java.net.URL;
@@ -53,6 +52,22 @@ public class FXMLController {
 
     @FXML // fx:id="MaksuKateinen"
     private RadioButton MaksuKateinen; // Value injected by FXMLLoader
+
+    @FXML // fx:id="Aikaa1KK"
+    private RadioButton Aikaa1KK; // Value injected by FXMLLoader
+
+    @FXML // fx:id="Aikaa3KK"
+    private RadioButton Aikaa3KK; // Value injected by FXMLLoader
+
+    @FXML
+    void Aikaa1KKAction(ActionEvent event) {
+        System.out.println("AIKAA 1KK");
+    }
+
+    @FXML
+    void Aikaa3KKAction(ActionEvent event) {
+        System.out.println("AIKAA 3KK");
+    }
 
     @FXML
     void JasenLisausButtonAction(ActionEvent event) {
