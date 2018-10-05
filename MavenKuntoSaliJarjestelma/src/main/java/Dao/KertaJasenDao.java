@@ -6,6 +6,7 @@
 package Dao;
 
 import Entities.KertaJasen;
+import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
@@ -15,18 +16,22 @@ import org.hibernate.SessionFactory;
  */
 public class KertaJasenDao {
 
-    private static Session session;
-    private static SessionFactory factory;
+    private Session session;
+    private SessionFactory factory;
 
-    public static void createKertaJasen(KertaJasen jasen) {// tallentaa Kertajasen Objektin tietokantaam
+    public KertaJasenDao(SessionFactory factory) {
+        this.factory = factory;
+    }
+
+    public void createKertaJasen(KertaJasen jasen) {// tallentaa Kertajasen Objektin tietokantaam
 
         try {
             session = factory.openSession(); // avataan uusi sessio
             session.beginTransaction(); //aloitetaan transaktio
             //kertajasenen tallennus tietokantaan alku
-            
-            
-            
+
+            session.save(jasen);
+
             //kertajasenen tallennus tietokantaan loppu
             session.getTransaction().commit();//tallennetaan muutokset tietokantaan
         } catch (Exception sqlException) {
@@ -42,14 +47,14 @@ public class KertaJasenDao {
         }
     }
 
-    public static void deleteKertaJasen(int JasenId) { // poistaa kertajasenen jasenIdn Perusteella
+    public void deleteKertaJasen(int JasenId) { // poistaa kertajasenen jasenIdn Perusteella
         try {
             session = factory.openSession(); // avataan uusi sessio
             session.beginTransaction(); //aloitetaan transaktio
-            
-            
-            
-            
+
+            KertaJasen poistettavaJasen = getKertajasen(JasenId);
+            session.delete(poistettavaJasen);
+
             session.getTransaction().commit();//tallennetaan muutokset tietokantaan
         } catch (Exception sqlException) {
             if (session.getTransaction() != null) {
@@ -64,15 +69,14 @@ public class KertaJasenDao {
         }
     }
 
-    public static void updateKertaJasen(int JasenId) { // päivittää kertajasenen tietoja jasenId perusteella
+    public void updateKertaJasen(KertaJasen jasen) { // päivittää kertajasenen tietoja jasenId perusteella 
+        // olettaa että jäsen oliolla on sama jasenid kuin päivitettävällä jäsenenllä
         try {
             session = factory.openSession(); // avataan uusi sessio
             session.beginTransaction(); //aloitetaan transaktio
-            
-            
-            
-            
-            
+
+            session.saveOrUpdate(jasen);
+
             session.getTransaction().commit();
         } catch (Exception sqlException) {
             if (session.getTransaction() != null) {
@@ -87,16 +91,14 @@ public class KertaJasenDao {
         }
     }
 
-    public static void getKertajasen(int jasenId) {// hakee kertajasenen jasenidn perusteella
+    public KertaJasen getKertajasen(int jasenId) {// hakee kertajasenen jasenidn perusteella
+        KertaJasen haettu = null;
         try {
             session = factory.openSession(); // avataan uusi sessio
             session.beginTransaction(); //aloitetaan transaktio
-            
-            
-            
-            
-            
-            session.getTransaction().commit();
+
+            haettu = (KertaJasen) session.load(KertaJasen.class, jasenId);
+
         } catch (Exception sqlException) {
             if (session.getTransaction() != null) {
                 session.getTransaction().rollback();// virhe tapahtui palautetaan kaikki tehdyt muutokset
@@ -108,18 +110,17 @@ public class KertaJasenDao {
                 session.close(); //suljetaan transaktio
             }
         }
+        return haettu;
     }
 
-    public static void getALLKertajasen() { // hakee kaikki Kertajasenset tietokannasta
+    public List getALLKertajasen() { // hakee kaikki Kertajasenset tietokannasta
+        List kertaJasenet = null;
         try {
             session = factory.openSession(); // avataan uusi sessio
             session.beginTransaction(); //aloitetaan transaktio
-            
-            
-            
-            
-            
-            session.getTransaction().commit();
+
+            kertaJasenet = session.createQuery("FROM kertajasenet").list();
+
         } catch (Exception sqlException) {
             if (session.getTransaction() != null) {
                 session.getTransaction().rollback();// virhe tapahtui palautetaan kaikki tehdyt muutokset
@@ -131,5 +132,6 @@ public class KertaJasenDao {
                 session.close(); //suljetaan transaktio
             }
         }
+        return kertaJasenet;
     }
 }
