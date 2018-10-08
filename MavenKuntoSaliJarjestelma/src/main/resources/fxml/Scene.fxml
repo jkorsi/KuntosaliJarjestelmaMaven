@@ -109,7 +109,7 @@
                         </Label>
                             </children>
                         </GridPane>
-                  <TabPane layoutX="302.0" prefHeight="555.0" prefWidth="590.0" tabClosingPolicy="UNAVAILABLE">
+                  <TabPane fx:id="JasenTabPane" layoutX="302.0" prefHeight="555.0" prefWidth="590.0" tabClosingPolicy="UNAVAILABLE">
                     <tabs>
                       <Tab fx:id="KuukausiJasenTab" text="Kuukausijäsen">
                         <content>

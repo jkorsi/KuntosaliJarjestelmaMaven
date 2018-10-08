@@ -9,23 +9,20 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.SingleSelectionModel;
 import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TableView;
 import javafx.scene.control.ToggleGroup;
 
 public class FXMLController {
 
-    @FXML
-    private Button JasenPoistoButton;
-
+   
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
 
     @FXML // URL location of the FXML file that was given to the FXMLLoader
     private URL location;
-
-    @FXML // fx:id="JasenTaulu"
-    private TableView<?> JasenTaulu; // Value injected by FXMLLoader
 
     @FXML // fx:id="JasenLisausButton"
     private Button JasenLisausButton; // Value injected by FXMLLoader
@@ -57,15 +54,21 @@ public class FXMLController {
     @FXML // fx:id="MaksuKateinen"
     private RadioButton MaksuKateinen; // Value injected by FXMLLoader
 
-    @FXML // fx:id="Kuukausia"
-    private ToggleGroup Kuukausia; // Value injected by FXMLLoader
-
     @FXML // fx:id="Aikaa1KK"
     private RadioButton Aikaa1KK; // Value injected by FXMLLoader
 
+    @FXML // fx:id="Kuukausia"
+    private ToggleGroup Kuukausia; // Value injected by FXMLLoader
+
     @FXML // fx:id="Aikaa3KK"
     private RadioButton Aikaa3KK; // Value injected by FXMLLoader
-    
+
+    @FXML // fx:id="JasenPoistoButton"
+    private Button JasenPoistoButton; // Value injected by FXMLLoader
+
+    @FXML // fx:id="JasenTabPane"
+    private TabPane JasenTabPane; // Value injected by FXMLLoader
+
     @FXML // fx:id="KuukausiJasenTab"
     private Tab KuukausiJasenTab; // Value injected by FXMLLoader
 
@@ -91,20 +94,24 @@ public class FXMLController {
     @FXML
     void JasenLisausButtonAction(ActionEvent event) {
         System.out.println("JASEN LISÄYS fxml");
+        
     }
 
     @FXML
     void JasenPoistoButtonAction(ActionEvent event) {
 
     }
-
+    
+    SingleSelectionModel<Tab> selectionModel; 
     @FXML
     void KausiJäsenAction(ActionEvent event) {
+        selectionModel = JasenTabPane.getSelectionModel();
         System.out.println("KAUSIJÄSEN");
         Aikaa1KK.setDisable(false);
         Aikaa3KK.setDisable(false);
         Kerrat10.setDisable(true);
         Kerrat1.setDisable(true);
+        selectionModel.select(KuukausiJasenTab);
     }
 
     @FXML
@@ -119,11 +126,13 @@ public class FXMLController {
 
     @FXML
     void KertaJasenAction(ActionEvent event) {
+        selectionModel = JasenTabPane.getSelectionModel();
         System.out.println("KERTAJÄSEN");
         Aikaa1KK.setDisable(true);
         Aikaa3KK.setDisable(true);
         Kerrat10.setDisable(false);
         Kerrat1.setDisable(false);
+        selectionModel.select(KertaJasenTab);
     }
 
     @FXML
@@ -137,9 +146,8 @@ public class FXMLController {
         System.out.println("MAKSU KÄTEINEN");
     }
 
-    @FXML // This method is called by the FXMLLoader when initialization is complete
+       @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
-        assert JasenTaulu != null : "fx:id=\"JasenTaulu\" was not injected: check your FXML file 'Scene.fxml'.";
         assert JasenLisausButton != null : "fx:id=\"JasenLisausButton\" was not injected: check your FXML file 'Scene.fxml'.";
         assert KausiJasen != null : "fx:id=\"KausiJasen\" was not injected: check your FXML file 'Scene.fxml'.";
         assert jasentyyppi != null : "fx:id=\"jasentyyppi\" was not injected: check your FXML file 'Scene.fxml'.";
@@ -150,7 +158,15 @@ public class FXMLController {
         assert MaksuKortti != null : "fx:id=\"MaksuKortti\" was not injected: check your FXML file 'Scene.fxml'.";
         assert maksutapa != null : "fx:id=\"maksutapa\" was not injected: check your FXML file 'Scene.fxml'.";
         assert MaksuKateinen != null : "fx:id=\"MaksuKateinen\" was not injected: check your FXML file 'Scene.fxml'.";
+        assert Aikaa1KK != null : "fx:id=\"Aikaa1KK\" was not injected: check your FXML file 'Scene.fxml'.";
+        assert Kuukausia != null : "fx:id=\"Kuukausia\" was not injected: check your FXML file 'Scene.fxml'.";
+        assert Aikaa3KK != null : "fx:id=\"Aikaa3KK\" was not injected: check your FXML file 'Scene.fxml'.";
         assert JasenPoistoButton != null : "fx:id=\"JasenPoistoButton\" was not injected: check your FXML file 'Scene.fxml'.";
+        assert JasenTabPane != null : "fx:id=\"JasenTabPane\" was not injected: check your FXML file 'Scene.fxml'.";
+        assert KuukausiJasenTab != null : "fx:id=\"KuukausiJasenTab\" was not injected: check your FXML file 'Scene.fxml'.";
+        assert KuukausiJasenTaulu != null : "fx:id=\"KuukausiJasenTaulu\" was not injected: check your FXML file 'Scene.fxml'.";
+        assert KertaJasenTab != null : "fx:id=\"KertaJasenTab\" was not injected: check your FXML file 'Scene.fxml'.";
+        assert KertaJasenTaulu != null : "fx:id=\"KertaJasenTaulu\" was not injected: check your FXML file 'Scene.fxml'.";
 
     }
 }
