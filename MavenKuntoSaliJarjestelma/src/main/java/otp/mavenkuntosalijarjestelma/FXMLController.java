@@ -8,7 +8,10 @@ import Dao.KuukausiJasenDao;
 import Entities.KertaJasen;
 import Entities.KuukausiJasen;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -23,7 +26,6 @@ import org.hibernate.SessionFactory;
 
 public class FXMLController {
 
-   
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
 
@@ -79,32 +81,30 @@ public class FXMLController {
     private Tab KuukausiJasenTab; // Value injected by FXMLLoader
 
     @FXML // fx:id="KuukausiJasenTaulu"
-    private TableView<?> KuukausiJasenTaulu; // Value injected by FXMLLoader
+    private TableView<KuukausiJasen> KuukausiJasenTaulu; // Value injected by FXMLLoader
 
     @FXML // fx:id="KertaJasenTab"
     private Tab KertaJasenTab; // Value injected by FXMLLoader
 
     @FXML // fx:id="KertaJasenTaulu"
-    private TableView<?> KertaJasenTaulu; // Value injected by FXMLLoader
-    
+    private TableView<KertaJasen> KertaJasenTaulu; // Value injected by FXMLLoader
+
     @FXML // fx:id="JasenNimiField"
     private TextField JasenNimiField; // Value injected by FXMLLoader
     private SessionFactory sessionFactory;
     private final KertaJasenDao kertaDao;
     private final KuukausiJasenDao kuukausiDao;
-    
+
     public FXMLController() {
-        sessionFactory =  HibernateUtil.getSessionFactory();
+        sessionFactory = HibernateUtil.getSessionFactory();
         kertaDao = new KertaJasenDao(sessionFactory);
         kuukausiDao = new KuukausiJasenDao(sessionFactory);
-        
-//        KuukausiJasenTaulu.setItems(kuukausiDao.getALLKuukausiJasen());
-//        KertaJasenTaulu.setItems(kertaDao.getALLKertajasen());
+
     }
 
     public SessionFactory getSessionFactory() {
         return sessionFactory;
-    }   
+    }
 
     @FXML
     void Aikaa1KKAction(ActionEvent event) {
@@ -119,48 +119,51 @@ public class FXMLController {
     @FXML
     void JasenLisausButtonAction(ActionEvent event) {
         System.out.println("JASEN LISÄYS fxml");
-        if(KausiJasen.isSelected()){
+        System.out.println("KertajasenTaulu: " + KertaJasenTaulu);
+        System.out.println("KuukausijasenTaulu: " + KuukausiJasenTaulu);
+        if (KausiJasen.isSelected()) {
             KuukausiJasen kuuJasen = new KuukausiJasen();
             System.out.println(JasenNimiField.getText());
             String nimi = JasenNimiField.getText();
             kuuJasen.setNimi(nimi);
-            if(Aikaa1KK.isSelected()){
+            if (Aikaa1KK.isSelected()) {
                 kuuJasen.setKuukausiaJaljella(1);
-            }else if(Aikaa3KK.isSelected()){
+            } else if (Aikaa3KK.isSelected()) {
                 kuuJasen.setKuukausiaJaljella(3);
             }
-            if(MaksuKateinen.isSelected()){
+            if (MaksuKateinen.isSelected()) {
                 kuuJasen.setMaksuTapa("KÄTEINEN");
-            }else if(MaksuKortti.isSelected()){
+            } else if (MaksuKortti.isSelected()) {
                 kuuJasen.setMaksuTapa("KORTTI");
             }
             kuukausiDao.createKuukausiJasen(kuuJasen);
-            
-        }else if(kertajasenRadio.isSelected()){
+
+        } else if (kertajasenRadio.isSelected()) {
             KertaJasen kertaJasen = new KertaJasen();
             kertaJasen.setNimi(JasenNimiField.getText());
-            
-            if(Kerrat1.isSelected()){
+
+            if (Kerrat1.isSelected()) {
                 kertaJasen.setKayntikertojaJaljella(1);
-            }else if(Kerrat10.isSelected()){
-                 kertaJasen.setKayntikertojaJaljella(10);
+            } else if (Kerrat10.isSelected()) {
+                kertaJasen.setKayntikertojaJaljella(10);
             }
-            if(MaksuKateinen.isSelected()){
+            if (MaksuKateinen.isSelected()) {
                 kertaJasen.setMaksuTapa("KÄTEINEN");
-            }else if(MaksuKortti.isSelected()){
+            } else if (MaksuKortti.isSelected()) {
                 kertaJasen.setMaksuTapa("KORTTI");
             }
             kertaDao.createKertaJasen(kertaJasen);
         }
-        
+
     }
 
     @FXML
     void JasenPoistoButtonAction(ActionEvent event) {
 
     }
-    
-    SingleSelectionModel<Tab> selectionModel; 
+
+    SingleSelectionModel<Tab> selectionModel;
+
     @FXML
     void KausiJäsenAction(ActionEvent event) {
         selectionModel = JasenTabPane.getSelectionModel();
@@ -204,8 +207,16 @@ public class FXMLController {
         System.out.println("MAKSU KÄTEINEN");
     }
 
-   @FXML // This method is called by the FXMLLoader when initialization is complete
+    @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
+        System.out.println("KertajasenTaulu: " + KertaJasenTaulu);
+        System.out.println("KuukausijasenTaulu: " + KuukausiJasenTaulu);
+//        ObservableList<KuukausiJasen> lisaf = (ObservableList)kuukausiDao.getALLKuukausiJasen();
+//        
+        KuukausiJasenTaulu.setItems(FXCollections.observableList(kuukausiDao.getALLKuukausiJasen()));
+        KertaJasenTaulu.setItems(FXCollections.observableList(kertaDao.getALLKertajasen()));
+//        KertaJasenTaulu.getItems().setAll(kertaDao.getALLKertajasen());
+//        KuukausiJasenTaulu.getItems().setAll(kuukausiDao.getALLKuukausiJasen());
         assert JasenLisausButton != null : "fx:id=\"JasenLisausButton\" was not injected: check your FXML file 'Scene.fxml'.";
         assert KausiJasen != null : "fx:id=\"KausiJasen\" was not injected: check your FXML file 'Scene.fxml'.";
         assert jasentyyppi != null : "fx:id=\"jasentyyppi\" was not injected: check your FXML file 'Scene.fxml'.";

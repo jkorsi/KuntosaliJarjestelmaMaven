@@ -113,13 +113,13 @@ public class KuukausiJasenDao {
         return haettu;
     }
 
-    public List getALLKuukausiJasen() { // hakee kaikki KuukausiJasenet tietokannasta
+    public List<KuukausiJasen> getALLKuukausiJasen() { // hakee kaikki KuukausiJasenet tietokannasta
         List KuukausiJasenet = null;
         try {
             session = factory.openSession(); // avataan uusi sessio
             session.beginTransaction(); //aloitetaan transaktio
 
-            KuukausiJasenet = session.createQuery("FROM kuukausijasenet").list();
+            KuukausiJasenet = session.createQuery("FROM KuukausiJasen").list();
 
         } catch (Exception sqlException) {
             if (session.getTransaction() != null) {

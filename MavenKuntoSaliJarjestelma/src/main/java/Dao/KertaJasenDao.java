@@ -113,13 +113,13 @@ public class KertaJasenDao {
         return haettu;
     }
 
-    public List getALLKertajasen() { // hakee kaikki Kertajasenset tietokannasta
+    public List<KertaJasen> getALLKertajasen() { // hakee kaikki Kertajasenset tietokannasta
         List kertaJasenet = null;
         try {
             session = factory.openSession(); // avataan uusi sessio
             session.beginTransaction(); //aloitetaan transaktio
 
-            kertaJasenet = session.createQuery("FROM kertajasenet").list();
+            kertaJasenet = session.createQuery("FROM KertaJasen").list();
 
         } catch (Exception sqlException) {
             if (session.getTransaction() != null) {
