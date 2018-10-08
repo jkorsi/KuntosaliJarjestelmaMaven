@@ -132,6 +132,9 @@ public class FXMLController {
     private final KertaJasenDao kertaDao;
     private final KuukausiJasenDao kuukausiDao;
 
+    ObservableList<KuukausiJasen> kuukau;
+    ObservableList<KertaJasen> kerta;
+
     public FXMLController() {
         sessionFactory = HibernateUtil.getSessionFactory();
         kertaDao = new KertaJasenDao(sessionFactory);
@@ -190,13 +193,34 @@ public class FXMLController {
                 kertaJasen.setMaksuTapa("KORTTI");
             }
             kertaDao.createKertaJasen(kertaJasen);
+            update();
         }
 
     }
 
+    public void update() {
+        kuukau = FXCollections.observableList(kuukausiDao.getALLKuukausiJasen());
+        kerta = FXCollections.observableList(kertaDao.getALLKertajasen());
+        KuukausiJasenTaulu.getItems().clear();
+        KertaJasenTaulu.getItems().clear();
+        KuukausiJasenTaulu.setItems(kuukau);
+        KertaJasenTaulu.setItems(kerta);
+    }
+
     @FXML
     void JasenPoistoButtonAction(ActionEvent event) {
-
+        KuukausiJasen toDeleteKuukausi = KuukausiJasenTaulu.getSelectionModel().getSelectedItem();
+        KertaJasen toDeleteKerta = KertaJasenTaulu.getSelectionModel().getSelectedItem();
+        if(toDeleteKerta == null){
+            if (toDeleteKuukausi != null){
+                kuukausiDao.deleteKuukausiJasen(toDeleteKuukausi);
+            }
+        }else{
+            kertaDao.deleteKertaJasen(toDeleteKerta);
+        }
+        
+        
+        update();
     }
 
     SingleSelectionModel<Tab> selectionModel;
@@ -282,7 +306,6 @@ public class FXMLController {
         });
 
         // kertajäsenelle alla
-        
         KertaJasenTableID.setCellValueFactory(new Callback<CellDataFeatures<KertaJasen, Integer>, ObservableValue<Integer>>() {
             public ObservableValue<Integer> call(CellDataFeatures<KertaJasen, Integer> p) {
                 // p.getValue() returns the Person instance for a particular TableView row
@@ -315,12 +338,10 @@ public class FXMLController {
             }
         });
 
-        ObservableList<KuukausiJasen> kuukau = FXCollections.observableList(kuukausiDao.getALLKuukausiJasen());
-        ObservableList<KertaJasen> kerta = FXCollections.observableList(kertaDao.getALLKertajasen());
-//        
+        kuukau = FXCollections.observableList(kuukausiDao.getALLKuukausiJasen());
+        kerta = FXCollections.observableList(kertaDao.getALLKertajasen());
 
         KuukausiJasenTaulu.setItems(kuukau);
-
         KertaJasenTaulu.setItems(kerta);
 //        KertaJasenTaulu.getItems().setAll(kertaDao.getALLKertajasen());
 //        KuukausiJasenTaulu.getItems().setAll(kuukausiDao.getALLKuukausiJasen());

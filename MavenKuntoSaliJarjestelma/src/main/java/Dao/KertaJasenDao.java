@@ -68,6 +68,27 @@ public class KertaJasenDao {
             }
         }
     }
+    
+    public void deleteKertaJasen(KertaJasen jasen) { // poistaa kertajasenen jasenIdn Perusteella
+        try {
+            session = factory.openSession(); // avataan uusi sessio
+            session.beginTransaction(); //aloitetaan transaktio
+
+            session.delete(jasen);
+
+            session.getTransaction().commit();//tallennetaan muutokset tietokantaan
+        } catch (Exception sqlException) {
+            if (session.getTransaction() != null) {
+                session.getTransaction().rollback();// virhe tapahtui palautetaan kaikki tehdyt muutokset
+            }
+            sqlException.printStackTrace();
+
+        } finally {
+            if (session != null) {
+                session.close(); //suljetaan transaktio
+            }
+        }
+    }
 
     public void updateKertaJasen(KertaJasen jasen) { // päivittää kertajasenen tietoja jasenId perusteella 
         // olettaa että jäsen oliolla on sama jasenid kuin päivitettävällä jäsenenllä
