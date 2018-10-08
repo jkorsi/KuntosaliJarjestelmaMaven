@@ -3,6 +3,10 @@
  */
 package otp.mavenkuntosalijarjestelma;
 
+import Dao.KertaJasenDao;
+import Dao.KuukausiJasenDao;
+import Entities.KertaJasen;
+import Entities.KuukausiJasen;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -13,7 +17,9 @@ import javafx.scene.control.SingleSelectionModel;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import org.hibernate.SessionFactory;
 
 public class FXMLController {
 
@@ -80,6 +86,25 @@ public class FXMLController {
 
     @FXML // fx:id="KertaJasenTaulu"
     private TableView<?> KertaJasenTaulu; // Value injected by FXMLLoader
+    
+    @FXML // fx:id="JasenNimiField"
+    private TextField JasenNimiField; // Value injected by FXMLLoader
+    private SessionFactory sessionFactory;
+    private final KertaJasenDao kertaDao;
+    private final KuukausiJasenDao kuukausiDao;
+    
+    public FXMLController() {
+        sessionFactory =  HibernateUtil.getSessionFactory();
+        kertaDao = new KertaJasenDao(sessionFactory);
+        kuukausiDao = new KuukausiJasenDao(sessionFactory);
+        
+//        KuukausiJasenTaulu.setItems(kuukausiDao.getALLKuukausiJasen());
+//        KertaJasenTaulu.setItems(kertaDao.getALLKertajasen());
+    }
+
+    public SessionFactory getSessionFactory() {
+        return sessionFactory;
+    }   
 
     @FXML
     void Aikaa1KKAction(ActionEvent event) {
@@ -94,6 +119,39 @@ public class FXMLController {
     @FXML
     void JasenLisausButtonAction(ActionEvent event) {
         System.out.println("JASEN LISÄYS fxml");
+        if(KausiJasen.isSelected()){
+            KuukausiJasen kuuJasen = new KuukausiJasen();
+            System.out.println(JasenNimiField.getText());
+            String nimi = JasenNimiField.getText();
+            kuuJasen.setNimi(nimi);
+            if(Aikaa1KK.isSelected()){
+                kuuJasen.setKuukausiaJaljella(1);
+            }else if(Aikaa3KK.isSelected()){
+                kuuJasen.setKuukausiaJaljella(3);
+            }
+            if(MaksuKateinen.isSelected()){
+                kuuJasen.setMaksuTapa("KÄTEINEN");
+            }else if(MaksuKortti.isSelected()){
+                kuuJasen.setMaksuTapa("KORTTI");
+            }
+            kuukausiDao.createKuukausiJasen(kuuJasen);
+            
+        }else if(kertajasenRadio.isSelected()){
+            KertaJasen kertaJasen = new KertaJasen();
+            kertaJasen.setNimi(JasenNimiField.getText());
+            
+            if(Kerrat1.isSelected()){
+                kertaJasen.setKayntikertojaJaljella(1);
+            }else if(Kerrat10.isSelected()){
+                 kertaJasen.setKayntikertojaJaljella(10);
+            }
+            if(MaksuKateinen.isSelected()){
+                kertaJasen.setMaksuTapa("KÄTEINEN");
+            }else if(MaksuKortti.isSelected()){
+                kertaJasen.setMaksuTapa("KORTTI");
+            }
+            kertaDao.createKertaJasen(kertaJasen);
+        }
         
     }
 
@@ -146,12 +204,13 @@ public class FXMLController {
         System.out.println("MAKSU KÄTEINEN");
     }
 
-       @FXML // This method is called by the FXMLLoader when initialization is complete
+   @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
         assert JasenLisausButton != null : "fx:id=\"JasenLisausButton\" was not injected: check your FXML file 'Scene.fxml'.";
         assert KausiJasen != null : "fx:id=\"KausiJasen\" was not injected: check your FXML file 'Scene.fxml'.";
         assert jasentyyppi != null : "fx:id=\"jasentyyppi\" was not injected: check your FXML file 'Scene.fxml'.";
         assert kertajasenRadio != null : "fx:id=\"kertajasenRadio\" was not injected: check your FXML file 'Scene.fxml'.";
+        assert JasenNimiField != null : "fx:id=\"JasenNimiField\" was not injected: check your FXML file 'Scene.fxml'.";
         assert Kerrat10 != null : "fx:id=\"Kerrat10\" was not injected: check your FXML file 'Scene.fxml'.";
         assert kertoja != null : "fx:id=\"kertoja\" was not injected: check your FXML file 'Scene.fxml'.";
         assert Kerrat1 != null : "fx:id=\"Kerrat1\" was not injected: check your FXML file 'Scene.fxml'.";

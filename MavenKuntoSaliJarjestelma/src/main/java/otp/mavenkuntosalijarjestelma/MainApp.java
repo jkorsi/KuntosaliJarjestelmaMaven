@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 import org.hibernate.SessionFactory;
 
 public class MainApp extends Application {
-    private static SessionFactory sessionFactory;
+    private FXMLController controller;
     
     /*Tehtävä 14:
     https://en.wikipedia.org/wiki/Breadth-first_search
@@ -26,7 +26,12 @@ public class MainApp extends Application {
     
     @Override
     public void init(){
-       sessionFactory = HibernateUtil.getSessionFactory();
+       controller = new FXMLController();
+    }
+    
+    @Override
+    public void stop(){
+        controller.getSessionFactory().close();
     }
 
     @Override
