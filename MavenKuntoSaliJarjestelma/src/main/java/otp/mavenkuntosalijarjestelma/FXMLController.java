@@ -9,6 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.Tab;
 import javafx.scene.control.TableView;
 import javafx.scene.control.ToggleGroup;
 
@@ -64,6 +65,18 @@ public class FXMLController {
 
     @FXML // fx:id="Aikaa3KK"
     private RadioButton Aikaa3KK; // Value injected by FXMLLoader
+    
+    @FXML // fx:id="KuukausiJasenTab"
+    private Tab KuukausiJasenTab; // Value injected by FXMLLoader
+
+    @FXML // fx:id="KuukausiJasenTaulu"
+    private TableView<?> KuukausiJasenTaulu; // Value injected by FXMLLoader
+
+    @FXML // fx:id="KertaJasenTab"
+    private Tab KertaJasenTab; // Value injected by FXMLLoader
+
+    @FXML // fx:id="KertaJasenTaulu"
+    private TableView<?> KertaJasenTaulu; // Value injected by FXMLLoader
 
     @FXML
     void Aikaa1KKAction(ActionEvent event) {

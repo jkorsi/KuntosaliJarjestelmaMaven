@@ -7,12 +7,22 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.hibernate.SessionFactory;
-import org.hibernate.*;
 
 public class MainApp extends Application {
     private static SessionFactory sessionFactory;
     
+    /*Tehtävä 14:
+    https://en.wikipedia.org/wiki/Breadth-first_search
+    -Jono käymättömistä soluista
+    -Tietue käydyistä soluista
+    -Etemee kerroksittain
+    -Tallentaa lopuksi nopeimman polun
+    -Aikavaatimus O(n) missä n = solujen määrä
+    -Käytetään esim. web-sivustojen indeksoinnissa hakukoneisiin
+    -
     
+    
+    */
     
     @Override
     public void init(){
