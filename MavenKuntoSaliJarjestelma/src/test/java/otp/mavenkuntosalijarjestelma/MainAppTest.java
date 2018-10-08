@@ -76,5 +76,17 @@ public class MainAppTest {
         // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
     }
+
+    /**
+     * Test of stop method, of class MainApp.
+     */
+    @Test
+    public void testStop() {
+        System.out.println("stop");
+        MainApp instance = new MainApp();
+        instance.stop();
+        // TODO review the generated test code and remove the default call to fail.
+       // fail("The test case is a prototype.");
+    }
     
 }
