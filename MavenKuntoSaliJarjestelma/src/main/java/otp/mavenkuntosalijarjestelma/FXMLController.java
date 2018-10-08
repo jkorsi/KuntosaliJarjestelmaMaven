@@ -5,11 +5,14 @@ package otp.mavenkuntosalijarjestelma;
 
 import Dao.KertaJasenDao;
 import Dao.KuukausiJasenDao;
+import Entities.Jasen;
 import Entities.KertaJasen;
 import Entities.KuukausiJasen;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.beans.property.ReadOnlyObjectWrapper;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -20,9 +23,12 @@ import javafx.scene.control.SingleSelectionModel;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.util.Callback;
 import org.hibernate.SessionFactory;
 
 public class FXMLController {
@@ -242,41 +248,141 @@ public class FXMLController {
     void initialize() {
         System.out.println("KertajasenTaulu: " + KertaJasenTaulu);
         System.out.println("KuukausijasenTaulu: " + KuukausiJasenTaulu);
-//        ObservableList<KuukausiJasen> lisaf = (ObservableList)kuukausiDao.getALLKuukausiJasen();
+
+        KuukaisuJasenTableID.setCellValueFactory(new Callback<CellDataFeatures<KuukausiJasen, Integer>, ObservableValue<Integer>>() {
+            public ObservableValue<Integer> call(CellDataFeatures<KuukausiJasen, Integer> p) {
+                // p.getValue() returns the Person instance for a particular TableView row
+                return new ReadOnlyObjectWrapper(p.getValue().getJasenID());
+            }
+        });
+
+        KuukaisuJasenTableNimi.setCellValueFactory(new Callback<CellDataFeatures<KuukausiJasen, String>, ObservableValue<String>>() {
+            public ObservableValue<String> call(CellDataFeatures<KuukausiJasen, String> p) {
+                // p.getValue() returns the Person instance for a particular TableView row
+                return new ReadOnlyObjectWrapper(p.getValue().getNimi());
+            }
+        });
+        KuukaisuJasenTableJasenyysVoimassa.setCellValueFactory(new Callback<CellDataFeatures<KuukausiJasen, Boolean>, ObservableValue<Boolean>>() {
+            public ObservableValue<Boolean> call(CellDataFeatures<KuukausiJasen, Boolean> p) {
+                // p.getValue() returns the Person instance for a particular TableView row
+                return new ReadOnlyObjectWrapper(p.getValue().isOnkoJasenyysVoimassa());
+            }
+        });
+        KuukaisuJasenTableKkJaljella.setCellValueFactory(new Callback<CellDataFeatures<KuukausiJasen, Integer>, ObservableValue<Integer>>() {
+            public ObservableValue<Integer> call(CellDataFeatures<KuukausiJasen, Integer> p) {
+                // p.getValue() returns the Person instance for a particular TableView row
+                return new ReadOnlyObjectWrapper(p.getValue().getKuukausiaJaljella());
+            }
+        });
+        KuukaisuJasenTableMaksuTapa.setCellValueFactory(new Callback<CellDataFeatures<KuukausiJasen, String>, ObservableValue<String>>() {
+            public ObservableValue<String> call(CellDataFeatures<KuukausiJasen, String> p) {
+                // p.getValue() returns the Person instance for a particular TableView row
+                return new ReadOnlyObjectWrapper(p.getValue().getMaksuTapa());
+            }
+        });
+
+        // kertajäsenelle alla
+        
+        KertaJasenTableID.setCellValueFactory(new Callback<CellDataFeatures<KertaJasen, Integer>, ObservableValue<Integer>>() {
+            public ObservableValue<Integer> call(CellDataFeatures<KertaJasen, Integer> p) {
+                // p.getValue() returns the Person instance for a particular TableView row
+                return new ReadOnlyObjectWrapper(p.getValue().getJasenID());
+            }
+        });
+
+        KertaJasenTableNimi.setCellValueFactory(new Callback<CellDataFeatures<KertaJasen, String>, ObservableValue<String>>() {
+            public ObservableValue<String> call(CellDataFeatures<KertaJasen, String> p) {
+                // p.getValue() returns the Person instance for a particular TableView row
+                return new ReadOnlyObjectWrapper(p.getValue().getNimi());
+            }
+        });
+        KertaJasenTableJasenyysVoimassa.setCellValueFactory(new Callback<CellDataFeatures<KertaJasen, Boolean>, ObservableValue<Boolean>>() {
+            public ObservableValue<Boolean> call(CellDataFeatures<KertaJasen, Boolean> p) {
+                // p.getValue() returns the Person instance for a particular TableView row
+                return new ReadOnlyObjectWrapper(p.getValue().isOnkoJasenyysVoimassa());
+            }
+        });
+        KertaJasenTableKertojaJaljella.setCellValueFactory(new Callback<CellDataFeatures<KertaJasen, Integer>, ObservableValue<Integer>>() {
+            public ObservableValue<Integer> call(CellDataFeatures<KertaJasen, Integer> p) {
+                // p.getValue() returns the Person instance for a particular TableView row
+                return new ReadOnlyObjectWrapper(p.getValue().getKayntikertojaJaljella());
+            }
+        });
+        KertaJasenTableMaksutapa.setCellValueFactory(new Callback<CellDataFeatures<KertaJasen, String>, ObservableValue<String>>() {
+            public ObservableValue<String> call(CellDataFeatures<KertaJasen, String> p) {
+                // p.getValue() returns the Person instance for a particular TableView row
+                return new ReadOnlyObjectWrapper(p.getValue().getMaksuTapa());
+            }
+        });
+
+        ObservableList<KuukausiJasen> kuukau = FXCollections.observableList(kuukausiDao.getALLKuukausiJasen());
+        ObservableList<KertaJasen> kerta = FXCollections.observableList(kertaDao.getALLKertajasen());
 //        
-        KuukausiJasenTaulu.setItems(FXCollections.observableList(kuukausiDao.getALLKuukausiJasen()));
-        KertaJasenTaulu.setItems(FXCollections.observableList(kertaDao.getALLKertajasen()));
+
+        KuukausiJasenTaulu.setItems(kuukau);
+
+        KertaJasenTaulu.setItems(kerta);
 //        KertaJasenTaulu.getItems().setAll(kertaDao.getALLKertajasen());
 //        KuukausiJasenTaulu.getItems().setAll(kuukausiDao.getALLKuukausiJasen());
+
         assert JasenLisausButton != null : "fx:id=\"JasenLisausButton\" was not injected: check your FXML file 'Scene.fxml'.";
+
         assert KausiJasen != null : "fx:id=\"KausiJasen\" was not injected: check your FXML file 'Scene.fxml'.";
+
         assert jasentyyppi != null : "fx:id=\"jasentyyppi\" was not injected: check your FXML file 'Scene.fxml'.";
+
         assert kertajasenRadio != null : "fx:id=\"kertajasenRadio\" was not injected: check your FXML file 'Scene.fxml'.";
+
         assert JasenNimiField != null : "fx:id=\"JasenNimiField\" was not injected: check your FXML file 'Scene.fxml'.";
+
         assert Kerrat10 != null : "fx:id=\"Kerrat10\" was not injected: check your FXML file 'Scene.fxml'.";
+
         assert kertoja != null : "fx:id=\"kertoja\" was not injected: check your FXML file 'Scene.fxml'.";
+
         assert Kerrat1 != null : "fx:id=\"Kerrat1\" was not injected: check your FXML file 'Scene.fxml'.";
+
         assert MaksuKortti != null : "fx:id=\"MaksuKortti\" was not injected: check your FXML file 'Scene.fxml'.";
+
         assert maksutapa != null : "fx:id=\"maksutapa\" was not injected: check your FXML file 'Scene.fxml'.";
+
         assert MaksuKateinen != null : "fx:id=\"MaksuKateinen\" was not injected: check your FXML file 'Scene.fxml'.";
+
         assert Aikaa1KK != null : "fx:id=\"Aikaa1KK\" was not injected: check your FXML file 'Scene.fxml'.";
+
         assert Kuukausia != null : "fx:id=\"Kuukausia\" was not injected: check your FXML file 'Scene.fxml'.";
+
         assert Aikaa3KK != null : "fx:id=\"Aikaa3KK\" was not injected: check your FXML file 'Scene.fxml'.";
+
         assert JasenPoistoButton != null : "fx:id=\"JasenPoistoButton\" was not injected: check your FXML file 'Scene.fxml'.";
+
         assert JasenTabPane != null : "fx:id=\"JasenTabPane\" was not injected: check your FXML file 'Scene.fxml'.";
+
         assert KuukausiJasenTab != null : "fx:id=\"KuukausiJasenTab\" was not injected: check your FXML file 'Scene.fxml'.";
+
         assert KuukausiJasenTaulu != null : "fx:id=\"KuukausiJasenTaulu\" was not injected: check your FXML file 'Scene.fxml'.";
+
         assert KuukaisuJasenTableID != null : "fx:id=\"KuukaisuJasenTableID\" was not injected: check your FXML file 'Scene.fxml'.";
+
         assert KuukaisuJasenTableNimi != null : "fx:id=\"KuukaisuJasenTableNimi\" was not injected: check your FXML file 'Scene.fxml'.";
+
         assert KuukaisuJasenTableJasenyysVoimassa != null : "fx:id=\"KuukaisuJasenTableJasenyysVoimassa\" was not injected: check your FXML file 'Scene.fxml'.";
+
         assert KuukaisuJasenTableKkJaljella != null : "fx:id=\"KuukaisuJasenTableKkJaljella\" was not injected: check your FXML file 'Scene.fxml'.";
+
         assert KuukaisuJasenTableMaksuTapa != null : "fx:id=\"KuukaisuJasenTableMaksuTapa\" was not injected: check your FXML file 'Scene.fxml'.";
+
         assert KertaJasenTab != null : "fx:id=\"KertaJasenTab\" was not injected: check your FXML file 'Scene.fxml'.";
+
         assert KertaJasenTaulu != null : "fx:id=\"KertaJasenTaulu\" was not injected: check your FXML file 'Scene.fxml'.";
+
         assert KertaJasenTableID != null : "fx:id=\"KertaJasenTableID\" was not injected: check your FXML file 'Scene.fxml'.";
+
         assert KertaJasenTableNimi != null : "fx:id=\"KertaJasenTableNimi\" was not injected: check your FXML file 'Scene.fxml'.";
+
         assert KertaJasenTableJasenyysVoimassa != null : "fx:id=\"KertaJasenTableJasenyysVoimassa\" was not injected: check your FXML file 'Scene.fxml'.";
+
         assert KertaJasenTableKertojaJaljella != null : "fx:id=\"KertaJasenTableKertojaJaljella\" was not injected: check your FXML file 'Scene.fxml'.";
+
         assert KertaJasenTableMaksutapa != null : "fx:id=\"KertaJasenTableMaksutapa\" was not injected: check your FXML file 'Scene.fxml'.";
 
     }
