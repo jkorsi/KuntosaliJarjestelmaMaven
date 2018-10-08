@@ -71,7 +71,7 @@
                                         <Font name="System Bold" size="18.0" />
                                     </font>
                                 </Label>
-                                <Button fx:id="JasenLisausButton" disable="true" mnemonicParsing="false" onAction="#JasenLisausButtonAction" prefWidth="100.0" style="-fx-background-color: #a8ffa8;" text="Lisää" underline="true" GridPane.halignment="CENTER" GridPane.rowIndex="11" GridPane.valignment="CENTER">
+                                <Button fx:id="JasenLisausButton" maxHeight="50.0" maxWidth="100.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#JasenLisausButtonAction" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: #a8ffa8;" text="Lisää" underline="true" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="11" GridPane.valignment="CENTER">
                                     <font>
                                         <Font size="24.0" />
                                     </font>
@@ -97,7 +97,7 @@
                               <ToggleGroup fx:id="Kuukausia" />
                            </toggleGroup></RadioButton>
                         <RadioButton fx:id="Aikaa3KK" disable="true" mnemonicParsing="false" onAction="#Aikaa3KKAction" text="3KK" toggleGroup="$Kuukausia" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
-                        <Button fx:id="JasenPoistoButton" alignment="CENTER" contentDisplay="CENTER" disable="true" mnemonicParsing="false" onAction="#JasenPoistoButtonAction" prefWidth="100.0" style="-fx-background-color: #fc8d8d;" text="Poista" textAlignment="CENTER" underline="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="11" GridPane.valignment="CENTER">
+                        <Button fx:id="JasenPoistoButton" alignment="CENTER" contentDisplay="CENTER" maxHeight="50.0" maxWidth="100.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#JasenPoistoButtonAction" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: #fc8d8d;" text="Poista" underline="true" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="11" GridPane.valignment="CENTER">
                            <font>
                               <Font size="24.0" />
                            </font>
