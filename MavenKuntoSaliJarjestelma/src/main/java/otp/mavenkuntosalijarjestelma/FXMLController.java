@@ -176,7 +176,10 @@ public class FXMLController {
             } else if (MaksuKortti.isSelected()) {
                 kuuJasen.setMaksuTapa("KORTTI");
             }
-            kuukausiDao.createKuukausiJasen(kuuJasen);
+            if(Aikaa1KK.isSelected() || Aikaa3KK.isSelected() && MaksuKateinen.isSelected() || MaksuKortti.isSelected()){
+                kuukausiDao.createKuukausiJasen(kuuJasen);
+            }
+            
 
         } else if (kertajasenRadio.isSelected()) {
             KertaJasen kertaJasen = new KertaJasen();
@@ -192,7 +195,10 @@ public class FXMLController {
             } else if (MaksuKortti.isSelected()) {
                 kertaJasen.setMaksuTapa("KORTTI");
             }
-            kertaDao.createKertaJasen(kertaJasen);
+            if((Kerrat1.isSelected() || Kerrat10.isSelected()) && (MaksuKateinen.isSelected() || MaksuKortti.isSelected())){
+                kertaDao.createKertaJasen(kertaJasen);
+            }
+            
             
         }
         update();

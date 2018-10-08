@@ -13,11 +13,13 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Ignore;
 
 /**
  *
  * @author Juho Suni
  */
+@Ignore
 public class KuukausiJasenDaoTest {
     
     public KuukausiJasenDaoTest() {
@@ -38,7 +40,7 @@ public class KuukausiJasenDaoTest {
     @After
     public void tearDown() {
     }
-
+    
     /**
      * Test of createKuukausiJasen method, of class KuukausiJasenDao.
      */
