@@ -19,6 +19,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.SingleSelectionModel;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
@@ -83,11 +84,41 @@ public class FXMLController {
     @FXML // fx:id="KuukausiJasenTaulu"
     private TableView<KuukausiJasen> KuukausiJasenTaulu; // Value injected by FXMLLoader
 
+    @FXML // fx:id="KuukaisuJasenTableID"
+    private TableColumn<KuukausiJasen, Integer> KuukaisuJasenTableID; // Value injected by FXMLLoader
+
+    @FXML // fx:id="KuukaisuJasenTableNimi"
+    private TableColumn<KuukausiJasen, String> KuukaisuJasenTableNimi; // Value injected by FXMLLoader
+
+    @FXML // fx:id="KuukaisuJasenTableJasenyysVoimassa"
+    private TableColumn<KuukausiJasen, Boolean> KuukaisuJasenTableJasenyysVoimassa; // Value injected by FXMLLoader
+
+    @FXML // fx:id="KuukaisuJasenTableKkJaljella"
+    private TableColumn<KuukausiJasen, Integer> KuukaisuJasenTableKkJaljella; // Value injected by FXMLLoader
+
+    @FXML // fx:id="KuukaisuJasenTableMaksuTapa"
+    private TableColumn<KuukausiJasen, String> KuukaisuJasenTableMaksuTapa; // Value injected by FXMLLoader
+
     @FXML // fx:id="KertaJasenTab"
     private Tab KertaJasenTab; // Value injected by FXMLLoader
 
     @FXML // fx:id="KertaJasenTaulu"
     private TableView<KertaJasen> KertaJasenTaulu; // Value injected by FXMLLoader
+
+    @FXML // fx:id="KertaJasenTableID"
+    private TableColumn<KertaJasen, Integer> KertaJasenTableID; // Value injected by FXMLLoader
+
+    @FXML // fx:id="KertaJasenTableNimi"
+    private TableColumn<KertaJasen, String> KertaJasenTableNimi; // Value injected by FXMLLoader
+
+    @FXML // fx:id="KertaJasenTableJasenyysVoimassa"
+    private TableColumn<KertaJasen, Boolean> KertaJasenTableJasenyysVoimassa; // Value injected by FXMLLoader
+
+    @FXML // fx:id="KertaJasenTableKertojaJaljella"
+    private TableColumn<KertaJasen, Integer> KertaJasenTableKertojaJaljella; // Value injected by FXMLLoader
+
+    @FXML // fx:id="KertaJasenTableMaksutapa"
+    private TableColumn<KertaJasen, String> KertaJasenTableMaksutapa; // Value injected by FXMLLoader
 
     @FXML // fx:id="JasenNimiField"
     private TextField JasenNimiField; // Value injected by FXMLLoader
@@ -235,8 +266,18 @@ public class FXMLController {
         assert JasenTabPane != null : "fx:id=\"JasenTabPane\" was not injected: check your FXML file 'Scene.fxml'.";
         assert KuukausiJasenTab != null : "fx:id=\"KuukausiJasenTab\" was not injected: check your FXML file 'Scene.fxml'.";
         assert KuukausiJasenTaulu != null : "fx:id=\"KuukausiJasenTaulu\" was not injected: check your FXML file 'Scene.fxml'.";
+        assert KuukaisuJasenTableID != null : "fx:id=\"KuukaisuJasenTableID\" was not injected: check your FXML file 'Scene.fxml'.";
+        assert KuukaisuJasenTableNimi != null : "fx:id=\"KuukaisuJasenTableNimi\" was not injected: check your FXML file 'Scene.fxml'.";
+        assert KuukaisuJasenTableJasenyysVoimassa != null : "fx:id=\"KuukaisuJasenTableJasenyysVoimassa\" was not injected: check your FXML file 'Scene.fxml'.";
+        assert KuukaisuJasenTableKkJaljella != null : "fx:id=\"KuukaisuJasenTableKkJaljella\" was not injected: check your FXML file 'Scene.fxml'.";
+        assert KuukaisuJasenTableMaksuTapa != null : "fx:id=\"KuukaisuJasenTableMaksuTapa\" was not injected: check your FXML file 'Scene.fxml'.";
         assert KertaJasenTab != null : "fx:id=\"KertaJasenTab\" was not injected: check your FXML file 'Scene.fxml'.";
         assert KertaJasenTaulu != null : "fx:id=\"KertaJasenTaulu\" was not injected: check your FXML file 'Scene.fxml'.";
+        assert KertaJasenTableID != null : "fx:id=\"KertaJasenTableID\" was not injected: check your FXML file 'Scene.fxml'.";
+        assert KertaJasenTableNimi != null : "fx:id=\"KertaJasenTableNimi\" was not injected: check your FXML file 'Scene.fxml'.";
+        assert KertaJasenTableJasenyysVoimassa != null : "fx:id=\"KertaJasenTableJasenyysVoimassa\" was not injected: check your FXML file 'Scene.fxml'.";
+        assert KertaJasenTableKertojaJaljella != null : "fx:id=\"KertaJasenTableKertojaJaljella\" was not injected: check your FXML file 'Scene.fxml'.";
+        assert KertaJasenTableMaksutapa != null : "fx:id=\"KertaJasenTableMaksutapa\" was not injected: check your FXML file 'Scene.fxml'.";
 
     }
 }
