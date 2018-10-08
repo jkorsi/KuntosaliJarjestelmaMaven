@@ -193,8 +193,9 @@ public class FXMLController {
                 kertaJasen.setMaksuTapa("KORTTI");
             }
             kertaDao.createKertaJasen(kertaJasen);
-            update();
+            
         }
+        update();
 
     }
 
