@@ -18,6 +18,9 @@ import javax.persistence.Table;
 @Table(name = "tilamaksut")
 public class TilaMaksu extends MaksuTapahtuma{
 
+    /**
+     * Tilamaksu luokan konstruktori
+     */
     public TilaMaksu() {
     }
     
@@ -25,10 +28,18 @@ public class TilaMaksu extends MaksuTapahtuma{
     @JoinColumn(name="tilaID")
     private int tilaID;
 
+    /**
+     *  Hae tilan id
+     * @return tilan id
+     */
     public int getTilaID() {
         return tilaID;
     }
 
+    /**
+     * Aseta tilan id
+     * @param tilaID tilan id
+     */
     public void setTilaID(int tilaID) {
         this.tilaID = tilaID;
     }

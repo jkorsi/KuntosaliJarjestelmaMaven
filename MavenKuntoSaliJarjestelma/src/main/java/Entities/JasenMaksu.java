@@ -7,10 +7,17 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-
+/**
+ *
+ * @author Antti
+ */
 @Entity
 @Table(name = "jasenmaksut")
 public class JasenMaksu extends MaksuTapahtuma {
+
+    /**
+     * Jäsenmaksu luokan konstruktori
+     */
     public JasenMaksu() {
     }
      
@@ -24,22 +31,51 @@ public class JasenMaksu extends MaksuTapahtuma {
     @JoinColumn(referencedColumnName="jasen_ID")
     private int jasenID;
     
+    /**
+     * Hae kkhinta
+     * @return int kkhinta
+     */
     public int getKkHinta() {
         return kkHinta;
     }
-     public void setKkHinta(int kkHinta) {
+
+    /**
+     * Aseta kkhinta
+     * @param kkHinta int kkhinta
+     */
+    public void setKkHinta(int kkHinta) {
         this.kkHinta = kkHinta;
     }
-     public int getKertaHinta() {
+
+    /**
+     * Hae kertahinta
+     * @return int kertahinta
+     */
+    public int getKertaHinta() {
         return kertaHinta;
     }
-     public void setKertaHinta(int kertaHinta) {
+
+    /**
+     * Aseta kertahinta
+     * @param kertaHinta int kertahinta
+     */
+    public void setKertaHinta(int kertaHinta) {
         this.kertaHinta = kertaHinta;
     }
-     public int getJasenID() {
+
+    /**
+     * Hae jäsenId
+     * @return int jasenId
+     */
+    public int getJasenID() {
         return jasenID;
     }
-     public void setJasenID(int jasenID) {
+
+    /**
+     *  Aseta jäsenId
+     * @param jasenID int jasenId
+     */
+    public void setJasenID(int jasenID) {
         this.jasenID = jasenID;
     }
  }
