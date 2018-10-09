@@ -17,8 +17,9 @@ import org.junit.Ignore;
  *
  * @author Juho Suni
  */
-@Ignore
 public class TilaTest {
+    
+    Tila tila;
     
     public TilaTest() {
     }
@@ -33,6 +34,7 @@ public class TilaTest {
     
     @Before
     public void setUp() {
+        tila = new Tila();
     }
     
     @After
@@ -45,9 +47,9 @@ public class TilaTest {
     @Test
     public void testGetTilaID() {
         System.out.println("getTilaID");
-        Tila instance = new Tila();
-        int expResult = 0;
-        int result = instance.getTilaID();
+        tila.setTilaID(4);
+        int expResult = 4;
+        int result = tila.getTilaID();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
@@ -59,9 +61,10 @@ public class TilaTest {
     @Test
     public void testSetTilaID() {
         System.out.println("setTilaID");
-        int tilaID = 0;
-        Tila instance = new Tila();
-        instance.setTilaID(tilaID);
+        tila.setTilaID(4);
+        int expResult = 4;
+        int result = tila.getTilaID();
+        assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
     }
@@ -99,9 +102,9 @@ public class TilaTest {
     @Test
     public void testGetLaitteidenMaara() {
         System.out.println("getLaitteidenMaara");
-        Tila instance = new Tila();
-        int expResult = 0;
-        int result = instance.getLaitteidenMaara();
+        tila.setLaitteidenMaara(3);
+        int expResult = 3;
+        int result = tila.getLaitteidenMaara();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
@@ -113,9 +116,10 @@ public class TilaTest {
     @Test
     public void testSetLaitteidenMaara() {
         System.out.println("setLaitteidenMaara");
-        int laitteidenMaara = 0;
-        Tila instance = new Tila();
-        instance.setLaitteidenMaara(laitteidenMaara);
+        tila.setLaitteidenMaara(3);
+        int expResult = 3;
+        int result = tila.getLaitteidenMaara();
+        assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
     }
@@ -126,9 +130,9 @@ public class TilaTest {
     @Test
     public void testGetTilanKulut() {
         System.out.println("getTilanKulut");
-        Tila instance = new Tila();
-        int expResult = 0;
-        int result = instance.getTilanKulut();
+        tila.setTilanKulut(1000);
+        int expResult = 1000;
+        int result = tila.getTilanKulut();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
@@ -140,9 +144,10 @@ public class TilaTest {
     @Test
     public void testSetTilanKulut() {
         System.out.println("setTilanKulut");
-        int tilanKulut = 0;
-        Tila instance = new Tila();
-        instance.setTilanKulut(tilanKulut);
+        tila.setTilanKulut(1000);
+        int expResult = 1000;
+        int result = tila.getTilanKulut();
+        assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
     }

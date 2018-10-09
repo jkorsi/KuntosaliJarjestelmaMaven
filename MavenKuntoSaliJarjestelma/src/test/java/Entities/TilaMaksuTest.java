@@ -23,6 +23,8 @@ public class TilaMaksuTest {
     public TilaMaksuTest() {
     }
     
+    TilaMaksu tilamaksu; 
+    
     @BeforeClass
     public static void setUpClass() {
     }
@@ -33,6 +35,7 @@ public class TilaMaksuTest {
     
     @Before
     public void setUp() {
+        tilamaksu = new TilaMaksu();
     }
     
     @After
@@ -45,9 +48,9 @@ public class TilaMaksuTest {
     @Test
     public void testGetTilaID() {
         System.out.println("getTilaID");
-        TilaMaksu instance = new TilaMaksu();
-        int expResult = 0;
-        int result = instance.getTilaID();
+        tilamaksu.setTilaID(5);
+        int expResult = 5;
+        int result = tilamaksu.getTilaID();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
@@ -59,9 +62,10 @@ public class TilaMaksuTest {
     @Test
     public void testSetTilaID() {
         System.out.println("setTilaID");
-        int tilaID = 0;
-        TilaMaksu instance = new TilaMaksu();
-        instance.setTilaID(tilaID);
+        tilamaksu.setTilaID(5);
+        int expResult = 5;
+        int result = tilamaksu.getTilaID();
+        assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
     }
