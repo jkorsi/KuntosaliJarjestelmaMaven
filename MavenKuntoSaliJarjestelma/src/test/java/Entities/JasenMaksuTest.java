@@ -18,6 +18,8 @@ import static org.junit.Assert.*;
  */
 public class JasenMaksuTest {
     
+    JasenMaksu jasenmaksu;
+    
     public JasenMaksuTest() {
     }
     
@@ -31,6 +33,7 @@ public class JasenMaksuTest {
     
     @Before
     public void setUp() {
+        jasenmaksu = new JasenMaksu();
     }
     
     @After
@@ -43,9 +46,9 @@ public class JasenMaksuTest {
     @Test
     public void testGetKkHinta() {
         System.out.println("getKkHinta");
-        JasenMaksu instance = new JasenMaksu();
-        int expResult = 0;
-        int result = instance.getKkHinta();
+        jasenmaksu.setKkHinta(20);
+        int expResult = 20;
+        int result = jasenmaksu.getKkHinta();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
@@ -57,9 +60,10 @@ public class JasenMaksuTest {
     @Test
     public void testSetKkHinta() {
         System.out.println("setKkHinta");
-        int kkHinta = 0;
-        JasenMaksu instance = new JasenMaksu();
-        instance.setKkHinta(kkHinta);
+        jasenmaksu.setKkHinta(20);
+        int expResult = 20;
+        int result = jasenmaksu.getKkHinta();
+        assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
     }
@@ -70,9 +74,9 @@ public class JasenMaksuTest {
     @Test
     public void testGetKertaHinta() {
         System.out.println("getKertaHinta");
-        JasenMaksu instance = new JasenMaksu();
-        int expResult = 0;
-        int result = instance.getKertaHinta();
+        jasenmaksu.setKertaHinta(5);
+        int expResult = 5;
+        int result = jasenmaksu.getKertaHinta();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
@@ -84,9 +88,10 @@ public class JasenMaksuTest {
     @Test
     public void testSetKertaHinta() {
         System.out.println("setKertaHinta");
-        int kertaHinta = 0;
-        JasenMaksu instance = new JasenMaksu();
-        instance.setKertaHinta(kertaHinta);
+        jasenmaksu.setKertaHinta(5);
+        int expResult = 5;
+        int result = jasenmaksu.getKertaHinta();
+        assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
     }
@@ -97,9 +102,9 @@ public class JasenMaksuTest {
     @Test
     public void testGetJasenID() {
         System.out.println("getJasenID");
-        JasenMaksu instance = new JasenMaksu();
-        int expResult = 0;
-        int result = instance.getJasenID();
+        jasenmaksu.setJasenID(4);
+        int expResult = 4;
+        int result = jasenmaksu.getJasenID();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
@@ -111,9 +116,11 @@ public class JasenMaksuTest {
     @Test
     public void testSetJasenID() {
         System.out.println("setJasenID");
-        int jasenID = 0;
-        JasenMaksu instance = new JasenMaksu();
-        instance.setJasenID(jasenID);
+        System.out.println("getJasenID");
+        jasenmaksu.setJasenID(4);
+        int expResult = 4;
+        int result = jasenmaksu.getJasenID();
+        assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
     }

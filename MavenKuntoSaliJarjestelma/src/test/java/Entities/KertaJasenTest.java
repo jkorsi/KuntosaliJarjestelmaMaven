@@ -18,6 +18,8 @@ import static org.junit.Assert.*;
  */
 public class KertaJasenTest {
     
+    KertaJasen kertajasen;
+    
     public KertaJasenTest() {
     }
     
@@ -31,6 +33,7 @@ public class KertaJasenTest {
     
     @Before
     public void setUp() {
+        kertajasen = new KertaJasen();
     }
     
     @After
@@ -43,9 +46,9 @@ public class KertaJasenTest {
     @Test
     public void testGetKayntikertojaJaljella() {
         System.out.println("getKayntikertojaJaljella");
-        KertaJasen instance = new KertaJasen();
-        int expResult = 0;
-        int result = instance.getKayntikertojaJaljella();
+        kertajasen.setKayntikertojaJaljella(10);
+        int expResult = 10;
+        int result = kertajasen.getKayntikertojaJaljella();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
@@ -57,9 +60,10 @@ public class KertaJasenTest {
     @Test
     public void testSetKayntikertojaJaljella() {
         System.out.println("setKayntikertojaJaljella");
-        int kayntikertojaJaljella = 0;
-        KertaJasen instance = new KertaJasen();
-        instance.setKayntikertojaJaljella(kayntikertojaJaljella);
+        kertajasen.setKayntikertojaJaljella(10);
+        int expResult = 10;
+        int result = kertajasen.getKayntikertojaJaljella();
+        assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
     }
