@@ -34,64 +34,64 @@ public class Maksujarjestelma {
     }
 
     /**
-     * Hea MaksuJarjesteltelman idn
-     * @return
+     * Hae MaksuJarjesteltelman idn
+     * @return MaksuJarjesteltelman id
      */
     public int getMaksuJarjestelmaID() {
         return maksuJarjestelmaID;
     }
 
     /**
-     *
-     * @param maksuJarjestelmaID
+     * Aseta MaksuJarjesteltelman id
+     * @param maksuJarjestelmaID MaksuJarjesteltelman id
      */
     public void setMaksuJarjestelmaID(int maksuJarjestelmaID) {
         this.maksuJarjestelmaID = maksuJarjestelmaID;
     }
 
     /**
-     *
-     * @return
+     * Hae paljonko tilillä on jäljellä
+     * @return paljonko tilillä on jäljellä
      */
     public int getTilillaJaljella() {
         return tilillaJaljella;
     }
 
     /**
-     *
-     * @param tilillaJaljella
+     * Aseta paljonko tilillä on jäljellä
+     * @param tilillaJaljella paljonko tilillä on jäljellä
      */
     public void setTilillaJaljella(int tilillaJaljella) {
         this.tilillaJaljella = tilillaJaljella;
     }
 
     /**
-     *
-     * @return
+     * Hae Tulot
+     * @return tulot
      */
     public int getTulot() {
         return tulot;
     }
 
     /**
-     *
-     * @param tulot
+     * Aseta tulot
+     * @param tulot per kk
      */
     public void setTulot(int tulot) {
         this.tulot = tulot;
     }
 
     /**
-     *
-     * @return
+     * Hae menot
+     * @return menot per kk
      */
     public int getMenot() {
         return menot;
     }
 
     /**
-     *
-     * @param menot
+     * Aseta menot
+     * @param menot per kk
      */
     public void setMenot(int menot) {
         this.menot = menot;

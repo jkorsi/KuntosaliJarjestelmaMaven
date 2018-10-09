@@ -46,7 +46,7 @@ public abstract class Jasen {
 
     /**
      * Aseta Jäsenen nimi
-     * @param nimi
+     * @param nimi jasenen nimi
      */
     public void setNimi(String nimi) {
         this.nimi = nimi;
