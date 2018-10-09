@@ -31,6 +31,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Callback;
 import org.hibernate.SessionFactory;
 
+/**
+ *
+ * @author Antti
+ */
 public class FXMLController {
 
     @FXML // ResourceBundle that was given to the FXMLLoader
@@ -135,6 +139,9 @@ public class FXMLController {
     ObservableList<KuukausiJasen> kuukau;
     ObservableList<KertaJasen> kerta;
 
+    /**
+     * FXMLController luokan konstruktori
+     */
     public FXMLController() {
         sessionFactory = HibernateUtil.getSessionFactory();
         kertaDao = new KertaJasenDao(sessionFactory);
@@ -142,6 +149,10 @@ public class FXMLController {
 
     }
 
+    /**
+     * Palauttaa SessionFactoryn
+     * @return sessionfactoryn
+     */
     public SessionFactory getSessionFactory() {
         return sessionFactory;
     }
@@ -209,6 +220,9 @@ public class FXMLController {
 
     }
 
+    /**
+     * Päivittää ohjelman taulut hakemalla ne tietokannasta ja asettamalla ne näkyviin
+     */
     public void update() {
         kuukau = FXCollections.observableList(kuukausiDao.getALLKuukausiJasen());
         kerta = FXCollections.observableList(kertaDao.getALLKertajasen());

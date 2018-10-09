@@ -17,7 +17,7 @@ import org.junit.runners.Suite;
  * @author Juho Suni
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses({otp.mavenkuntosalijarjestelma.FXMLControllerTest.class, otp.mavenkuntosalijarjestelma.HibernateUtilTest.class, otp.mavenkuntosalijarjestelma.MainAppTest.class, otp.mavenkuntosalijarjestelma.MaksujarjestelmaTest.class, otp.mavenkuntosalijarjestelma.ControllerTest.class, otp.mavenkuntosalijarjestelma.KulunvalvontajarjestelmaTest.class})
+@Suite.SuiteClasses({otp.mavenkuntosalijarjestelma.FXMLControllerTest.class, otp.mavenkuntosalijarjestelma.HibernateUtilTest.class, otp.mavenkuntosalijarjestelma.MainAppTest.class, otp.mavenkuntosalijarjestelma.MaksujarjestelmaTest.class})
 public class MavenkuntosalijarjestelmaSuite {
 
     @BeforeClass
