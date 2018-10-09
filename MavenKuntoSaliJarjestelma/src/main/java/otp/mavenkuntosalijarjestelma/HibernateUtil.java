@@ -19,7 +19,7 @@ public class HibernateUtil {
 
     /**
      * Luo ja palauttaa sessionfactoryn
-     * @return
+     * @return sessionfactoryn
      */
     public static SessionFactory getSessionFactory() {
     if (sessionFactory == null) {

@@ -89,7 +89,7 @@ public class Tila implements Serializable {
 
     /**
      *  Hae tilassa olevien laitteiden määrä
-     * @return
+     * @return kuntosaliLaitteiden määrä
      */
     public int getLaitteidenMaara() {
         return laitteidenMaara;
@@ -97,7 +97,7 @@ public class Tila implements Serializable {
 
     /**
      * Aseta Tilassa Olevien laitteiden määrä
-     * @param laitteidenMaara
+     * @param laitteidenMaara kuntosalilaitteiden määrä
      */
     public void setLaitteidenMaara(int laitteidenMaara) {
         this.laitteidenMaara = laitteidenMaara;
@@ -129,7 +129,7 @@ public class Tila implements Serializable {
 
     /**
      * Aseta tilan laittet
-     * @param kuntosalilaite
+     * @param kuntosalilaite aseta kuntosalilaittet
      */
     public void setKuntosalilaite(Kuntosalilaite[] kuntosalilaite) {
         this.kuntosalilaite = kuntosalilaite;

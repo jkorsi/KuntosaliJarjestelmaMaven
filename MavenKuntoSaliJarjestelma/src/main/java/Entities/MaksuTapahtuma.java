@@ -56,7 +56,7 @@ public class MaksuTapahtuma {
 
     /**
      * Aseta Maksutapahtuma
-     * @param tapahtumaAika
+     * @param tapahtumaAika Maksutapahtuma aika
      */
     public void setTapahtumaAika(int tapahtumaAika) {
         this.tapahtumaAika = tapahtumaAika;
@@ -88,7 +88,7 @@ public class MaksuTapahtuma {
 
     /**
      *  Aseta Onko Maksutapahtuma tulo vai meno
-     * @param tuloVaiMeno
+     * @param tuloVaiMeno onko Maksutapahtuma tulo vai meno
      */
     public void setTuloVaiMeno(int tuloVaiMeno) {
         this.tuloVaiMeno = tuloVaiMeno;
@@ -128,7 +128,7 @@ public class MaksuTapahtuma {
 
     /**
      * Hae Maksutapahtuman maksutapa
-     * @return
+     * @return Maksutapahtuman maksutapa
      */
     public String getMaksuTapa() {
         return maksuTapa;
