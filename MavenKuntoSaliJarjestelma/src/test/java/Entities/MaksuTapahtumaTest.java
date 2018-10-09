@@ -17,8 +17,9 @@ import org.junit.Ignore;
  *
  * @author Juho Suni
  */
-@Ignore
 public class MaksuTapahtumaTest {
+    
+    MaksuTapahtuma maksutapahtuma;
     
     public MaksuTapahtumaTest() {
     }
@@ -33,6 +34,7 @@ public class MaksuTapahtumaTest {
     
     @Before
     public void setUp() {
+        maksutapahtuma = new MaksuTapahtuma();
     }
     
     @After
@@ -45,9 +47,9 @@ public class MaksuTapahtumaTest {
     @Test
     public void testGetTapahtumaAika() {
         System.out.println("getTapahtumaAika");
-        MaksuTapahtuma instance = new MaksuTapahtuma();
-        int expResult = 0;
-        int result = instance.getTapahtumaAika();
+        maksutapahtuma.setTapahtumaAika(01011450);
+        int expResult = 01011450;
+        int result = maksutapahtuma.getTapahtumaAika();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
@@ -59,9 +61,10 @@ public class MaksuTapahtumaTest {
     @Test
     public void testSetTapahtumaAika() {
         System.out.println("setTapahtumaAika");
-        int tapahtumaAika = 0;
-        MaksuTapahtuma instance = new MaksuTapahtuma();
-        instance.setTapahtumaAika(tapahtumaAika);
+        maksutapahtuma.setTapahtumaAika(01011450);
+        int expResult = 01011450;
+        int result = maksutapahtuma.getTapahtumaAika();
+        assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
     }
@@ -72,9 +75,9 @@ public class MaksuTapahtumaTest {
     @Test
     public void testGetMaara() {
         System.out.println("getMaara");
-        MaksuTapahtuma instance = new MaksuTapahtuma();
-        int expResult = 0;
-        int result = instance.getMaara();
+        maksutapahtuma.setMaara(2);
+        int expResult = 2;
+        int result = maksutapahtuma.getMaara();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
@@ -86,9 +89,10 @@ public class MaksuTapahtumaTest {
     @Test
     public void testSetMaara() {
         System.out.println("setMaara");
-        int maara = 0;
-        MaksuTapahtuma instance = new MaksuTapahtuma();
-        instance.setMaara(maara);
+        maksutapahtuma.setMaara(2);
+        int expResult = 2;
+        int result = maksutapahtuma.getMaara();
+        assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
     }
@@ -99,9 +103,9 @@ public class MaksuTapahtumaTest {
     @Test
     public void testGetTuloVaiMeno() {
         System.out.println("getTuloVaiMeno");
-        MaksuTapahtuma instance = new MaksuTapahtuma();
-        int expResult = 0;
-        int result = instance.getTuloVaiMeno();
+        maksutapahtuma.setTuloVaiMeno(1);
+        int expResult = 1;
+        int result = maksutapahtuma.getTuloVaiMeno();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
@@ -113,9 +117,10 @@ public class MaksuTapahtumaTest {
     @Test
     public void testSetTuloVaiMeno() {
         System.out.println("setTuloVaiMeno");
-        int tuloVaiMeno = 0;
-        MaksuTapahtuma instance = new MaksuTapahtuma();
-        instance.setTuloVaiMeno(tuloVaiMeno);
+        maksutapahtuma.setTuloVaiMeno(1);
+        int expResult = 1;
+        int result = maksutapahtuma.getTuloVaiMeno();
+        assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
     }
@@ -126,9 +131,9 @@ public class MaksuTapahtumaTest {
     @Test
     public void testGetKommentti() {
         System.out.println("getKommentti");
-        MaksuTapahtuma instance = new MaksuTapahtuma();
-        String expResult = "";
-        String result = instance.getKommentti();
+        maksutapahtuma.setKommentti("Hello");
+        String expResult = "Hello";
+        String result = maksutapahtuma.getKommentti();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
@@ -140,9 +145,10 @@ public class MaksuTapahtumaTest {
     @Test
     public void testSetKommentti() {
         System.out.println("setKommentti");
-        String kommentti = "";
-        MaksuTapahtuma instance = new MaksuTapahtuma();
-        instance.setKommentti(kommentti);
+        maksutapahtuma.setKommentti("Hello");
+        String expResult = "Hello";
+        String result = maksutapahtuma.getKommentti();
+        assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
     }
@@ -153,9 +159,9 @@ public class MaksuTapahtumaTest {
     @Test
     public void testGetViite() {
         System.out.println("getViite");
-        MaksuTapahtuma instance = new MaksuTapahtuma();
-        int expResult = 0;
-        int result = instance.getViite();
+        maksutapahtuma.setViite(123456);
+        int expResult = 123456;
+        int result = maksutapahtuma.getViite();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
@@ -167,9 +173,10 @@ public class MaksuTapahtumaTest {
     @Test
     public void testSetViite() {
         System.out.println("setViite");
-        int viite = 0;
-        MaksuTapahtuma instance = new MaksuTapahtuma();
-        instance.setViite(viite);
+        maksutapahtuma.setViite(123456);
+        int expResult = 123456;
+        int result = maksutapahtuma.getViite();
+        assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
     }
@@ -180,9 +187,9 @@ public class MaksuTapahtumaTest {
     @Test
     public void testGetMaksuTapa() {
         System.out.println("getMaksuTapa");
-        MaksuTapahtuma instance = new MaksuTapahtuma();
-        String expResult = "";
-        String result = instance.getMaksuTapa();
+        maksutapahtuma.setMaksuTapa("KORTTI");
+        String expResult = "KORTTI";
+        String result = maksutapahtuma.getMaksuTapa();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
@@ -194,9 +201,10 @@ public class MaksuTapahtumaTest {
     @Test
     public void testSetMaksuTapa() {
         System.out.println("setMaksuTapa");
-        String maksuTapa = "";
-        MaksuTapahtuma instance = new MaksuTapahtuma();
-        instance.setMaksuTapa(maksuTapa);
+        maksutapahtuma.setMaksuTapa("KORTTI");
+        String expResult = "KORTTI";
+        String result = maksutapahtuma.getMaksuTapa();
+        assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
     }

@@ -17,8 +17,10 @@ import org.junit.Ignore;
  *
  * @author Juho Suni
  */
-@Ignore
+
 public class KuukausiJasenTest {
+    
+    KuukausiJasen kuukausijasen;
     
     public KuukausiJasenTest() {
     }
@@ -33,6 +35,7 @@ public class KuukausiJasenTest {
     
     @Before
     public void setUp() {
+        kuukausijasen = new KuukausiJasen();
     }
     
     @After
@@ -45,9 +48,9 @@ public class KuukausiJasenTest {
     @Test
     public void testGetKuukausiaJaljella() {
         System.out.println("getKuukausiaJaljella");
-        KuukausiJasen instance = new KuukausiJasen();
-        int expResult = 0;
-        int result = instance.getKuukausiaJaljella();
+        kuukausijasen.setKuukausiaJaljella(3);
+        int expResult = 3;
+        int result = kuukausijasen.getKuukausiaJaljella();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
@@ -59,9 +62,10 @@ public class KuukausiJasenTest {
     @Test
     public void testSetKuukausiaJaljella() {
         System.out.println("setKuukausiaJaljella");
-        int kuukausiaJaljella = 0;
-        KuukausiJasen instance = new KuukausiJasen();
-        instance.setKuukausiaJaljella(kuukausiaJaljella);
+        kuukausijasen.setKuukausiaJaljella(3);
+        int expResult = 3;
+        int result = kuukausijasen.getKuukausiaJaljella();
+        assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
     }

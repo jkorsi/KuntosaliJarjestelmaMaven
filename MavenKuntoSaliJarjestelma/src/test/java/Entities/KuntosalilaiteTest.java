@@ -17,8 +17,9 @@ import org.junit.Ignore;
  *
  * @author Juho Suni
  */
-@Ignore
 public class KuntosalilaiteTest {
+    
+    Kuntosalilaite kuntosalilaite;
     
     public KuntosalilaiteTest() {
     }
@@ -33,6 +34,7 @@ public class KuntosalilaiteTest {
     
     @Before
     public void setUp() {
+        kuntosalilaite = new Kuntosalilaite();
     }
     
     @After
@@ -45,9 +47,9 @@ public class KuntosalilaiteTest {
     @Test
     public void testGetIka() {
         System.out.println("getIka");
-        Kuntosalilaite instance = new Kuntosalilaite();
-        int expResult = 0;
-        int result = instance.getIka();
+        kuntosalilaite.setIka(3);
+        int expResult = 3;
+        int result = kuntosalilaite.getIka();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
@@ -59,9 +61,10 @@ public class KuntosalilaiteTest {
     @Test
     public void testSetIka() {
         System.out.println("setIka");
-        int ika = 0;
-        Kuntosalilaite instance = new Kuntosalilaite();
-        instance.setIka(ika);
+        kuntosalilaite.setIka(3);
+        int expResult = 3;
+        int result = kuntosalilaite.getIka();
+        assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
     }
@@ -72,9 +75,9 @@ public class KuntosalilaiteTest {
     @Test
     public void testGetKunto() {
         System.out.println("getKunto");
-        Kuntosalilaite instance = new Kuntosalilaite();
-        String expResult = "";
-        String result = instance.getKunto();
+        kuntosalilaite.setKunto("HYVÄ");
+        String expResult = "HYVÄ";
+        String result = kuntosalilaite.getKunto();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
@@ -86,9 +89,10 @@ public class KuntosalilaiteTest {
     @Test
     public void testSetKunto() {
         System.out.println("setKunto");
-        String kunto = "";
-        Kuntosalilaite instance = new Kuntosalilaite();
-        instance.setKunto(kunto);
+        kuntosalilaite.setKunto("HYVÄ");
+        String expResult = "HYVÄ";
+        String result = kuntosalilaite.getKunto();
+        assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
     }
@@ -99,9 +103,9 @@ public class KuntosalilaiteTest {
     @Test
     public void testIsTarvitseeHuollon() {
         System.out.println("isTarvitseeHuollon");
-        Kuntosalilaite instance = new Kuntosalilaite();
-        boolean expResult = false;
-        boolean result = instance.isTarvitseeHuollon();
+        kuntosalilaite.setTarvitseeHuollon(true);
+        boolean expResult = true;
+        boolean result = kuntosalilaite.isTarvitseeHuollon();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
@@ -113,9 +117,10 @@ public class KuntosalilaiteTest {
     @Test
     public void testSetTarvitseeHuollon() {
         System.out.println("setTarvitseeHuollon");
-        boolean tarvitseeHuollon = false;
-        Kuntosalilaite instance = new Kuntosalilaite();
-        instance.setTarvitseeHuollon(tarvitseeHuollon);
+        kuntosalilaite.setTarvitseeHuollon(true);
+        boolean expResult = true;
+        boolean result = kuntosalilaite.isTarvitseeHuollon();
+        assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
     }
@@ -126,9 +131,9 @@ public class KuntosalilaiteTest {
     @Test
     public void testGetKayttakerrat() {
         System.out.println("getKayttakerrat");
-        Kuntosalilaite instance = new Kuntosalilaite();
-        int expResult = 0;
-        int result = instance.getKayttakerrat();
+        kuntosalilaite.setKayttakerrat(10);
+        int expResult = 10;
+        int result = kuntosalilaite.getKayttakerrat();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
@@ -140,9 +145,10 @@ public class KuntosalilaiteTest {
     @Test
     public void testSetKayttakerrat() {
         System.out.println("setKayttakerrat");
-        int kayttakerrat = 0;
-        Kuntosalilaite instance = new Kuntosalilaite();
-        instance.setKayttakerrat(kayttakerrat);
+        kuntosalilaite.setKayttakerrat(10);
+        int expResult = 10;
+        int result = kuntosalilaite.getKayttakerrat();
+        assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
     }
@@ -153,9 +159,9 @@ public class KuntosalilaiteTest {
     @Test
     public void testGetViimeisinHuoltoPvm() {
         System.out.println("getViimeisinHuoltoPvm");
-        Kuntosalilaite instance = new Kuntosalilaite();
-        String expResult = "";
-        String result = instance.getViimeisinHuoltoPvm();
+        kuntosalilaite.setViimeisinHuoltoPvm("PERJANTAI");
+        String expResult = "PERJANTAI";
+        String result = kuntosalilaite.getViimeisinHuoltoPvm();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
@@ -167,9 +173,10 @@ public class KuntosalilaiteTest {
     @Test
     public void testSetViimeisinHuoltoPvm() {
         System.out.println("setViimeisinHuoltoPvm");
-        String viimeisinHuoltoPvm = "";
-        Kuntosalilaite instance = new Kuntosalilaite();
-        instance.setViimeisinHuoltoPvm(viimeisinHuoltoPvm);
+        kuntosalilaite.setViimeisinHuoltoPvm("PERJANTAI");
+        String expResult = "PERJANTAI";
+        String result = kuntosalilaite.getViimeisinHuoltoPvm();
+        assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
     }
@@ -180,9 +187,10 @@ public class KuntosalilaiteTest {
     @Test
     public void testGetTila() {
         System.out.println("getTila");
-        Kuntosalilaite instance = new Kuntosalilaite();
-        Tila expResult = null;
-        Tila result = instance.getTila();
+        Tila tila = new Tila();
+        kuntosalilaite.setTila(tila);
+        Tila expResult = tila;
+        Tila result = kuntosalilaite.getTila();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
@@ -194,9 +202,11 @@ public class KuntosalilaiteTest {
     @Test
     public void testSetTila() {
         System.out.println("setTila");
-        Tila tila = null;
-        Kuntosalilaite instance = new Kuntosalilaite();
-        instance.setTila(tila);
+        Tila tila = new Tila();
+        kuntosalilaite.setTila(tila);
+        Tila expResult = tila;
+        Tila result = kuntosalilaite.getTila();
+        assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
     }
