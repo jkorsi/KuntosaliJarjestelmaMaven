@@ -17,7 +17,11 @@ public class HibernateUtil {
   private static StandardServiceRegistry registry;
   private static SessionFactory sessionFactory;
 
-  public static SessionFactory getSessionFactory() {
+    /**
+     * Luo ja palauttaa sessionfactoryn
+     * @return
+     */
+    public static SessionFactory getSessionFactory() {
     if (sessionFactory == null) {
       try {
         // Create registry
@@ -44,7 +48,10 @@ public class HibernateUtil {
     return sessionFactory;
   }
 
-  public static void shutdown() {
+    /**
+     * Sulkee rekisterin
+     */
+    public static void shutdown() {
     if (registry != null) {
       StandardServiceRegistryBuilder.destroy(registry);
     }

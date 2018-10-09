@@ -31,6 +31,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Callback;
 import org.hibernate.SessionFactory;
 
+/**
+ *
+ * @author Antti
+ */
 public class FXMLController {
 
     @FXML // ResourceBundle that was given to the FXMLLoader
@@ -135,6 +139,9 @@ public class FXMLController {
     ObservableList<KuukausiJasen> kuukau;
     ObservableList<KertaJasen> kerta;
 
+    /**
+     * FXMLController luokan konstruktori
+     */
     public FXMLController() {
         sessionFactory = HibernateUtil.getSessionFactory();
         kertaDao = new KertaJasenDao(sessionFactory);
@@ -142,6 +149,10 @@ public class FXMLController {
 
     }
 
+    /**
+     * Palauttaa SessionFactoryn
+     * @return sessionfactoryn
+     */
     public SessionFactory getSessionFactory() {
         return sessionFactory;
     }
@@ -176,10 +187,12 @@ public class FXMLController {
             } else if (MaksuKortti.isSelected()) {
                 kuuJasen.setMaksuTapa("KORTTI");
             }
-            if(Aikaa1KK.isSelected() || Aikaa3KK.isSelected() && MaksuKateinen.isSelected() || MaksuKortti.isSelected()){
-                kuukausiDao.createKuukausiJasen(kuuJasen);
+            if (Aikaa1KK.isSelected() || Aikaa3KK.isSelected()) {
+                if (MaksuKateinen.isSelected() || MaksuKortti.isSelected()) {
+                    kuukausiDao.createKuukausiJasen(kuuJasen);
+                }
+
             }
-            
 
         } else if (kertajasenRadio.isSelected()) {
             KertaJasen kertaJasen = new KertaJasen();
@@ -195,16 +208,21 @@ public class FXMLController {
             } else if (MaksuKortti.isSelected()) {
                 kertaJasen.setMaksuTapa("KORTTI");
             }
-            if((Kerrat1.isSelected() || Kerrat10.isSelected()) && (MaksuKateinen.isSelected() || MaksuKortti.isSelected())){
-                kertaDao.createKertaJasen(kertaJasen);
+            if (Kerrat1.isSelected() || Kerrat10.isSelected()) {
+                if (MaksuKateinen.isSelected() || MaksuKortti.isSelected()) {
+                    kertaDao.createKertaJasen(kertaJasen);
+                }
+
             }
-            
-            
+
         }
         update();
 
     }
 
+    /**
+     * Päivittää ohjelman taulut hakemalla ne tietokannasta ja asettamalla ne näkyviin
+     */
     public void update() {
         kuukau = FXCollections.observableList(kuukausiDao.getALLKuukausiJasen());
         kerta = FXCollections.observableList(kertaDao.getALLKertajasen());
@@ -218,15 +236,14 @@ public class FXMLController {
     void JasenPoistoButtonAction(ActionEvent event) {
         KuukausiJasen toDeleteKuukausi = KuukausiJasenTaulu.getSelectionModel().getSelectedItem();
         KertaJasen toDeleteKerta = KertaJasenTaulu.getSelectionModel().getSelectedItem();
-        if(toDeleteKerta == null){
-            if (toDeleteKuukausi != null){
+        if (toDeleteKerta == null) {
+            if (toDeleteKuukausi != null) {
                 kuukausiDao.deleteKuukausiJasen(toDeleteKuukausi);
             }
-        }else{
+        } else {
             kertaDao.deleteKertaJasen(toDeleteKerta);
         }
-        
-        
+
         update();
     }
 

@@ -8,6 +8,10 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.hibernate.SessionFactory;
 
+/**
+ *
+ * @author Antti
+ */
 public class MainApp extends Application {
     private FXMLController controller;
     

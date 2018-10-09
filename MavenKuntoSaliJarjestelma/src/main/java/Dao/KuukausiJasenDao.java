@@ -18,11 +18,18 @@ public class KuukausiJasenDao {
 
     private Session session;
     private SessionFactory factory;
-
+    /**
+     * KuukausiJasenDao luokan konstruktori
+     * 
+     * @param factory SessionFactory hibernate sessioita varten
+     */
     public KuukausiJasenDao(SessionFactory factory) {
         this.factory = factory;
     }
-
+    /**
+     * Lisää KuukausiJasen Olion tietokantaan
+     * @param jasen jäsen olio joka lisätään tietokantaan
+     */
     public void createKuukausiJasen(KuukausiJasen jasen) {// tallentaa Kuukausijasen Objektin tietokantaam
 
         try {
@@ -46,7 +53,10 @@ public class KuukausiJasenDao {
             }
         }
     }
-
+    /**
+     * Poistaa KuukausiJasenen tietokannasta jasenIdn perusteella
+     * @param JasenId Poistettavan KuukausiJasenen JasenId
+     */
     public void deleteKuukausiJasen(int JasenId) { // poistaa kuukausijasenen jasenIdn Perusteella
         try {
             session = factory.openSession(); // avataan uusi sessio
@@ -68,6 +78,10 @@ public class KuukausiJasenDao {
             }
         }
     }
+    /**
+     * Poistaa KuukausiJasenen tietokannasta sen olion perusteella
+     * @param jasen Poistettava KuukausiJasen Olio
+     */
     public void deleteKuukausiJasen(KuukausiJasen jasen) { // poistaa kuukausijasenen jasenIdn Perusteella
         try {
             session = factory.openSession(); // avataan uusi sessio
@@ -89,7 +103,10 @@ public class KuukausiJasenDao {
             }
         }
     }
-
+    /**
+     * Päivitää KuukausiJasenen tietokannassa sen Olion perusteella
+     * @param jasen päivitettävä KuukausiJasen Olio
+     */
     public void updateKuukausiJasen(KuukausiJasen jasen) { // päivittää kuukausijasenen tietoja jasenId perusteella 
         // olettaa että jäsen oliolla on sama jasenid kuin päivitettävällä jäsenenllä
         try {
@@ -111,7 +128,11 @@ public class KuukausiJasenDao {
             }
         }
     }
-
+    /**
+     * Hakee tietokannasta KuukausiJasen Olion sen jasenIdn perusteella
+     * @param jasenId Haettavan KuukausiJasen Olion JasenId
+     * @return haettu KuukausiJasen olio jos on olemassa
+     */
     public KuukausiJasen getKuukausiJasen(int jasenId) {// hakee kuukausijasenen jasenidn perusteella
         KuukausiJasen haettu = null;
         try {
@@ -133,7 +154,10 @@ public class KuukausiJasenDao {
         }
         return haettu;
     }
-
+    /**
+     * Hakee listan kaikista KuukausiJasen oliosta
+     * @return Lista kaikista KuukausiJasen oliosta jotka on tallennettu tietokantaan
+     */
     public List<KuukausiJasen> getALLKuukausiJasen() { // hakee kaikki KuukausiJasenet tietokannasta
         List KuukausiJasenet = null;
         try {

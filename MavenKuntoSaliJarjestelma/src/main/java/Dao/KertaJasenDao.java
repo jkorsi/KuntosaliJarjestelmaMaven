@@ -18,11 +18,19 @@ public class KertaJasenDao {
 
     private Session session;
     private SessionFactory factory;
-
+    /**
+     * KertajasenDao luokan konstruktori
+     * 
+     * @param factory SessionFactory hibernate sessioita varten
+     */
     public KertaJasenDao(SessionFactory factory) {
         this.factory = factory;
     }
 
+    /**
+     * Lisää KertaJasen Olion tietokantaan
+     * @param jasen jäsen olio joka lisätään tietokantaan
+     */
     public void createKertaJasen(KertaJasen jasen) {// tallentaa Kertajasen Objektin tietokantaam
 
         try {
@@ -46,7 +54,10 @@ public class KertaJasenDao {
             }
         }
     }
-
+    /**
+     * Poistaa Kertajasenen tietokannasta jasenIdn perusteella
+     * @param JasenId Poistettavan Kertajasenen JasenId
+     */
     public void deleteKertaJasen(int JasenId) { // poistaa kertajasenen jasenIdn Perusteella
         try {
             session = factory.openSession(); // avataan uusi sessio
@@ -68,7 +79,10 @@ public class KertaJasenDao {
             }
         }
     }
-    
+    /**
+     * Poistaa Kertajasenen tietokannasta sen olion perusteella
+     * @param jasen Poistettava KertaJasen Olio
+     */
     public void deleteKertaJasen(KertaJasen jasen) { // poistaa kertajasenen jasenIdn Perusteella
         try {
             session = factory.openSession(); // avataan uusi sessio
@@ -89,7 +103,10 @@ public class KertaJasenDao {
             }
         }
     }
-
+    /**
+     * Päivitää Kertajasenen tietokannassa sen Olion perusteella
+     * @param jasen päivitettävä Kertajasen Olio
+     */
     public void updateKertaJasen(KertaJasen jasen) { // päivittää kertajasenen tietoja jasenId perusteella 
         // olettaa että jäsen oliolla on sama jasenid kuin päivitettävällä jäsenenllä
         try {
@@ -111,7 +128,11 @@ public class KertaJasenDao {
             }
         }
     }
-
+    /**
+     * Hakee tietokannasta Kertajasen Olion sen jasenIdn perusteella
+     * @param jasenId Haettavan KertaJasen Olion JasenId
+     * @return haettu kertajasen olio jos on olemassa
+     */
     public KertaJasen getKertajasen(int jasenId) {// hakee kertajasenen jasenidn perusteella
         KertaJasen haettu = null;
         try {
@@ -133,7 +154,10 @@ public class KertaJasenDao {
         }
         return haettu;
     }
-
+    /**
+     * Hakee listan kaikista KertaJasen oliosta
+     * @return Lista kaikista Kertajasen oliosta jotka on tallennettu tietokantaan
+     */
     public List<KertaJasen> getALLKertajasen() { // hakee kaikki Kertajasenset tietokannasta
         List kertaJasenet = null;
         try {
