@@ -1,0 +1,19 @@
+Sovelluksessa kyse:
+
+Kuntosalin ylläpitojärjestelmä
+
+Sovelluksen toiminnallisuudet tähän mennessä:
+
+-Voi lisätä sekä poistaa jäseniä tietokantaan
+-Käyttöliittymässä perustoiminnallisuudet, kuten:
+*Näkee lisätyt jäsenet
+*Voi poistaa jäsenen
+*Voi selata jäsenlistaa
+
+Pieni kuvaus arkkitehtuurista:
+
+Voidaan jakaa kolmeen osaan:
+
+DAO-luokat: Hibernate CRUD
+Olio luokat (Enityt hibernatelle)
+FXML Controller joka tuottaa käyttöliittymän ja sen toiminnallisuudet
