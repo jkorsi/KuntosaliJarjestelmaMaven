@@ -14,19 +14,6 @@ import javafx.stage.Stage;
 public class MainApp extends Application {
     private FXMLController controller;
     
-    /*Tehtävä 14:
-    https://en.wikipedia.org/wiki/Breadth-first_search
-    -Jono käymättömistä soluista
-    -Tietue käydyistä soluista
-    -Etemee kerroksittain
-    -Tallentaa lopuksi nopeimman polun
-    -Aikavaatimus O(n) missä n = solujen määrä
-    -Käytetään esim. web-sivustojen indeksoinnissa hakukoneisiin
-    -
-    
-    
-    */
-    
     @Override
     public void init(){
        controller = new FXMLController();
