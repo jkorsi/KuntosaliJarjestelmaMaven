@@ -17,7 +17,6 @@ import org.junit.Ignore;
  *
  * @author Juho Suni
  */
-@Ignore
 public class TilaMaksuTest {
     
     public TilaMaksuTest() {
