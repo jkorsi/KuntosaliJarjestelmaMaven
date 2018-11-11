@@ -8,15 +8,22 @@ import Dao.KuukausiJasenDao;
 import Entities.Jasen;
 import Entities.KertaJasen;
 import Entities.KuukausiJasen;
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.SingleSelectionModel;
@@ -28,8 +35,9 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 import javafx.util.Callback;
-import org.hibernate.SessionFactory;
 
 /**
  *
@@ -132,31 +140,13 @@ public class FXMLController {
 
     @FXML // fx:id="JasenNimiField"
     private TextField JasenNimiField; // Value injected by FXMLLoader
-    private SessionFactory sessionFactory;
-    private final KertaJasenDao kertaDao;
-    private final KuukausiJasenDao kuukausiDao;
 
     ObservableList<KuukausiJasen> kuukau;
     ObservableList<KertaJasen> kerta;
-
-    /**
-     * FXMLController luokan konstruktori
-     */
-    public FXMLController() {
-        sessionFactory = HibernateUtil.getSessionFactory();
-        kertaDao = new KertaJasenDao(sessionFactory);
-        kuukausiDao = new KuukausiJasenDao(sessionFactory);
-
-    }
-
-    /**
-     * Palauttaa SessionFactoryn
-     * @return sessionfactoryn
-     */
-    public SessionFactory getSessionFactory() {
-        return sessionFactory;
-    }
-
+    
+    private final KuukausiJasenDao kuukausiDao = MainController.getKuukausiDAO();
+    private final KertaJasenDao kertaDao = MainController.getKertaDAO();
+    
     @FXML
     void Aikaa1KKAction(ActionEvent event) {
         System.out.println("AIKAA 1KK");
@@ -431,4 +421,7 @@ public class FXMLController {
         assert KertaJasenTableMaksutapa != null : "fx:id=\"KertaJasenTableMaksutapa\" was not injected: check your FXML file 'Scene.fxml'.";
 
     }
+
+
+
 }

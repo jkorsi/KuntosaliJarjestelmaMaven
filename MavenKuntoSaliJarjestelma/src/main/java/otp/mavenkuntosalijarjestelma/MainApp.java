@@ -1,41 +1,48 @@
 package otp.mavenkuntosalijarjestelma;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import org.hibernate.SessionFactory;
 
 /**
  *
  * @author Antti
  */
+
 public class MainApp extends Application {
-    private FXMLController controller;
+//    private FXMLController controller;
     
     @Override
     public void init(){
-       controller = new FXMLController();
+//       controller = new FXMLController();
     }
     
     @Override
     public void stop(){
-        controller.getSessionFactory().close();
+//        controller.getSessionFactory().close();
     }
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/main.fxml"));
-
+        FXMLLoader loader = new FXMLLoader();
+        Parent root = loader.load(getClass().getResource("/fxml/main.fxml"));
+        
         Scene scene = new Scene(root);
         scene.getStylesheets().add("/styles/Styles.css");
 
         stage.setTitle("JavaFX and Maven");
         stage.setScene(scene);
         stage.show();
-
     }
+    
 
     /**
      * The main() method is ignored in correctly deployed JavaFX application.

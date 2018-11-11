@@ -92,15 +92,15 @@ public class FXMLControllerTest extends GuiTest {
     /**
      * Test of getSessionFactory method, of class FXMLController.
      */
-    @Test
-    public void testGetSessionFactory() {
-        System.out.println("getSessionFactory");
-        FXMLController instance = new FXMLController();
-        SessionFactory expResult = instance.getSessionFactory();
-        SessionFactory result = instance.getSessionFactory();
-        assertEquals(expResult, result);
-
-    }
+//    @Test
+//    public void testGetSessionFactory() {
+//        System.out.println("getSessionFactory");
+//        FXMLController instance = new FXMLController();
+//        SessionFactory expResult = instance.getSessionFactory();
+//        SessionFactory result = instance.getSessionFactory();
+//        assertEquals(expResult, result);
+//
+//    }
 
     /**
      * Test of Aikaa1KKAction method, of class FXMLController.

@@ -12,6 +12,7 @@
         </properties>
     </action>
     <action>
+        
         <actionName>debug</actionName>
         <goals>
             <!--<goal>clean</goal>-->

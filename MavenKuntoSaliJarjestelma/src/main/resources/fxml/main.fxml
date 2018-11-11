@@ -1,23 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.net.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<TabPane prefHeight="650" prefWidth="900.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" fx:controller="otp.mavenkuntosalijarjestelma.MainSceneController">
-    <tabs>
-        <Tab text="First Tab">
-            <fx:include fx:id="firstTab" source="Scene.fxml"/>
-        </Tab>
-        <Tab text="Second Tab">
-            <fx:include fx:id="secondTab" source="Search.fxml"/>
-        </Tab>
-    </tabs>
-</TabPane>
-<!--<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" fx:controller="otp.mavenkuntosalijarjestelma.MainSceneController">
-    <stylesheets>
-        <URL value="@/styles/main.css"/>
-    </stylesheets>
-</AnchorPane>-->
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="650" prefWidth="901.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="otp.mavenkuntosalijarjestelma.MainController">
+   <children>
+      <ButtonBar layoutX="349.0" prefHeight="40.0" prefWidth="132.0">
+        <buttons>
+          <Button fx:id="sceneBtn" mnemonicParsing="false" onAction="#sceneNakymaVaihto" text="Scene" />
+            <Button fx:id="searchBtn" mnemonicParsing="false" onAction="#hakuNakymaVaihto" text="Search" />
+        </buttons>
+      </ButtonBar>
+      
+      <AnchorPane fx:id="mainPane" layoutY="40.0" prefHeight="600.0" prefWidth="901.0" />
+   </children>
+</AnchorPane>

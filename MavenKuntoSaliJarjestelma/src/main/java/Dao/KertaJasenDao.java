@@ -179,4 +179,30 @@ public class KertaJasenDao {
         }
         return kertaJasenet;
     }
+    
+    
+    // HAKU NIMELLÄ
+    public List<KertaJasen> getJasen(String nimi) {
+	List<KertaJasen> haku = null;
+            try {
+                session = factory.openSession();
+                session.beginTransaction();
+
+                String hqlString = "FROM KertaJasen AS haku WHERE nimi = :muuttuja";
+                haku = session.createQuery(hqlString).setParameter("muuttuja", nimi).list();
+                session.getTransaction().commit();
+            }
+            catch (Exception e){
+                if (session.getTransaction() != null) {
+                    session.getTransaction().rollback();
+                }
+            }
+            finally {
+                session.close();
+            }
+        return haku;
+    }
+    
+    
 }
+

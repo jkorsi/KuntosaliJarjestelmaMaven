@@ -28,24 +28,24 @@
                     <skip>false</skip>
                 </configuration>
             </plugin>
-             <plugin>
-                <groupId>org.jacoco</groupId>
-                <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.7.5.201505241946</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>prepare-agent</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>report</id>
-                        <phase>prepare-package</phase>
-                        <goals>
-                            <goal>report</goal>
-                        </goals>
-                    </execution>
-                </executions>
+            <plugin>
+               <groupId>org.jacoco</groupId>
+               <artifactId>jacoco-maven-plugin</artifactId>
+               <version>0.7.5.201505241946</version>
+               <executions>
+                   <execution>
+                       <goals>
+                           <goal>prepare-agent</goal>
+                       </goals>
+                   </execution>
+                   <execution>
+                       <id>report</id>
+                       <phase>prepare-package</phase>
+                       <goals>
+                           <goal>report</goal>
+                       </goals>
+                   </execution>
+               </executions>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -59,6 +59,7 @@
                             <goal>unpack-dependencies</goal>
                         </goals>
                         <configuration>
+                            <includes>**/*.java</includes>
 <!--                            <excludeScope>system</excludeScope>-->
 <!--                            <excludeGroupIds>junit,org.mockito,org.hamcrest</excludeGroupIds>-->
                             <outputDirectory>${project.build.directory}/classes</outputDirectory>
@@ -66,14 +67,14 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
+<!--            <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>1.2.1</version>
                 <executions>
                     <execution>
                         <id>unpack-dependencies</id>
-                        
+
                         <phase>package</phase>
                         <goals>
                             <goal>exec</goal>
@@ -97,14 +98,57 @@
                     <execution>
                         <id>default-cli</id>
                         <goals>
-                            <goal>exec</goal>                            
+                            <goal>exec</goal>
                         </goals>
                         <configuration>
                             <executable>${java.home}/bin/java</executable>
                             <commandlineArgs>${runfx.args}</commandlineArgs>
                         </configuration>
                     </execution>
-                </executions>  
+                </executions>
+            </plugin>-->
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-shade-plugin</artifactId>
+              <version>3.2.0</version>
+              <executions>
+                <execution>
+                  <phase>package</phase>
+                  <goals>
+                    <goal>shade</goal>
+                  </goals>
+                  <configuration>
+                    <transformers>
+                      <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                        <manifestEntries>
+                          <Main-Class>otp.mavenkuntosalijarjestelma.MainApp</Main-Class>
+                          <Build-Number>1</Build-Number>
+                        </manifestEntries>
+                      </transformer>
+                    </transformers>
+                  </configuration>
+                </execution>
+              </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.2.1</version>
+                <configuration>
+                    <mainClass>otp.mavenkuntosalijarjestelma.MainApp</mainClass>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>default-cli</id>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>${java.home}/bin/java</executable>
+                            <commandlineArgs>${runfx.args}</commandlineArgs>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -133,7 +177,7 @@
                     </additionalClasspathElements>-->
                 </configuration>
             </plugin>
-            
+
         </plugins>
     </build>
     <dependencies>
@@ -153,6 +197,8 @@
             <artifactId>hibernate-agroal</artifactId>
             <version>5.3.6.Final</version>
         </dependency>-->
+
+
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>

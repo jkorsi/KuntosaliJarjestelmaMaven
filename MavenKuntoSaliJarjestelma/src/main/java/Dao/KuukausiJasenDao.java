@@ -154,6 +154,7 @@ public class KuukausiJasenDao {
         }
         return haettu;
     }
+    
     /**
      * Hakee listan kaikista KuukausiJasen oliosta
      * @return Lista kaikista KuukausiJasen oliosta jotka on tallennettu tietokantaan
@@ -179,6 +180,33 @@ public class KuukausiJasenDao {
         }
         return KuukausiJasenet;
     }
+    
+    
+    // HAKU NIMELLÄ
+    public List<KuukausiJasen> getJasen(String nimi) {
+	List<KuukausiJasen> lista = null;
+        KuukausiJasen eka;
+            try {
+                session = factory.openSession();
+                session.beginTransaction();
+
+                String hqlString = "FROM KuukausiJasen AS haku WHERE nimi = :muuttuja";
+                lista = session.createQuery(hqlString).setParameter("muuttuja", nimi).list();
+                eka = lista.get(0);
+                
+                session.getTransaction().commit();
+            }
+            catch (Exception e){
+                if (session.getTransaction() != null) {
+                    session.getTransaction().rollback();
+                }
+            }
+            finally {
+                session.close();
+            }
+        return lista;
+    }
+    
 }
 
 
