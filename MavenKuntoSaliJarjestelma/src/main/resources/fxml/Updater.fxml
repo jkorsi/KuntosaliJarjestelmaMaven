@@ -1,14 +1,92 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.net.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" fx:controller="otp.mavenkuntosalijarjestelma.UpdaterController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="901.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="otp.mavenkuntosalijarjestelma.UpdaterController">
     <stylesheets>
-        <URL value="@/styles/updater.css"/>
+        <URL value="@/styles/updater.css" />
     </stylesheets>
+   <children>
+      <Button fx:id="JasenLisausButton1" layoutX="21.0" layoutY="14.0" maxHeight="50.0" maxWidth="855.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#JasenLisausButtonAction" prefHeight="50.0" prefWidth="855.0" style="-fx-background-color: #999999;" text="&lt;-Takaisin" underline="true" wrapText="true">
+         <font>
+            <Font size="24.0" />
+         </font>
+         <effect>
+            <DropShadow />
+         </effect>
+      </Button>
+      <TitledPane fx:id="JasenMuokkaus_TitledPane" animated="false" collapsible="false" layoutX="14.0" layoutY="84.0" prefHeight="482.0" prefWidth="202.0" text="Jasen">
+         <content>
+            <GridPane prefHeight="467.0" prefWidth="158.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="243.0" minWidth="10.0" prefWidth="137.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" percentHeight="5.0" prefHeight="15.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="60.0" minHeight="30.0" prefHeight="55.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="38.0" minHeight="10.0" percentHeight="5.0" prefHeight="38.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="30.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" percentHeight="5.0" prefHeight="15.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" percentHeight="5.0" prefHeight="15.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" percentHeight="5.0" prefHeight="15.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" percentHeight="5.0" prefHeight="15.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <Label fx:id="Nimi_Label" text="Nimi" textFill="#503bc3" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="JasenyysVoimassa_Label" text="Jäsenyyden tila" textFill="#503bc3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="KerratTaiAika_Label" text="Kerrat " textFill="#503bc3" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="MaksuTapa_Label" text="MaksuTapa" textFill="#503bc3" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label text="Tallena" textFill="#503bc3" GridPane.halignment="CENTER" GridPane.rowIndex="10" GridPane.valignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="JasenLisausButton" maxHeight="50.0" maxWidth="130.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#JasenLisausButtonAction" prefHeight="50.0" prefWidth="130.0" style="-fx-background-color: #a8ffa8;" text="Tallenna" underline="true" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="11" GridPane.valignment="CENTER">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Button>
+                  <TextField fx:id="Nimi_TextField" GridPane.rowIndex="1" />
+                  <TextField fx:id="KerratTaiAika_TextField" GridPane.rowIndex="5" />
+                  <TextField fx:id="MaksuTapaTextField" GridPane.rowIndex="7" />
+                  <CheckBox fx:id="JasenyydenTila_CheckBox" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Voimassa" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+               </children>
+            </GridPane>
+         </content>
+         <effect>
+            <DropShadow />
+         </effect>
+      </TitledPane>
+   </children>
 </AnchorPane>
