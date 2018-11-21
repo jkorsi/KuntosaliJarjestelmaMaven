@@ -18,16 +18,18 @@ import org.hibernate.SessionFactory;
  */
 
 public class MainApp extends Application {
-//    private FXMLController controller;
+    private MainController controller;
     
     @Override
     public void init(){
-//       controller = new FXMLController();
+       controller = new MainController();
     }
     
     @Override
     public void stop(){
-//        controller.getSessionFactory().close();
+        
+       controller.getSessionFactory().close();
+
     }
 
     @Override

@@ -4,16 +4,15 @@
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane prefHeight="650" prefWidth="901.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="otp.mavenkuntosalijarjestelma.MainController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1300.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="otp.mavenkuntosalijarjestelma.MainController">
    <children>
-      <ButtonBar layoutX="349.0" prefHeight="40.0" prefWidth="132.0">
+      <ButtonBar>
         <buttons>
           <Button fx:id="sceneBtn" mnemonicParsing="false" onAction="#sceneNakymaVaihto" text="Scene" />
             <Button fx:id="searchBtn" mnemonicParsing="false" onAction="#hakuNakymaVaihto" text="Search" />
         </buttons>
       </ButtonBar>
       
-      <AnchorPane fx:id="mainPane" layoutY="40.0" prefHeight="600.0" prefWidth="901.0" />
+      <AnchorPane fx:id="mainPane" layoutY="40.0" />
    </children>
 </AnchorPane>

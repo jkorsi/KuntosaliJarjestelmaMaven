@@ -35,6 +35,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.util.Callback;
@@ -143,10 +144,15 @@ public class FXMLController {
 
     ObservableList<KuukausiJasen> kuukau;
     ObservableList<KertaJasen> kerta;
-    
+
     private final KuukausiJasenDao kuukausiDao = MainController.getKuukausiDAO();
     private final KertaJasenDao kertaDao = MainController.getKertaDAO();
+    //private final MainController mainController;
     
+    public FXMLController(){
+        //this.mainController = mC;
+    }
+
     @FXML
     void Aikaa1KKAction(ActionEvent event) {
         System.out.println("AIKAA 1KK");
@@ -211,7 +217,8 @@ public class FXMLController {
     }
 
     /**
-     * Päivittää ohjelman taulut hakemalla ne tietokannasta ja asettamalla ne näkyviin
+     * Päivittää ohjelman taulut hakemalla ne tietokannasta ja asettamalla ne
+     * näkyviin
      */
     public void update() {
         kuukau = FXCollections.observableList(kuukausiDao.getALLKuukausiJasen());
@@ -280,6 +287,19 @@ public class FXMLController {
     @FXML
     void MaksutapaKäteinenAction(ActionEvent event) {
         System.out.println("MAKSU KÄTEINEN");
+    }
+
+    @FXML
+    void openKertaJasenEdit(MouseEvent event) throws IOException {
+//        //mainController.setScreen((Node) FXMLLoader.load(getClass().getResource("/fxml/Updater.fxml")));
+//        FXMLLoader loader = new FXMLLoader();
+//        Stage popUpStage = new Stage();
+//        popUpStage.setScene(new Scene((Parent) loader.load(getClass().getResource("/fxml/Updater.fxml"))));
+    }
+
+    @FXML
+    void openKuukausiJasenEdit(MouseEvent event) {
+
     }
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
@@ -422,6 +442,8 @@ public class FXMLController {
 
     }
 
-
+    Object getSessionFactory() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
 }

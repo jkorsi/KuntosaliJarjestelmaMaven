@@ -32,13 +32,15 @@ public class MainController {
     private SessionFactory sessionFactory;
     private static KertaJasenDao kertaDao;
     private static KuukausiJasenDao kuukausiDao;
+    private static FXMLController fxmlController;
     
     public MainController() {
         sessionFactory = HibernateUtil.getSessionFactory();
         kertaDao = new KertaJasenDao(sessionFactory);
         kuukausiDao = new KuukausiJasenDao(sessionFactory);
+        //fxmlController = new FXMLController(this);
         
-        generateJengi();
+        //generateJengi();
     }
     
     public void generateJengi() {
