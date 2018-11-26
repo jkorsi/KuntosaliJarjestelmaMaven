@@ -11,6 +11,7 @@ import Entities.KuukausiJasen;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
+import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,6 +26,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.SingleSelectionModel;
 import javafx.scene.control.Tab;
@@ -44,10 +46,31 @@ import javafx.util.Callback;
  *
  * @author Antti
  */
-public class FXMLController {
+public class FXMLController implements AbstractController {
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
+
+    @FXML // fx:id="PoistaLabel"
+    private Label PoistaLabel; // Value injected by FXMLLoader
+
+    @FXML // fx:id="MaksutapaLabel"
+    private Label MaksutapaLabel; // Value injected by FXMLLoader
+
+    @FXML // fx:id="NimiLabel"
+    private Label NimiLabel; // Value injected by FXMLLoader
+
+    @FXML // fx:id="TyyppiLabel"
+    private Label TyyppiLabel; // Value injected by FXMLLoader
+
+    @FXML // fx:id="AikaLabel"
+    private Label AikaLabel; // Value injected by FXMLLoader
+
+    @FXML // fx:id="KertaLabel"
+    private Label KertaLabel; // Value injected by FXMLLoader
+
+    @FXML // fx:id="LisääLabel"
+    private Label LisääLabel; // Value injected by FXMLLoader
 
     @FXML // URL location of the FXML file that was given to the FXMLLoader
     private URL location;
@@ -147,10 +170,24 @@ public class FXMLController {
 
     private final KuukausiJasenDao kuukausiDao = MainController.getKuukausiDAO();
     private final KertaJasenDao kertaDao = MainController.getKertaDAO();
+    private final String localeBundleBaseString = "/Bundles/AddDeleteScene";
+    private final Locale defaultLocale = new Locale("fi", "FI");
+    private Locale currentLocale;
     //private final MainController mainController;
-    
-    public FXMLController(){
+
+    public FXMLController() {
         //this.mainController = mC;
+
+    }
+
+    public String getLocaleBundleBaseString() {
+        return localeBundleBaseString;
+    }
+
+    @Override
+    public void localize(Locale currentLocale, String sceneLocaleBundleString) {
+        resources = ResourceBundle.getBundle(sceneLocaleBundleString, currentLocale);
+
     }
 
     @FXML
@@ -304,6 +341,8 @@ public class FXMLController {
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
+
+        localize(currentLocale, localeBundleBaseString);
         System.out.println("KertajasenTaulu: " + KertaJasenTaulu);
         System.out.println("KuukausijasenTaulu: " + KuukausiJasenTaulu);
 
@@ -380,64 +419,42 @@ public class FXMLController {
 //        KertaJasenTaulu.getItems().setAll(kertaDao.getALLKertajasen());
 //        KuukausiJasenTaulu.getItems().setAll(kuukausiDao.getALLKuukausiJasen());
 
+        assert MaksutapaLabel != null : "fx:id=\"MaksutapaLabel\" was not injected: check your FXML file 'Scene.fxml'.";
+        assert NimiLabel != null : "fx:id=\"NimiLabel\" was not injected: check your FXML file 'Scene.fxml'.";
+        assert TyyppiLabel != null : "fx:id=\"TyyppiLabel\" was not injected: check your FXML file 'Scene.fxml'.";
+        assert AikaLabel != null : "fx:id=\"AikaLabel\" was not injected: check your FXML file 'Scene.fxml'.";
+        assert KertaLabel != null : "fx:id=\"KertaLabel\" was not injected: check your FXML file 'Scene.fxml'.";
+        assert LisääLabel != null : "fx:id=\"LisääLabel\" was not injected: check your FXML file 'Scene.fxml'.";
         assert JasenLisausButton != null : "fx:id=\"JasenLisausButton\" was not injected: check your FXML file 'Scene.fxml'.";
-
         assert KausiJasen != null : "fx:id=\"KausiJasen\" was not injected: check your FXML file 'Scene.fxml'.";
-
         assert jasentyyppi != null : "fx:id=\"jasentyyppi\" was not injected: check your FXML file 'Scene.fxml'.";
-
         assert kertajasenRadio != null : "fx:id=\"kertajasenRadio\" was not injected: check your FXML file 'Scene.fxml'.";
-
         assert JasenNimiField != null : "fx:id=\"JasenNimiField\" was not injected: check your FXML file 'Scene.fxml'.";
-
         assert Kerrat10 != null : "fx:id=\"Kerrat10\" was not injected: check your FXML file 'Scene.fxml'.";
-
         assert kertoja != null : "fx:id=\"kertoja\" was not injected: check your FXML file 'Scene.fxml'.";
-
         assert Kerrat1 != null : "fx:id=\"Kerrat1\" was not injected: check your FXML file 'Scene.fxml'.";
-
         assert MaksuKortti != null : "fx:id=\"MaksuKortti\" was not injected: check your FXML file 'Scene.fxml'.";
-
         assert maksutapa != null : "fx:id=\"maksutapa\" was not injected: check your FXML file 'Scene.fxml'.";
-
         assert MaksuKateinen != null : "fx:id=\"MaksuKateinen\" was not injected: check your FXML file 'Scene.fxml'.";
-
         assert Aikaa1KK != null : "fx:id=\"Aikaa1KK\" was not injected: check your FXML file 'Scene.fxml'.";
-
         assert Kuukausia != null : "fx:id=\"Kuukausia\" was not injected: check your FXML file 'Scene.fxml'.";
-
         assert Aikaa3KK != null : "fx:id=\"Aikaa3KK\" was not injected: check your FXML file 'Scene.fxml'.";
-
         assert JasenPoistoButton != null : "fx:id=\"JasenPoistoButton\" was not injected: check your FXML file 'Scene.fxml'.";
-
+        assert PoistaLabel != null : "fx:id=\"PoistaLabel\" was not injected: check your FXML file 'Scene.fxml'.";
         assert JasenTabPane != null : "fx:id=\"JasenTabPane\" was not injected: check your FXML file 'Scene.fxml'.";
-
         assert KuukausiJasenTab != null : "fx:id=\"KuukausiJasenTab\" was not injected: check your FXML file 'Scene.fxml'.";
-
         assert KuukausiJasenTaulu != null : "fx:id=\"KuukausiJasenTaulu\" was not injected: check your FXML file 'Scene.fxml'.";
-
         assert KuukaisuJasenTableID != null : "fx:id=\"KuukaisuJasenTableID\" was not injected: check your FXML file 'Scene.fxml'.";
-
         assert KuukaisuJasenTableNimi != null : "fx:id=\"KuukaisuJasenTableNimi\" was not injected: check your FXML file 'Scene.fxml'.";
-
         assert KuukaisuJasenTableJasenyysVoimassa != null : "fx:id=\"KuukaisuJasenTableJasenyysVoimassa\" was not injected: check your FXML file 'Scene.fxml'.";
-
         assert KuukaisuJasenTableKkJaljella != null : "fx:id=\"KuukaisuJasenTableKkJaljella\" was not injected: check your FXML file 'Scene.fxml'.";
-
         assert KuukaisuJasenTableMaksuTapa != null : "fx:id=\"KuukaisuJasenTableMaksuTapa\" was not injected: check your FXML file 'Scene.fxml'.";
-
         assert KertaJasenTab != null : "fx:id=\"KertaJasenTab\" was not injected: check your FXML file 'Scene.fxml'.";
-
         assert KertaJasenTaulu != null : "fx:id=\"KertaJasenTaulu\" was not injected: check your FXML file 'Scene.fxml'.";
-
         assert KertaJasenTableID != null : "fx:id=\"KertaJasenTableID\" was not injected: check your FXML file 'Scene.fxml'.";
-
         assert KertaJasenTableNimi != null : "fx:id=\"KertaJasenTableNimi\" was not injected: check your FXML file 'Scene.fxml'.";
-
         assert KertaJasenTableJasenyysVoimassa != null : "fx:id=\"KertaJasenTableJasenyysVoimassa\" was not injected: check your FXML file 'Scene.fxml'.";
-
         assert KertaJasenTableKertojaJaljella != null : "fx:id=\"KertaJasenTableKertojaJaljella\" was not injected: check your FXML file 'Scene.fxml'.";
-
         assert KertaJasenTableMaksutapa != null : "fx:id=\"KertaJasenTableMaksutapa\" was not injected: check your FXML file 'Scene.fxml'.";
 
     }
