@@ -7,6 +7,8 @@ import Entities.Jasen;
 import Entities.KertaJasen;
 import Entities.KuukausiJasen;
 import java.io.IOException;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -34,11 +36,14 @@ public class MainController {
     private static KuukausiJasenDao kuukausiDao;
     private static FXMLController fxmlController;
     
+    private final Locale defaultLocale = new Locale("fi", "FI");
+    private Locale currentLocale;
+    
     public MainController() {
         sessionFactory = HibernateUtil.getSessionFactory();
         kertaDao = new KertaJasenDao(sessionFactory);
         kuukausiDao = new KuukausiJasenDao(sessionFactory);
-        //fxmlController = new FXMLController(this);
+        fxmlController = new FXMLController();
         
         //generateJengi();
     }
@@ -79,17 +84,31 @@ public class MainController {
     public static KertaJasenDao getKertaDAO() {
         return kertaDao;
     }
+    public Locale getLocale(){
+        if(currentLocale == null){
+            return defaultLocale;
+        }else{
+            return currentLocale;
+        }
+    }
+    public void setLocale(Locale locale){
+        this.currentLocale = locale;
+    }
     
     // HAKUNÄKYMÄ
     @FXML
     void hakuNakymaVaihto(ActionEvent event) throws Exception {
-        setScreen((Node) FXMLLoader.load(getClass().getResource("/fxml/Search.fxml")));
+        FXMLLoader fXMLLoader = new FXMLLoader();
+//        fXMLLoader.setResources(ResourceBundle.getBundle(fxmlController.getLocaleBundleBaseString(), getLocale()));
+        setScreen((Node) fXMLLoader.load(getClass().getResource("/fxml/Search.fxml")));
 
     }
     // toinen näkymä
     @FXML
     void sceneNakymaVaihto(ActionEvent event) throws Exception {
-        setScreen((Node) FXMLLoader.load(getClass().getResource("/fxml/Scene.fxml")));
+        FXMLLoader fXMLLoader = new FXMLLoader();
+        fXMLLoader.setResources(ResourceBundle.getBundle(fxmlController.getLocaleBundleBaseString(), getLocale()));
+        setScreen((Node) fXMLLoader.load(getClass().getResource("/fxml/Scene.fxml")));
 
     }
     
