@@ -35,6 +35,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -148,8 +149,8 @@ public class FXMLController {
     private final KuukausiJasenDao kuukausiDao = MainController.getKuukausiDAO();
     private final KertaJasenDao kertaDao = MainController.getKertaDAO();
     //private final MainController mainController;
-    
-    public FXMLController(){
+
+    public FXMLController() {
         //this.mainController = mC;
     }
 
@@ -291,14 +292,29 @@ public class FXMLController {
 
     @FXML
     void openKertaJasenEdit(MouseEvent event) throws IOException {
-//        //mainController.setScreen((Node) FXMLLoader.load(getClass().getResource("/fxml/Updater.fxml")));
-//        FXMLLoader loader = new FXMLLoader();
-//        Stage popUpStage = new Stage();
-//        popUpStage.setScene(new Scene((Parent) loader.load(getClass().getResource("/fxml/Updater.fxml"))));
+        /*  public static void openSelectedFolder(TableView<PathObject> table) throws IOException{
+        
+                PathObject pathObj = table.getSelectionModel().getSelectedItem();
+                String openableProgramPath = pathObj.getPath();
+                FileHandler.openFolder(openableProgramPath);
+       
+            }*/
+        //mainController.setScreen((Node) FXMLLoader.load(getClass().getResource("/fxml/Updater.fxml")));
+
+        if (event.getButton().equals(MouseButton.PRIMARY) && event.getClickCount() == 2) {
+            
+            Jasen jasen = KertaJasenTaulu.getSelectionModel().getSelectedItem();
+
+            System.out.println("Pop-Up click recocgnized.");
+            Stage popUpStage = new Stage();
+            popUpStage.setScene(new Scene((Parent) FXMLLoader.load(getClass().getResource("/fxml/Updater.fxml"))));
+            popUpStage.show();
+        }
+
     }
 
     @FXML
-    void openKuukausiJasenEdit(MouseEvent event) {
+    void openKuukausiJasenEdit(MouseEvent event) throws IOException {
 
     }
 
