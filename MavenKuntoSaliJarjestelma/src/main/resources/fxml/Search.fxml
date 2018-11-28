@@ -9,7 +9,7 @@
 <?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="580.0" prefWidth="901.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="otp.mavenkuntosalijarjestelma.SearchController">   
+<AnchorPane id="AnchorPane" prefHeight="580.0" prefWidth="901.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="otp.mavenkuntosalijarjestelma.SearchController">   
     <stylesheets>
         
     </stylesheets>
@@ -19,37 +19,37 @@
             <InnerShadow color="#ff009a" height="58.32" radius="27.8825" width="55.21" />
          </effect>
       </TextField>
-      <Button fx:id="searchButton" layoutX="201.0" layoutY="83.0" mnemonicParsing="false" onAction="#handleSubmitButtonAction" text="Haku" />
+      <Button fx:id="searchButton" layoutX="201.0" layoutY="83.0" mnemonicParsing="false" onAction="#handleSubmitButtonAction" text="%haku" />
       <TabPane fx:id="JasenTabPane" layoutX="311.0" prefHeight="555.0" prefWidth="590.0" tabClosingPolicy="UNAVAILABLE">
          <tabs>
-            <Tab fx:id="KuukausiJasenTab" text="Kuukausijäsen">
+            <Tab fx:id="KuukausiJasenTab" text="%kuukausijasen">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
                         <TableView fx:id="KuukausiJasenTaulu" prefHeight="523.0" prefWidth="590.0">
                            <columns>
-                              <TableColumn fx:id="KuukaisuJasenTableID" prefWidth="75.0" text="ID" />
-                              <TableColumn fx:id="KuukaisuJasenTableNimi" prefWidth="75.0" text="Nimi" />
-                              <TableColumn fx:id="KuukaisuJasenTableJasenyysVoimassa" prefWidth="75.0" text="JasenyysVoimassa" />
-                              <TableColumn fx:id="KuukaisuJasenTableKkJaljella" prefWidth="75.0" text="KkJäljellä" />
-                              <TableColumn fx:id="KuukaisuJasenTableMaksuTapa" prefWidth="75.0" text="MaksuTapa" />
+                              <TableColumn fx:id="KuukaisuJasenTableID" prefWidth="75.0" text="%tableId" />
+                              <TableColumn fx:id="KuukaisuJasenTableNimi" prefWidth="75.0" text="%tableNimi" />
+                              <TableColumn fx:id="KuukaisuJasenTableJasenyysVoimassa" prefWidth="75.0" text="%tableJasenyysvoimassa" />
+                              <TableColumn fx:id="KuukaisuJasenTableKkJaljella" prefWidth="75.0" text="%tableKkJaljella" />
+                              <TableColumn fx:id="KuukaisuJasenTableMaksuTapa" prefWidth="75.0" text="%tableMaksutapa" />
                            </columns>
                         </TableView>
                      </children>
                   </AnchorPane>
                </content>
             </Tab>
-            <Tab fx:id="KertaJasenTab" text="Kertajäsen">
+            <Tab fx:id="KertaJasenTab" text="%kertajasen">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
                         <TableView fx:id="KertaJasenTaulu" prefHeight="606.0" prefWidth="579.0">
                            <columns>
-                              <TableColumn fx:id="KertaJasenTableID" prefWidth="75.0" text="ID" />
-                              <TableColumn fx:id="KertaJasenTableNimi" prefWidth="75.0" text="Nimi" />
-                              <TableColumn fx:id="KertaJasenTableJasenyysVoimassa" prefWidth="75.0" text="JasenyysVoimassa" />
-                              <TableColumn fx:id="KertaJasenTableKertojaJaljella" prefWidth="75.0" text="Kertoja jäljellä" />
-                              <TableColumn fx:id="KertaJasenTableMaksutapa" prefWidth="75.0" text="MaksuTapa" />
+                              <TableColumn fx:id="KertaJasenTableID" prefWidth="75.0" text="%tableId" />
+                              <TableColumn fx:id="KertaJasenTableNimi" prefWidth="75.0" text="%tableNimi" />
+                              <TableColumn fx:id="KertaJasenTableJasenyysVoimassa" prefWidth="75.0" text="%tableJasenyysvoimassa" />
+                              <TableColumn fx:id="KertaJasenTableKertojaJaljella" prefWidth="75.0" text="%tableKertojaJaljella" />
+                              <TableColumn fx:id="KertaJasenTableMaksutapa" prefWidth="75.0" text="%tableMaksutapa" />
                            </columns>
                         </TableView>
                      </children>

@@ -5,6 +5,9 @@
  */
 package otp.mavenkuntosalijarjestelma;
 
+import Entities.Jasen;
+import Entities.KertaJasen;
+import Entities.KuukausiJasen;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -23,15 +26,16 @@ public class UpdaterController extends AbstractController implements Initializab
 
     /**
      * Initializes the controller class.
+     *
      * @param url
      * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-    }    
-    
-     @FXML // ResourceBundle that was given to the FXMLLoader
+//        loadData(jasen, jasenTyyppi);
+    }
+
+    @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
 
     @FXML // URL location of the FXML file that was given to the FXMLLoader
@@ -76,8 +80,37 @@ public class UpdaterController extends AbstractController implements Initializab
     @FXML // fx:id="tallenna_button"
     private Button tallenna_button; // Value injected by FXMLLoader
 
+    private Jasen jasen;
+
+    private int jasenTyyppi;
+
+    public void setData(Jasen jasen, int jasenTyyppi) {
+        this.jasen = jasen;
+        this.jasenTyyppi = jasenTyyppi;
+    }
+
+    public void loadData(Jasen jasen, int jasenTyyppi) { // lataa jasenen tiedot muokkausikkunaan
+        System.out.println(jasen.getNimi());
+        System.out.println(nimi_textField);
+        nimi_textField.setText(jasen.getNimi());
+        getID_label.setText("" + jasen.getJasenID());
+        maksutapa_textField.setText(jasen.getMaksuTapa());
+        jasenyys_checkbox.setSelected(jasen.isOnkoJasenyysVoimassa());
+
+        if (jasenTyyppi == 0) { // jasen on kertajasen
+            kerrat_textField.setText("" + ((KertaJasen) jasen).getKayntikertojaJaljella());
+
+        } else { // jasen on kuukausijasen
+            kuukaudet_textField.setText("" + ((KuukausiJasen) jasen).getKuukausiaJaljella());
+
+        }
+        System.out.println("Tiedot ladattu muokkausikkunaan");
+    }
+
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
+//        loadData(jasen, jasenTyyppi);
+        
         assert name_label != null : "fx:id=\"name_label\" was not injected: check your FXML file 'Updater.fxml'.";
         assert kerrat_label != null : "fx:id=\"kerrat_label\" was not injected: check your FXML file 'Updater.fxml'.";
         assert kuukaudet_label != null : "fx:id=\"kuukaudet_label\" was not injected: check your FXML file 'Updater.fxml'.";

@@ -9,6 +9,7 @@ import Entities.Jasen;
 import Entities.KertaJasen;
 import Entities.KuukausiJasen;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
 import java.util.List;
 import java.util.Locale;
@@ -171,18 +172,10 @@ public class FXMLController extends AbstractController {
 
     private final KuukausiJasenDao kuukausiDao = MainController.getKuukausiDAO();
     private final KertaJasenDao kertaDao = MainController.getKertaDAO();
-    private final String localeBundleBaseString = "Bundles.AddDeleteScene";
-
-    private Locale currentLocale;
-    //private final MainController mainController;
 
     public FXMLController() {
-        //this.mainController = mC;
+        localeBundleBaseString = "Bundles.AddDeleteScene"; // String lokalisaatiota varten. Hakee tällä oikean bundlen scenelle
 
-    }
-
-    public String getLocaleBundleBaseString() {
-        return localeBundleBaseString;
     }
 
     @FXML
@@ -321,6 +314,36 @@ public class FXMLController extends AbstractController {
         System.out.println("MAKSU KÄTEINEN");
     }
 
+    public void openJasenEditWindow(MouseEvent event, int editType) throws IOException {
+        if (event.getButton().equals(MouseButton.PRIMARY) && event.getClickCount() == 2) {
+
+            FXMLLoader updateSceneLoader = new FXMLLoader();
+            updateSceneLoader.setLocation(getClass().getResource("/fxml/Updater.fxml"));
+            
+
+            Jasen kertaJasen = KertaJasenTaulu.getSelectionModel().getSelectedItem();
+            Jasen kuukausiJasen = KuukausiJasenTaulu.getSelectionModel().getSelectedItem();
+
+            
+            System.out.println("Pop-Up click recocgnized.");
+            Stage popUpStage = new Stage();
+            popUpStage.setScene(new Scene((Parent) updateSceneLoader.load()));
+            
+            UpdaterController updateController = (UpdaterController) updateSceneLoader.getController();
+            
+            if (editType == 0) {
+                System.out.println(updateController);
+                updateController.loadData(kertaJasen, editType);
+            } else {
+                updateController.loadData(kuukausiJasen, editType);
+            }
+
+            
+            popUpStage.show();
+
+        }
+    }
+
     @FXML
     void openKertaJasenEdit(MouseEvent event) throws IOException {
         /*  public static void openSelectedFolder(TableView<PathObject> table) throws IOException{
@@ -331,22 +354,13 @@ public class FXMLController extends AbstractController {
        
             }*/
         //mainController.setScreen((Node) FXMLLoader.load(getClass().getResource("/fxml/Updater.fxml")));
-
-        if (event.getButton().equals(MouseButton.PRIMARY) && event.getClickCount() == 2) {
-
-            Jasen jasen = KertaJasenTaulu.getSelectionModel().getSelectedItem();
-
-            System.out.println("Pop-Up click recocgnized.");
-            Stage popUpStage = new Stage();
-            popUpStage.setScene(new Scene((Parent) FXMLLoader.load(getClass().getResource("/fxml/Updater.fxml"))));
-            popUpStage.show();
-        }
+        openJasenEditWindow(event, 0);
 
     }
 
     @FXML
     void openKuukausiJasenEdit(MouseEvent event) throws IOException {
-
+        openJasenEditWindow(event, 1);
     }
 
     @FXML // This method is called by the FXMLLoader when initialization is complete

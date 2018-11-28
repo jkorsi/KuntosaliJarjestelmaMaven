@@ -1,6 +1,5 @@
 package otp.mavenkuntosalijarjestelma;
 
-
 import Dao.KertaJasenDao;
 import Dao.KuukausiJasenDao;
 import Entities.Jasen;
@@ -20,37 +19,35 @@ import javafx.scene.control.TabPane;
 import javafx.scene.layout.AnchorPane;
 import org.hibernate.SessionFactory;
 
+public class MainController extends AbstractController {
 
-public class MainController extends AbstractController{
-    
     @FXML // fx:id="sceneBtn"
     private Button sceneBtn;
     @FXML // fx:id="searchBtn"
     private Button searchBtn;
-    
+
     @FXML // fx:id="mainPane"
     private AnchorPane mainPane;
 
     private SessionFactory sessionFactory;
     private static KertaJasenDao kertaDao;
     private static KuukausiJasenDao kuukausiDao;
-    
+
     private static FXMLController fxmlController;
     private static SearchController searchController;
-    
-    private final Locale defaultLocale = new Locale("fi", "FI");
-    private Locale currentLocale;
-    
+    private static UpdaterController updateController;
+
     public MainController() {
         sessionFactory = HibernateUtil.getSessionFactory();
         kertaDao = new KertaJasenDao(sessionFactory);
         kuukausiDao = new KuukausiJasenDao(sessionFactory);
         fxmlController = new FXMLController();
         searchController = new SearchController();
-        
+        updateController = new UpdaterController();
+
         //generateJengi();
     }
-    
+
     public void generateJengi() {
         KuukausiJasen j1 = new KuukausiJasen();
         j1.setNimi("Risto R");
@@ -77,34 +74,14 @@ public class MainController extends AbstractController{
         kuukausiDao.createKuukausiJasen(j2);
     }
 
-    public SessionFactory getSessionFactory() {
-        return sessionFactory;
-    }
-    
-    public static KuukausiJasenDao getKuukausiDAO() {
-        return kuukausiDao;
-    }
-    public static KertaJasenDao getKertaDAO() {
-        return kertaDao;
-    }
-    public Locale getLocale(){
-        if(currentLocale == null){
-            return defaultLocale;
-        }else{
-            return currentLocale;
-        }
-    }
-    public void setLocale(Locale locale){
-        this.currentLocale = locale;
-    }
-    
     // HAKUNÄKYMÄ
     @FXML
     void hakuNakymaVaihto(ActionEvent event) throws Exception {
-//        ResourceBundle resources = ResourceBundle.getBundle(searchController.getLocaleBundleBaseString());
-        setScreen((Node) FXMLLoader.load(getClass().getResource("/fxml/Search.fxml")));
+        ResourceBundle resources = ResourceBundle.getBundle(searchController.getLocaleBundleBaseString());
+        setScreen((Node) FXMLLoader.load(getClass().getResource("/fxml/Search.fxml"), resources));
 
     }
+
     // toinen näkymä
     @FXML
     void sceneNakymaVaihto(ActionEvent event) throws Exception {
@@ -112,12 +89,45 @@ public class MainController extends AbstractController{
         setScreen((Node) FXMLLoader.load(getClass().getResource("/fxml/Scene.fxml"), resources));
 
     }
-    
+
     public void setScreen(Node node) {
         mainPane.getChildren().setAll(node);
     }
 
-    
-    
-    
+    public static FXMLController getFxmlController() {
+        return fxmlController;
+    }
+
+    public static SearchController getSearchController() {
+        return searchController;
+    }
+
+    public static UpdaterController getUpdateController() {
+        return updateController;
+    }
+
+    public SessionFactory getSessionFactory() {
+        return sessionFactory;
+    }
+
+    public static KuukausiJasenDao getKuukausiDAO() {
+        return kuukausiDao;
+    }
+
+    public static KertaJasenDao getKertaDAO() {
+        return kertaDao;
+    }
+
+    public Locale getLocale() {
+        if (currentLocale == null) {
+            return defaultLocale;
+        } else {
+            return currentLocale;
+        }
+    }
+
+    public void setLocale(Locale locale) {
+        currentLocale = locale;
+    }
+
 }

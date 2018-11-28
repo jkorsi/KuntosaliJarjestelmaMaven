@@ -99,6 +99,10 @@ public class SearchController extends AbstractController{
     private final KuukausiJasenDao kuukausiDao = MainController.getKuukausiDAO();
     private final KertaJasenDao kertaDao = MainController.getKertaDAO();
     
+    public SearchController(){
+        localeBundleBaseString = "Bundles.SearchScene";
+    }
+    
     public void initialize() {
         KuukaisuJasenTableID.setCellValueFactory(new Callback<CellDataFeatures<KuukausiJasen, Integer>, ObservableValue<Integer>>() {
             public ObservableValue<Integer> call(CellDataFeatures<KuukausiJasen, Integer> p) {
