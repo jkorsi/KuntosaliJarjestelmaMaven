@@ -19,7 +19,7 @@ import javafx.scene.control.TextField;
  *
  * @author Juho Suni
  */
-public class UpdaterController implements Initializable {
+public class UpdaterController extends AbstractController implements Initializable {
 
     /**
      * Initializes the controller class.

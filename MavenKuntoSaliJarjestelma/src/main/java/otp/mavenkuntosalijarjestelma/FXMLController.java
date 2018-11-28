@@ -47,7 +47,7 @@ import javafx.util.Callback;
  *
  * @author Antti
  */
-public class FXMLController implements AbstractController {
+public class FXMLController extends AbstractController {
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
@@ -171,8 +171,8 @@ public class FXMLController implements AbstractController {
 
     private final KuukausiJasenDao kuukausiDao = MainController.getKuukausiDAO();
     private final KertaJasenDao kertaDao = MainController.getKertaDAO();
-    private final String localeBundleBaseString = "/Bundles/AddDeleteScene";
-    private final Locale defaultLocale = new Locale("fi", "FI");
+    private final String localeBundleBaseString = "Bundles.AddDeleteScene";
+
     private Locale currentLocale;
     //private final MainController mainController;
 
@@ -183,12 +183,6 @@ public class FXMLController implements AbstractController {
 
     public String getLocaleBundleBaseString() {
         return localeBundleBaseString;
-    }
-
-    @Override
-    public void localize(Locale currentLocale, String sceneLocaleBundleString) {
-        resources = ResourceBundle.getBundle(sceneLocaleBundleString, currentLocale);
-
     }
 
     @FXML
@@ -339,7 +333,7 @@ public class FXMLController implements AbstractController {
         //mainController.setScreen((Node) FXMLLoader.load(getClass().getResource("/fxml/Updater.fxml")));
 
         if (event.getButton().equals(MouseButton.PRIMARY) && event.getClickCount() == 2) {
-            
+
             Jasen jasen = KertaJasenTaulu.getSelectionModel().getSelectedItem();
 
             System.out.println("Pop-Up click recocgnized.");
@@ -358,7 +352,7 @@ public class FXMLController implements AbstractController {
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
 
-        localize(currentLocale, localeBundleBaseString);
+//        localize(String sceneLocaleBundleString, Locale currentLocale);
         System.out.println("KertajasenTaulu: " + KertaJasenTaulu);
         System.out.println("KuukausijasenTaulu: " + KuukausiJasenTaulu);
 

@@ -12,10 +12,15 @@ import java.util.ResourceBundle;
  *
  * @author Antti Käyhkö
  */
-public interface AbstractController {// laita kaikki kamat jotka on kaikissa kontrollereissa tänne
+public abstract class AbstractController {// laita kaikki kamat jotka on kaikissa kontrollereissa tänne
+    private final Locale defaultLocale = new Locale("fi", "FI");
 
-
-    public void localize(Locale currentLocale, String sceneLocale);
+    public  Locale getDefaultLocale() {
+        return defaultLocale;
+    }
+    
+    
+    
 
 
 }

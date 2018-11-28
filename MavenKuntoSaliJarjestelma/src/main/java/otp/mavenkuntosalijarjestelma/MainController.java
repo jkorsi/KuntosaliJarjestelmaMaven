@@ -21,7 +21,7 @@ import javafx.scene.layout.AnchorPane;
 import org.hibernate.SessionFactory;
 
 
-public class MainController {
+public class MainController extends AbstractController{
     
     @FXML // fx:id="sceneBtn"
     private Button sceneBtn;
@@ -34,7 +34,9 @@ public class MainController {
     private SessionFactory sessionFactory;
     private static KertaJasenDao kertaDao;
     private static KuukausiJasenDao kuukausiDao;
+    
     private static FXMLController fxmlController;
+    private static SearchController searchController;
     
     private final Locale defaultLocale = new Locale("fi", "FI");
     private Locale currentLocale;
@@ -44,6 +46,7 @@ public class MainController {
         kertaDao = new KertaJasenDao(sessionFactory);
         kuukausiDao = new KuukausiJasenDao(sessionFactory);
         fxmlController = new FXMLController();
+        searchController = new SearchController();
         
         //generateJengi();
     }
@@ -98,17 +101,15 @@ public class MainController {
     // HAKUNÄKYMÄ
     @FXML
     void hakuNakymaVaihto(ActionEvent event) throws Exception {
-        FXMLLoader fXMLLoader = new FXMLLoader();
-//        fXMLLoader.setResources(ResourceBundle.getBundle(fxmlController.getLocaleBundleBaseString(), getLocale()));
-        setScreen((Node) fXMLLoader.load(getClass().getResource("/fxml/Search.fxml")));
+//        ResourceBundle resources = ResourceBundle.getBundle(searchController.getLocaleBundleBaseString());
+        setScreen((Node) FXMLLoader.load(getClass().getResource("/fxml/Search.fxml")));
 
     }
     // toinen näkymä
     @FXML
     void sceneNakymaVaihto(ActionEvent event) throws Exception {
-        FXMLLoader fXMLLoader = new FXMLLoader();
-        fXMLLoader.setResources(ResourceBundle.getBundle(fxmlController.getLocaleBundleBaseString(), getLocale()));
-        setScreen((Node) fXMLLoader.load(getClass().getResource("/fxml/Scene.fxml")));
+        ResourceBundle resources = ResourceBundle.getBundle(fxmlController.getLocaleBundleBaseString());
+        setScreen((Node) FXMLLoader.load(getClass().getResource("/fxml/Scene.fxml"), resources));
 
     }
     

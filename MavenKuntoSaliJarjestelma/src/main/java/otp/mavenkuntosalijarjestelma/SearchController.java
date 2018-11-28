@@ -27,7 +27,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
-public class SearchController {
+public class SearchController extends AbstractController{
     
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
