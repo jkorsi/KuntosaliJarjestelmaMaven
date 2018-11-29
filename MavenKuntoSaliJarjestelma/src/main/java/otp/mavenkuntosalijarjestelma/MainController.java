@@ -43,7 +43,8 @@ public class MainController extends AbstractController {
         kuukausiDao = new KuukausiJasenDao(sessionFactory);
         fxmlController = new FXMLController();
         searchController = new SearchController();
-        updateController = new UpdaterController();
+        updateController = new UpdaterController(); 
+        localeBundleBaseString = "Bundles.MainScene"; // String lokalisaatiota varten. Hakee tällä oikean bundlen scenelle
 
         //generateJengi();
     }
@@ -77,7 +78,7 @@ public class MainController extends AbstractController {
     // HAKUNÄKYMÄ
     @FXML
     void hakuNakymaVaihto(ActionEvent event) throws Exception {
-        ResourceBundle resources = ResourceBundle.getBundle(searchController.getLocaleBundleBaseString());
+        ResourceBundle resources = ResourceBundle.getBundle(searchController.getLocaleBundleBaseString(), getLocale());
         setScreen((Node) FXMLLoader.load(getClass().getResource("/fxml/Search.fxml"), resources));
 
     }
@@ -85,7 +86,7 @@ public class MainController extends AbstractController {
     // toinen näkymä
     @FXML
     void sceneNakymaVaihto(ActionEvent event) throws Exception {
-        ResourceBundle resources = ResourceBundle.getBundle(fxmlController.getLocaleBundleBaseString());
+        ResourceBundle resources = ResourceBundle.getBundle(fxmlController.getLocaleBundleBaseString(), getLocale());
         setScreen((Node) FXMLLoader.load(getClass().getResource("/fxml/Scene.fxml"), resources));
 
     }
@@ -117,8 +118,11 @@ public class MainController extends AbstractController {
     public static KertaJasenDao getKertaDAO() {
         return kertaDao;
     }
+    public static MainController getMainController(){
+        return new MainController();
+    }
 
-    public Locale getLocale() {
+    public  Locale getLocale() {
         if (currentLocale == null) {
             return defaultLocale;
         } else {

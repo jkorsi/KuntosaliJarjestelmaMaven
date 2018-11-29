@@ -323,7 +323,8 @@ public class FXMLController extends AbstractController {
 
             Jasen kertaJasen = KertaJasenTaulu.getSelectionModel().getSelectedItem();
             Jasen kuukausiJasen = KuukausiJasenTaulu.getSelectionModel().getSelectedItem();
-
+            ResourceBundle resources = ResourceBundle.getBundle(MainController.getUpdateController().getLocaleBundleBaseString(), MainController.getMainController().getLocale());
+            updateSceneLoader.setResources(resources);
             
             System.out.println("Pop-Up click recocgnized.");
             Stage popUpStage = new Stage();

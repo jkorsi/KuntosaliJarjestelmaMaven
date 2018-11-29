@@ -30,6 +30,8 @@ public class UpdaterController extends AbstractController implements Initializab
      * @param url
      * @param rb
      */
+    
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 //        loadData(jasen, jasenTyyppi);
@@ -83,7 +85,11 @@ public class UpdaterController extends AbstractController implements Initializab
     private Jasen jasen;
 
     private int jasenTyyppi;
-
+    
+    public UpdaterController(){
+        localeBundleBaseString = "Bundles.UpdaterScene"; // String lokalisaatiota varten. Hakee tällä oikean bundlen scenelle
+    }
+    
     public void setData(Jasen jasen, int jasenTyyppi) {
         this.jasen = jasen;
         this.jasenTyyppi = jasenTyyppi;

@@ -36,12 +36,12 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label fx:id="name_label" text="Nimi" GridPane.rowIndex="1" />
-                  <Label fx:id="kerrat_label" text="Kerrat" GridPane.rowIndex="2" />
-                  <Label fx:id="kuukaudet_label" text="Kuukaudet" GridPane.rowIndex="3" />
-                  <Label fx:id="maksutapa_label" text="Maksutapa" GridPane.rowIndex="4" />
-                  <Label fx:id="jasneyys_label" prefHeight="17.0" prefWidth="99.0" text="Jäsenyys voimassa" GridPane.rowIndex="5" />
-                  <Label text="ID" />
+                  <Label fx:id="name_label" text="%nimi" GridPane.rowIndex="1" />
+                  <Label fx:id="kerrat_label" text="%kerrat" GridPane.rowIndex="2" />
+                  <Label fx:id="kuukaudet_label" text="%kuukaudet" GridPane.rowIndex="3" />
+                  <Label fx:id="maksutapa_label" text="%maksutapa" GridPane.rowIndex="4" />
+                  <Label fx:id="jasneyys_label" prefHeight="17.0" prefWidth="99.0" text="%jäsenyysVoimassa" GridPane.rowIndex="5" />
+                  <Label text="%id" />
                   <Label fx:id="getID_label" text="&quot;ID TÄHÄN&quot;" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                   <TextField fx:id="nimi_textField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <TextField fx:id="maksutapa_textField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
@@ -55,12 +55,12 @@
                   <Insets top="295.0" />
                </HBox.margin>
                <children>
-                  <Button fx:id="peruuta_button" mnemonicParsing="false" text="Peruuta">
+                  <Button fx:id="peruuta_button" mnemonicParsing="false" text="%peruuta">
                      <HBox.margin>
                         <Insets bottom="5.0" right="15.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="tallenna_button" mnemonicParsing="false" text="Tallenna">
+                  <Button fx:id="tallenna_button" mnemonicParsing="false" text="%tallenna">
                      <HBox.margin>
                         <Insets bottom="5.0" />
                      </HBox.margin>

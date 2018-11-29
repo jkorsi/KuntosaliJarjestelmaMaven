@@ -13,14 +13,18 @@ import java.util.ResourceBundle;
  * @author Antti Käyhkö
  */
 public abstract class AbstractController {// laita kaikki kamat jotka on kaikissa kontrollereissa tänne
+
     protected final Locale defaultLocale = new Locale("fi", "FI");
     protected Locale currentLocale;
     protected String localeBundleBaseString = null;
     
+
+    
+
     public String getLocaleBundleBaseString() {
         return localeBundleBaseString;
     }
-    
+
     public Locale getCurrentLocale() {
         return currentLocale;
     }
@@ -28,15 +32,9 @@ public abstract class AbstractController {// laita kaikki kamat jotka on kaikiss
     public void setCurrentLocale(Locale currentLocale) {
         this.currentLocale = currentLocale;
     }
-    
-    
 
-    public  Locale getDefaultLocale() {
+    public Locale getDefaultLocale() {
         return defaultLocale;
     }
-    
-    
-    
-
 
 }

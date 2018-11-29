@@ -1,6 +1,7 @@
 package otp.mavenkuntosalijarjestelma;
 
 import java.io.IOException;
+import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Application;
@@ -35,7 +36,8 @@ public class MainApp extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         FXMLLoader loader = new FXMLLoader();
-        Parent root = loader.load(getClass().getResource("/fxml/main.fxml"));
+        ResourceBundle resources = ResourceBundle.getBundle(controller.getLocaleBundleBaseString(), controller.getLocale());
+        Parent root = loader.load(getClass().getResource("/fxml/main.fxml"), resources);
         
         Scene scene = new Scene(root);
         scene.getStylesheets().add("/styles/Styles.css");
