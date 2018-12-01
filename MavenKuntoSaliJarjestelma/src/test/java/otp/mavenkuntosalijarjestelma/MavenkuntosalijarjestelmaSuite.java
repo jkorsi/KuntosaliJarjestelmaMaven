@@ -17,7 +17,7 @@
 // * @author Juho Suni
 // */
 //@RunWith(Suite.class)
-//@Suite.SuiteClasses({otp.mavenkuntosalijarjestelma.FXMLControllerTest.class, otp.mavenkuntosalijarjestelma.HibernateUtilTest.class, otp.mavenkuntosalijarjestelma.MainAppTest.class, otp.mavenkuntosalijarjestelma.MaksujarjestelmaTest.class})
+//@Suite.SuiteClasses({otp.mavenkuntosalijarjestelma.FXMLControllerTest.class, otp.mavenkuntosalijarjestelma.HibernateUtilTest.class, otp.mavenkuntosalijarjestelma.MainAppTest.class, otp.mavenkuntosalijarjestelma.MaksujarjestelmaTest.class, otp.mavenkuntosalijarjestelma.SearchControllerTest.class})
 //public class MavenkuntosalijarjestelmaSuite {
 //
 //    @BeforeClass
