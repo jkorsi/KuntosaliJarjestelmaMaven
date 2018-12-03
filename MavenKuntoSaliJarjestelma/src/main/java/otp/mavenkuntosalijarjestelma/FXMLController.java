@@ -319,19 +319,18 @@ public class FXMLController extends AbstractController {
 
             FXMLLoader updateSceneLoader = new FXMLLoader();
             updateSceneLoader.setLocation(getClass().getResource("/fxml/Updater.fxml"));
-            
 
             Jasen kertaJasen = KertaJasenTaulu.getSelectionModel().getSelectedItem();
             Jasen kuukausiJasen = KuukausiJasenTaulu.getSelectionModel().getSelectedItem();
-            
+
             updateSceneLoader.setResources(MainController.getMainController().getControllerBundle(MainController.getUpdateController()));
-            
+
             System.out.println("Pop-Up click recocgnized.");
             Stage popUpStage = new Stage();
             popUpStage.setScene(new Scene((Parent) updateSceneLoader.load()));
-            
+
             UpdaterController updateController = (UpdaterController) updateSceneLoader.getController();
-            
+
             if (editType == 0) {
                 System.out.println(updateController);
                 updateController.loadData(kertaJasen, editType);
@@ -339,7 +338,6 @@ public class FXMLController extends AbstractController {
                 updateController.loadData(kuukausiJasen, editType);
             }
 
-            
             popUpStage.show();
 
         }

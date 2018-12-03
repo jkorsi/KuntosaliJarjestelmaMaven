@@ -20,6 +20,7 @@ import org.hibernate.SessionFactory;
 
 public class MainApp extends Application {
     private MainController controller;
+    private Scene scene;
     
     @Override
     public void init(){
@@ -32,6 +33,7 @@ public class MainApp extends Application {
        controller.getSessionFactory().close();
 
     }
+    
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -39,14 +41,13 @@ public class MainApp extends Application {
 
         Parent root = loader.load(getClass().getResource("/fxml/main.fxml"), controller.getControllerBundle(controller));
         
-        Scene scene = new Scene(root);
+        scene = new Scene(root);
         scene.getStylesheets().add("/styles/Styles.css");
 
         stage.setTitle("JavaFX and Maven");
         stage.setScene(scene);
         stage.show();
     }
-    
 
     /**
      * The main() method is ignored in correctly deployed JavaFX application.

@@ -18,6 +18,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Separator;
@@ -25,6 +27,7 @@ import javafx.scene.control.Separator;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import org.hibernate.SessionFactory;
 
 public class MainController extends AbstractController {
@@ -32,6 +35,9 @@ public class MainController extends AbstractController {
     List languages = new ArrayList();
 
     private int currentScene;
+
+    @FXML // fx:id="anchorPaneRoot"
+    private AnchorPane anchorPaneRoot; // Value injected by FXMLLoader
 
     @FXML // fx:id="sceneBtn"
     private Button sceneBtn;
@@ -51,9 +57,11 @@ public class MainController extends AbstractController {
     private static FXMLController fxmlController;
     private static SearchController searchController;
     private static UpdaterController updateController;
+    private static MainController mainController;
 
     public MainController() {
-
+        
+        mainController = this;
         sessionFactory = HibernateUtil.getSessionFactory();
         kertaDao = new KertaJasenDao(sessionFactory);
         kuukausiDao = new KuukausiJasenDao(sessionFactory);
@@ -63,6 +71,12 @@ public class MainController extends AbstractController {
         localeBundleBaseString = "Bundles.MainScene"; // String lokalisaatiota varten. Hakee tällä oikean bundlen scenelle
 
         //generateJengi();
+    }
+    public Stage getStage(){
+        return(Stage) anchorPaneRoot.getScene().getWindow();
+    }
+    public static MainController getMainController() {
+        return mainController;
     }
 
     public void generateJengi() {
@@ -108,11 +122,21 @@ public class MainController extends AbstractController {
     }
 
     public void reloadLocale() throws IOException {
+//        FXMLLoader loader = new FXMLLoader();
+//        Parent root = loader.load(getClass().getResource("/fxml/main.fxml"), getControllerBundle(this));
+//        
+//        Scene scene = new Scene(root);
+//        scene.getStylesheets().add("/styles/Styles.css");
+//        getStage().setScene(scene);
+        
         if (currentScene == 0) {
             setScreen((Node) FXMLLoader.load(getClass().getResource("/fxml/Search.fxml"), getControllerBundle(searchController)));
         } else if (currentScene == 1) {
             setScreen((Node) FXMLLoader.load(getClass().getResource("/fxml/Scene.fxml"), getControllerBundle(fxmlController)));
         }
+        
+
+        
 
     }
 
@@ -146,10 +170,6 @@ public class MainController extends AbstractController {
 
     public static KertaJasenDao getKertaDAO() {
         return kertaDao;
-    }
-
-    public static MainController getMainController() {
-        return new MainController();
     }
 
     public Locale getLocale() {
@@ -202,6 +222,7 @@ public class MainController extends AbstractController {
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
                 System.out.println("Kieli vaihdettu");
                 setLocaleWithLangId(newValue.intValue());
+                languageSelector.getSelectionModel().select(newValue.intValue());
             }
         });
     }
