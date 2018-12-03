@@ -339,6 +339,7 @@ public class FXMLController extends AbstractController {
             }
 
             popUpStage.show();
+            update();
 
         }
     }
