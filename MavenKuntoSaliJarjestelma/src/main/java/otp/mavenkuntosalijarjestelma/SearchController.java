@@ -2,11 +2,9 @@ package otp.mavenkuntosalijarjestelma;
 
 import Dao.KertaJasenDao;
 import Dao.KuukausiJasenDao;
-import Entities.Jasen;
 import Entities.KertaJasen;
 import Entities.KuukausiJasen;
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.value.ObservableValue;
@@ -14,9 +12,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
@@ -24,7 +19,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 import javafx.util.Callback;
 
 public class SearchController extends AbstractController{

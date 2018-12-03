@@ -2,8 +2,6 @@ package otp.mavenkuntosalijarjestelma;
 
 import Dao.KertaJasenDao;
 import Dao.KuukausiJasenDao;
-import Entities.Jasen;
-import Entities.KertaJasen;
 import Entities.KuukausiJasen;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -13,20 +11,13 @@ import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.Separator;
-
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.hibernate.SessionFactory;
@@ -140,12 +131,16 @@ public class MainController extends AbstractController {
         sceneBtn.setText(bundle.getString("scene"));
         languageLabel.setText(bundle.getString("language"));
         
+        selectLocaleAccordingToCurrentFXML();
+        
+    }
+
+    private void selectLocaleAccordingToCurrentFXML() throws IOException {
         if (currentScene == 0) {
             setScreen((Node) FXMLLoader.load(getClass().getResource("/fxml/Search.fxml"), getControllerBundle(searchController)));
         } else if (currentScene == 1) {
             setScreen((Node) FXMLLoader.load(getClass().getResource("/fxml/Scene.fxml"), getControllerBundle(fxmlController)));
         }
-        
     }
     
     public ResourceBundle getControllerBundle(AbstractController controller) {

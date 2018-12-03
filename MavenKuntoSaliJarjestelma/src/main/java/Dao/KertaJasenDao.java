@@ -7,18 +7,14 @@ package Dao;
 
 import Entities.KertaJasen;
 import java.util.List;
-import org.hibernate.HibernateException;
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 /**
  *
  * @author Antti Käyhkö
  */
-public class KertaJasenDao {
+public class KertaJasenDao extends JasenDao {
 
-    private Session session;
-    private SessionFactory factory;
 
     /**
      * KertajasenDao luokan konstruktori
@@ -48,24 +44,6 @@ public class KertaJasenDao {
         }
     }
 
-    private void saveAndCommitJasen(KertaJasen jasen) {
-        session.save(jasen);
-
-        //kertajasenen tallennus tietokantaan loppu
-        session.getTransaction().commit();//tallennetaan muutokset tietokantaan
-    }
-
-    private void closeTransaction() {
-        if (session != null) {
-            session.close(); //suljetaan transaktio
-        }
-    }
-
-    private void openAndBeginTransaction() throws HibernateException {
-        session = factory.openSession(); // avataan uusi sessio
-        session.beginTransaction(); //aloitetaan transaktio
-        //kertajasenen tallennus tietokantaan alku
-    }
 
     /**
      * Poistaa Kertajasenen tietokannasta jasenIdn perusteella
@@ -90,12 +68,6 @@ public class KertaJasenDao {
         }
     }
 
-    private void throwJasenTrasactionException(Exception sqlException) {
-        if (session.getTransaction() != null) {
-            session.getTransaction().rollback();// virhe tapahtui palautetaan kaikki tehdyt muutokset
-        }
-        sqlException.printStackTrace();
-    }
 
     /**
      * Poistaa Kertajasenen tietokannasta sen olion perusteella
@@ -106,9 +78,7 @@ public class KertaJasenDao {
         try {
             openAndBeginTransaction(); // avataan uusi sessio
 
-            session.delete(jasen);
-
-            session.getTransaction().commit();//tallennetaan muutokset tietokantaan
+             deleteJasen(jasen);
         } catch (Exception sqlException) {
             throwJasenTrasactionException(sqlException);
             // virhe tapahtui palautetaan kaikki tehdyt muutokset
@@ -127,22 +97,6 @@ public class KertaJasenDao {
         saveOrUpdateJasen(jasen);
     }
 
-    private void saveOrUpdateJasen(KertaJasen jasen) {
-        // päivittää kertajasenen tietoja jasenId perusteella
-        // olettaa että jäsen oliolla on sama jasenid kuin päivitettävällä jäsenenllä
-        try {
-            openAndBeginTransaction(); // avataan uusi sessio
-
-            session.saveOrUpdate(jasen);
-
-            session.getTransaction().commit();
-        } catch (Exception sqlException) {
-            throwJasenTrasactionException(sqlException);
-
-        } finally {
-            closeTransaction();
-        }
-    }
 
     /**
      * Hakee tietokannasta Kertajasen Olion sen jasenIdn perusteella
@@ -198,11 +152,9 @@ public class KertaJasenDao {
             haku = session.createQuery(hqlString).setParameter("muuttuja", nimi).list();
             session.getTransaction().commit();
         } catch (Exception e) {
-            if (session.getTransaction() != null) {
-                session.getTransaction().rollback();
-            }
+            throwJasenTrasactionException(e);
         } finally {
-            session.close();
+            closeTransaction();
         }
         return haku;
     }

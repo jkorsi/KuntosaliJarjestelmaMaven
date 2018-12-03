@@ -7,145 +7,105 @@ package Dao;
 
 import Entities.KuukausiJasen;
 import java.util.List;
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 /**
  *
  * @author Antti Käyhkö
  */
-public class KuukausiJasenDao {
+public class KuukausiJasenDao extends JasenDao {
 
-    private Session session;
-    private SessionFactory factory;
     /**
      * KuukausiJasenDao luokan konstruktori
-     * 
+     *
      * @param factory SessionFactory hibernate sessioita varten
      */
     public KuukausiJasenDao(SessionFactory factory) {
         this.factory = factory;
     }
+
     /**
      * Lisää KuukausiJasen Olion tietokantaan
+     *
      * @param jasen jäsen olio joka lisätään tietokantaan
      */
     public void createKuukausiJasen(KuukausiJasen jasen) {// tallentaa Kuukausijasen Objektin tietokantaam
 
         try {
-            session = factory.openSession(); // avataan uusi sessio
-            session.beginTransaction(); //aloitetaan transaktio
-            //kuukausijasenenjasenen tallennus tietokantaan alku
+            openAndBeginTransaction();
+            saveAndCommitJasen(jasen);
 
-            session.save(jasen);
-
-            //kuukausijasenen tallennus tietokantaan loppu
-            session.getTransaction().commit();//tallennetaan muutokset tietokantaan
         } catch (Exception sqlException) {
-            if (session.getTransaction() != null) {
-                session.getTransaction().rollback();// virhe tapahtui palautetaan kaikki tehdyt muutokset
-            }
-            sqlException.printStackTrace();
+            throwJasenTrasactionException(sqlException);
 
         } finally {
-            if (session != null) {
-                session.close(); //suljetaan transaktio
-            }
+            closeTransaction();
         }
     }
+
     /**
      * Poistaa KuukausiJasenen tietokannasta jasenIdn perusteella
+     *
      * @param JasenId Poistettavan KuukausiJasenen JasenId
      */
     public void deleteKuukausiJasen(int JasenId) { // poistaa kuukausijasenen jasenIdn Perusteella
         try {
-            session = factory.openSession(); // avataan uusi sessio
-            session.beginTransaction(); //aloitetaan transaktio
+            openAndBeginTransaction();
 
             KuukausiJasen poistettavaJasen = getKuukausiJasen(JasenId);
-            session.delete(poistettavaJasen);
-
-            session.getTransaction().commit();//tallennetaan muutokset tietokantaan
+            deleteJasen(poistettavaJasen);
         } catch (Exception sqlException) {
-            if (session.getTransaction() != null) {
-                session.getTransaction().rollback();// virhe tapahtui palautetaan kaikki tehdyt muutokset
-            }
-            sqlException.printStackTrace();
+            throwJasenTrasactionException(sqlException);
 
         } finally {
-            if (session != null) {
-                session.close(); //suljetaan transaktio
-            }
+            closeTransaction();
         }
     }
+
     /**
      * Poistaa KuukausiJasenen tietokannasta sen olion perusteella
+     *
      * @param jasen Poistettava KuukausiJasen Olio
      */
     public void deleteKuukausiJasen(KuukausiJasen jasen) { // poistaa kuukausijasenen jasenIdn Perusteella
         try {
-            session = factory.openSession(); // avataan uusi sessio
-            session.beginTransaction(); //aloitetaan transaktio
+            openAndBeginTransaction();
 
-           
-            session.delete(jasen);
-
-            session.getTransaction().commit();//tallennetaan muutokset tietokantaan
+            deleteJasen(jasen);
         } catch (Exception sqlException) {
-            if (session.getTransaction() != null) {
-                session.getTransaction().rollback();// virhe tapahtui palautetaan kaikki tehdyt muutokset
-            }
-            sqlException.printStackTrace();
+            throwJasenTrasactionException(sqlException);
 
         } finally {
-            if (session != null) {
-                session.close(); //suljetaan transaktio
-            }
+            closeTransaction();
         }
     }
+
+
     /**
      * Päivitää KuukausiJasenen tietokannassa sen Olion perusteella
+     *
      * @param jasen päivitettävä KuukausiJasen Olio
      */
     public void updateKuukausiJasen(KuukausiJasen jasen) { // päivittää kuukausijasenen tietoja jasenId perusteella 
         // olettaa että jäsen oliolla on sama jasenid kuin päivitettävällä jäsenenllä
-        try {
-            session = factory.openSession(); // avataan uusi sessio
-            session.beginTransaction(); //aloitetaan transaktio
-
-            session.saveOrUpdate(jasen);
-
-            session.getTransaction().commit();
-        } catch (Exception sqlException) {
-            if (session.getTransaction() != null) {
-                session.getTransaction().rollback();// virhe tapahtui palautetaan kaikki tehdyt muutokset
-            }
-            sqlException.printStackTrace();
-
-        } finally {
-            if (session != null) {
-                session.close(); //suljetaan transaktio
-            }
-        }
+        saveOrUpdateJasen(jasen);
     }
+
     /**
      * Hakee tietokannasta KuukausiJasen Olion sen jasenIdn perusteella
+     *
      * @param jasenId Haettavan KuukausiJasen Olion JasenId
      * @return haettu KuukausiJasen olio jos on olemassa
      */
     public KuukausiJasen getKuukausiJasen(int jasenId) {// hakee kuukausijasenen jasenidn perusteella
         KuukausiJasen haettu = null;
         try {
-            session = factory.openSession(); // avataan uusi sessio
-            session.beginTransaction(); //aloitetaan transaktio
+            openAndBeginTransaction();
 
             haettu = (KuukausiJasen) session.load(KuukausiJasen.class, jasenId);
 
         } catch (Exception sqlException) {
-            if (session.getTransaction() != null) {
-                session.getTransaction().rollback();// virhe tapahtui palautetaan kaikki tehdyt muutokset
-            }
-            sqlException.printStackTrace();
+            throwJasenTrasactionException(sqlException);
 
         } finally {
             if (session != null) {
@@ -154,59 +114,47 @@ public class KuukausiJasenDao {
         }
         return haettu;
     }
-    
+
     /**
      * Hakee listan kaikista KuukausiJasen oliosta
-     * @return Lista kaikista KuukausiJasen oliosta jotka on tallennettu tietokantaan
+     *
+     * @return Lista kaikista KuukausiJasen oliosta jotka on tallennettu
+     * tietokantaan
      */
     public List<KuukausiJasen> getALLKuukausiJasen() { // hakee kaikki KuukausiJasenet tietokannasta
         List KuukausiJasenet = null;
         try {
-            session = factory.openSession(); // avataan uusi sessio
-            session.beginTransaction(); //aloitetaan transaktio
+            openAndBeginTransaction();
 
             KuukausiJasenet = session.createQuery("FROM KuukausiJasen").list();
 
         } catch (Exception sqlException) {
-            if (session.getTransaction() != null) {
-                session.getTransaction().rollback();// virhe tapahtui palautetaan kaikki tehdyt muutokset
-            }
-            sqlException.printStackTrace();
+            throwJasenTrasactionException(sqlException);
 
         } finally {
-            if (session != null) {
-                session.close(); //suljetaan transaktio
-            }
+            closeTransaction();
         }
         return KuukausiJasenet;
     }
-    
-    
+
     // HAKU NIMELLÄ
     public List<KuukausiJasen> getJasen(String nimi) {
-	List<KuukausiJasen> lista = null;
+        List<KuukausiJasen> lista = null;
         KuukausiJasen eka;
-            try {
-                session = factory.openSession();
-                session.beginTransaction();
+        try {
+            openAndBeginTransaction();
 
-                String hqlString = "FROM KuukausiJasen AS haku WHERE nimi = :muuttuja";
-                lista = session.createQuery(hqlString).setParameter("muuttuja", nimi).list();
-                eka = lista.get(0);
-                
-                session.getTransaction().commit();
-            }
-            catch (Exception e){
-                if (session.getTransaction() != null) {
-                    session.getTransaction().rollback();
-                }
-            }
-            finally {
-                session.close();
-            }
+            String hqlString = "FROM KuukausiJasen AS haku WHERE nimi = :muuttuja";
+            lista = session.createQuery(hqlString).setParameter("muuttuja", nimi).list();
+            eka = lista.get(0);
+
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            throwJasenTrasactionException(e);
+        } finally {
+            closeTransaction();
+        }
         return lista;
     }
-    
+
 }
-
-

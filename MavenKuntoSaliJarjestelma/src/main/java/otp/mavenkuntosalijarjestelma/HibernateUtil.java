@@ -24,16 +24,7 @@ public class HibernateUtil {
     public static SessionFactory getSessionFactory() {
     if (sessionFactory == null) {
       try {
-        // Create registry
-        registry = new StandardServiceRegistryBuilder()
-            .configure()
-            .build();
-
-        // Create MetadataSources
-        MetadataSources sources = new MetadataSources(registry);
-
-        // Create Metadata
-        Metadata metadata = sources.getMetadataBuilder().build();
+        Metadata metadata = createAndBuildRegistry();
 
         // Create SessionFactory
         sessionFactory = metadata.getSessionFactoryBuilder().build();
@@ -47,6 +38,18 @@ public class HibernateUtil {
     }
     return sessionFactory;
   }
+
+    private static Metadata createAndBuildRegistry() {
+        // Create registry
+        registry = new StandardServiceRegistryBuilder()
+                .configure()
+                .build();
+        // Create MetadataSources
+        MetadataSources sources = new MetadataSources(registry);
+        // Create Metadata
+        Metadata metadata = sources.getMetadataBuilder().build();
+        return metadata;
+    }
 
     /**
      * Sulkee rekisterin
