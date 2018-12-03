@@ -10,12 +10,15 @@ import Entities.KertaJasen;
 import Entities.KuukausiJasen;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -30,8 +33,6 @@ public class UpdaterController extends AbstractController implements Initializab
      * @param url
      * @param rb
      */
-    
-    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 //        loadData(jasen, jasenTyyppi);
@@ -82,20 +83,23 @@ public class UpdaterController extends AbstractController implements Initializab
     @FXML // fx:id="tallenna_button"
     private Button tallenna_button; // Value injected by FXMLLoader
 
-    private Jasen jasen;
+    @FXML // fx:id="AnchorPaneRoot"
+    private AnchorPane anchorPaneRoot; // Value injected by FXMLLoader
 
     private int jasenTyyppi;
-    
-    public UpdaterController(){
+    private Jasen jasen;
+
+    public UpdaterController() {
         localeBundleBaseString = "Bundles.UpdaterScene"; // String lokalisaatiota varten. Hakee tällä oikean bundlen scenelle
     }
-    
-    public void setData(Jasen jasen, int jasenTyyppi) {
-        this.jasen = jasen;
-        this.jasenTyyppi = jasenTyyppi;
+
+    public Stage getStage() {
+        return (Stage) anchorPaneRoot.getScene().getWindow();
     }
 
     public void loadData(Jasen jasen, int jasenTyyppi) { // lataa jasenen tiedot muokkausikkunaan
+        this.jasenTyyppi = jasenTyyppi;
+        this.jasen = jasen;
         System.out.println(jasen.getNimi());
         System.out.println(nimi_textField);
         nimi_textField.setText(jasen.getNimi());
@@ -113,10 +117,30 @@ public class UpdaterController extends AbstractController implements Initializab
         System.out.println("Tiedot ladattu muokkausikkunaan");
     }
 
+    @FXML
+    void CancelButtonAction(ActionEvent event) {
+        getStage().close();
+    }
+
+    @FXML
+    void SaveButtonAction(ActionEvent event) {
+        jasen.setNimi(nimi_textField.getText());
+        jasen.setMaksuTapa(maksutapa_textField.getText());
+        jasen.setOnkoJasenyysVoimassa(jasenyys_checkbox.isSelected());
+        if (jasenTyyppi == 0) {
+            ((KertaJasen) jasen).setKayntikertojaJaljella(Integer.parseInt(kerrat_textField.getText()));
+            MainController.getKertaDAO().updateKertaJasen((KertaJasen) jasen);
+        } else {
+            ((KuukausiJasen) jasen).setKuukausiaJaljella(Integer.parseInt(kuukaudet_textField.getText()));
+            MainController.getKuukausiDAO().updateKuukausiJasen((KuukausiJasen) jasen);
+        }
+        getStage().close();
+    }
+
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
 //        loadData(jasen, jasenTyyppi);
-        
+
         assert name_label != null : "fx:id=\"name_label\" was not injected: check your FXML file 'Updater.fxml'.";
         assert kerrat_label != null : "fx:id=\"kerrat_label\" was not injected: check your FXML file 'Updater.fxml'.";
         assert kuukaudet_label != null : "fx:id=\"kuukaudet_label\" was not injected: check your FXML file 'Updater.fxml'.";
