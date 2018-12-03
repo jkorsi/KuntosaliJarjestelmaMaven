@@ -27,7 +27,7 @@ public class MainController extends AbstractController {
     private Button searchBtn;
 
     @FXML // fx:id="mainPane"
-    private static AnchorPane mainPane;
+    private AnchorPane mainPane;
 
     private SessionFactory sessionFactory;
     private static KertaJasenDao kertaDao;

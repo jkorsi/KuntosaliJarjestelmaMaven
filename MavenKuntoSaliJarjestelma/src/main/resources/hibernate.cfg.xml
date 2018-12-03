@@ -5,12 +5,12 @@
     <session-factory>
         <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
         <property name="hibernate.connection.password">
-            olso
+            hibernoija
         </property>
         <property
-            name="hibernate.connection.url">jdbc:mysql://localhost:3306/kantakax</property>
+            name="hibernate.connection.url">jdbc:mysql://localhost:4444/testi_hibernate</property>
         <property name="hibernate.connection.username">
-            olso
+            hibernoija
         </property>
         <property name="hbm2ddl.auto">update</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
