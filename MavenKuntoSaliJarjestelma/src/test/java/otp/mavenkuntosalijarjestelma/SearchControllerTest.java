@@ -35,7 +35,8 @@ public class SearchControllerTest extends GuiTest {
     protected Parent getRootNode() {
         Parent parent = null;
         try {
-            parent = FXMLLoader.load(getClass().getResource("/fxml/Search.fxml"));
+            MainController mc = new MainController();
+            parent = FXMLLoader.load(getClass().getResource("/fxml/Search.fxml"), mc.getControllerBundle(new SearchController()));
         } catch (IOException ex) {
             Logger.getLogger(FXMLControllerTest.class.getName()).log(Level.SEVERE, null, ex);
         }

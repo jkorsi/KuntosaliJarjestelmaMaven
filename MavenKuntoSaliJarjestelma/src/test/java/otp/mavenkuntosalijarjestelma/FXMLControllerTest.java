@@ -59,7 +59,8 @@ public class FXMLControllerTest extends GuiTest {
     protected Parent getRootNode() {
         Parent parent = null;
         try {
-            parent = FXMLLoader.load(getClass().getResource("/fxml/Scene.fxml"));
+            MainController mc = new MainController();
+            parent = FXMLLoader.load(getClass().getResource("/fxml/Scene.fxml"), mc.getControllerBundle(new FXMLController()));
         } catch (IOException ex) {
             Logger.getLogger(FXMLControllerTest.class.getName()).log(Level.SEVERE, null, ex);
         }
