@@ -6,13 +6,21 @@ import Entities.Jasen;
 import Entities.KertaJasen;
 import Entities.KuukausiJasen;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Separator;
 
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
@@ -21,10 +29,17 @@ import org.hibernate.SessionFactory;
 
 public class MainController extends AbstractController {
 
+    List languages = new ArrayList();
+
+    private int currentScene;
+
     @FXML // fx:id="sceneBtn"
     private Button sceneBtn;
     @FXML // fx:id="searchBtn"
     private Button searchBtn;
+
+    @FXML // fx:id="languageSelector"
+    private ChoiceBox<String> languageSelector; // Value injected by FXMLLoader
 
     @FXML // fx:id="mainPane"
     private AnchorPane mainPane;
@@ -38,12 +53,13 @@ public class MainController extends AbstractController {
     private static UpdaterController updateController;
 
     public MainController() {
+
         sessionFactory = HibernateUtil.getSessionFactory();
         kertaDao = new KertaJasenDao(sessionFactory);
         kuukausiDao = new KuukausiJasenDao(sessionFactory);
         fxmlController = new FXMLController();
         searchController = new SearchController();
-        updateController = new UpdaterController(); 
+        updateController = new UpdaterController();
         localeBundleBaseString = "Bundles.MainScene"; // String lokalisaatiota varten. Hakee tällä oikean bundlen scenelle
 
         //generateJengi();
@@ -78,17 +94,30 @@ public class MainController extends AbstractController {
     // HAKUNÄKYMÄ
     @FXML
     void hakuNakymaVaihto(ActionEvent event) throws Exception {
-        ResourceBundle resources = ResourceBundle.getBundle(searchController.getLocaleBundleBaseString(), getLocale());
-        setScreen((Node) FXMLLoader.load(getClass().getResource("/fxml/Search.fxml"), resources));
+        setScreen((Node) FXMLLoader.load(getClass().getResource("/fxml/Search.fxml"), getControllerBundle(searchController)));
+        currentScene = 0;
 
     }
 
     // toinen näkymä
     @FXML
     void sceneNakymaVaihto(ActionEvent event) throws Exception {
-        ResourceBundle resources = ResourceBundle.getBundle(fxmlController.getLocaleBundleBaseString(), getLocale());
-        setScreen((Node) FXMLLoader.load(getClass().getResource("/fxml/Scene.fxml"), resources));
+        setScreen((Node) FXMLLoader.load(getClass().getResource("/fxml/Scene.fxml"), getControllerBundle(fxmlController)));
+        currentScene = 1;
 
+    }
+
+    public void reloadLocale() throws IOException {
+        if (currentScene == 0) {
+            setScreen((Node) FXMLLoader.load(getClass().getResource("/fxml/Search.fxml"), getControllerBundle(searchController)));
+        } else if (currentScene == 1) {
+            setScreen((Node) FXMLLoader.load(getClass().getResource("/fxml/Scene.fxml"), getControllerBundle(fxmlController)));
+        }
+
+    }
+
+    public ResourceBundle getControllerBundle(AbstractController controller) {
+        return ResourceBundle.getBundle(controller.getLocaleBundleBaseString(), getLocale());
     }
 
     public void setScreen(Node node) {
@@ -118,11 +147,12 @@ public class MainController extends AbstractController {
     public static KertaJasenDao getKertaDAO() {
         return kertaDao;
     }
-    public static MainController getMainController(){
+
+    public static MainController getMainController() {
         return new MainController();
     }
 
-    public  Locale getLocale() {
+    public Locale getLocale() {
         if (currentLocale == null) {
             return defaultLocale;
         } else {
@@ -134,4 +164,45 @@ public class MainController extends AbstractController {
         currentLocale = locale;
     }
 
+    public void setLocaleWithLangId(int id) {// 0  FI, 1 EN
+        System.out.println(id);
+
+        switch (id) {
+            case 0:
+                setCurrentLocale(new Locale("fi", "FI"));
+                break;
+            case 1:
+                setCurrentLocale(new Locale("en", "NG"));
+                break;
+        }
+        try {
+            reloadLocale();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    @FXML // This method is called by the FXMLLoader when initialization is complete
+    void initialize() {
+        languages.add("FI ");
+        languages.add("EN ");
+
+        assert sceneBtn != null : "fx:id=\"sceneBtn\" was not injected: check your FXML file 'main.fxml'.";
+        assert searchBtn != null : "fx:id=\"searchBtn\" was not injected: check your FXML file 'main.fxml'.";
+        assert mainPane != null : "fx:id=\"mainPane\" was not injected: check your FXML file 'main.fxml'.";
+        assert languageSelector != null : "fx:id=\"languageSelector\" was not injected: check your FXML file 'main.fxml'.";
+
+        System.out.println("Choicebox is " + languageSelector);
+        languageSelector.setItems(FXCollections.observableList(languages));
+        languageSelector.getSelectionModel().selectFirst();
+
+        languageSelector.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                System.out.println("Kieli vaihdettu");
+                setLocaleWithLangId(newValue.intValue());
+            }
+        });
+    }
 }

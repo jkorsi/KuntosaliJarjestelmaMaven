@@ -36,8 +36,8 @@ public class MainApp extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         FXMLLoader loader = new FXMLLoader();
-        ResourceBundle resources = ResourceBundle.getBundle(controller.getLocaleBundleBaseString(), controller.getLocale());
-        Parent root = loader.load(getClass().getResource("/fxml/main.fxml"), resources);
+
+        Parent root = loader.load(getClass().getResource("/fxml/main.fxml"), controller.getControllerBundle(controller));
         
         Scene scene = new Scene(root);
         scene.getStylesheets().add("/styles/Styles.css");
