@@ -1,7 +1,9 @@
 package otp.mavenkuntosalijarjestelma;
 
+import Dao.KayttajaDao;
 import Dao.KertaJasenDao;
 import Dao.KuukausiJasenDao;
+import Entities.Kayttaja;
 import Entities.KuukausiJasen;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -15,6 +17,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
@@ -35,6 +39,8 @@ public class MainController extends AbstractController {
     private Button sceneBtn;
     @FXML // fx:id="searchBtn"
     private Button searchBtn;
+    @FXML // fx:id="logoutBtn"
+    private Button logoutBtn;
     
     @FXML // fx:id="languageLabel"
     private Label languageLabel; // Value injected by FXMLLoade
@@ -48,6 +54,7 @@ public class MainController extends AbstractController {
     private SessionFactory sessionFactory;
     private static KertaJasenDao kertaDao;
     private static KuukausiJasenDao kuukausiDao;
+    private static KayttajaDao kayttajaDao;
     
     private static FXMLController fxmlController;
     private static SearchController searchController;
@@ -60,12 +67,15 @@ public class MainController extends AbstractController {
         sessionFactory = HibernateUtil.getSessionFactory();
         kertaDao = new KertaJasenDao(sessionFactory);
         kuukausiDao = new KuukausiJasenDao(sessionFactory);
+        kayttajaDao = new KayttajaDao(sessionFactory);
+        
         fxmlController = new FXMLController();
         searchController = new SearchController();
         updateController = new UpdaterController();
         localeBundleBaseString = "Bundles.MainScene"; // String lokalisaatiota varten. Hakee tällä oikean bundlen scenelle
 
-        //generateJengi();
+        getKayttajaDao().addKayttaja(new Kayttaja("Olli", "Omistaja", "olliomistaja", "passu", true)); 
+        getKayttajaDao().addKayttaja(new Kayttaja("Juho", "S", "juhos", "salainen", false));
     }
     
     public Stage getStage() {
@@ -75,47 +85,31 @@ public class MainController extends AbstractController {
     public static MainController getMainController() {
         return mainController;
     }
-    
-    public void generateJengi() {
-        KuukausiJasen j1 = new KuukausiJasen();
-        j1.setNimi("Risto R");
-        j1.setKuukausiaJaljella(1);
-        j1.setMaksuTapa("KORTTI");
-        kuukausiDao.createKuukausiJasen(j1);
-        
-        KuukausiJasen j2 = new KuukausiJasen();
-        j2.setNimi("Martti M");
-        j2.setKuukausiaJaljella(2);
-        j2.setMaksuTapa("KORTTI");
-        kuukausiDao.createKuukausiJasen(j2);
-        
-        KuukausiJasen j3 = new KuukausiJasen();
-        j3.setNimi("Keijo K");
-        j3.setKuukausiaJaljella(3);
-        j3.setMaksuTapa("KORTTI");
-        kuukausiDao.createKuukausiJasen(j3);
-        
-        KuukausiJasen j4 = new KuukausiJasen();
-        j4.setNimi("Sanna S");
-        j4.setKuukausiaJaljella(4);
-        j4.setMaksuTapa("KORTTI");
-        kuukausiDao.createKuukausiJasen(j2);
-    }
 
     // HAKUNÄKYMÄ
     @FXML
     void hakuNakymaVaihto(ActionEvent event) throws Exception {
         setScreen((Node) FXMLLoader.load(getClass().getResource("/fxml/Search.fxml"), getControllerBundle(searchController)));
-        currentScene = 0;
-        
+        currentScene = 0;   
     }
-
-    // toinen näkymä
+    // PÄÄNÄKYMÄ
     @FXML
     void sceneNakymaVaihto(ActionEvent event) throws Exception {
         setScreen((Node) FXMLLoader.load(getClass().getResource("/fxml/Scene.fxml"), getControllerBundle(fxmlController)));
         currentScene = 1;
-        
+    }   
+    public void setScreen(Node node) {
+        mainPane.getChildren().setAll(node);
+    }
+    @FXML
+    void logout(ActionEvent event) throws Exception {
+        LoginController.logKayttaja = null;
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/login.fxml"));
+        Scene scene = new Scene(root, 1300, 900);
+        stage.setTitle("Log In");
+        stage.setScene(scene);
     }
     
     public void reloadLocale() throws IOException {
@@ -130,6 +124,7 @@ public class MainController extends AbstractController {
         searchBtn.setText(bundle.getString("search"));
         sceneBtn.setText(bundle.getString("scene"));
         languageLabel.setText(bundle.getString("language"));
+        logoutBtn.setText(bundle.getString("logout"));
         
         selectLocaleAccordingToCurrentFXML();
         
@@ -147,18 +142,12 @@ public class MainController extends AbstractController {
         return ResourceBundle.getBundle(controller.getLocaleBundleBaseString(), getLocale());
     }
     
-    public void setScreen(Node node) {
-        mainPane.getChildren().setAll(node);
-    }
-    
     public static FXMLController getFxmlController() {
         return fxmlController;
     }
-    
     public static SearchController getSearchController() {
         return searchController;
     }
-    
     public static UpdaterController getUpdateController() {
         return updateController;
     }
@@ -166,13 +155,14 @@ public class MainController extends AbstractController {
     public SessionFactory getSessionFactory() {
         return sessionFactory;
     }
-    
     public static KuukausiJasenDao getKuukausiDAO() {
         return kuukausiDao;
     }
-    
     public static KertaJasenDao getKertaDAO() {
         return kertaDao;
+    }
+        public static KayttajaDao getKayttajaDao() {
+        return kayttajaDao;
     }
     
     public Locale getLocale() {

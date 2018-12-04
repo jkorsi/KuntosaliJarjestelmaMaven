@@ -25,6 +25,7 @@
         <mapping class="Entities.KuukausiJasen"></mapping>
         <mapping class="Entities.Tila"></mapping>
         <mapping class="Entities.TilaMaksu"></mapping>
+        <mapping class="Entities.Kayttaja"></mapping>
        
     </session-factory>
 </hibernate-configuration>
