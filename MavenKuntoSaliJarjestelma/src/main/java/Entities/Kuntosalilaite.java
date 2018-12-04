@@ -1,10 +1,10 @@
 package Entities;
 
-import Entities.Tila;
+import java.util.logging.Logger;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -17,7 +17,7 @@ import javax.persistence.Table;
 public class Kuntosalilaite {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = IDENTITY)
     @Column(name = "kuntosalilaite_ID")
     private int kuntosalilaiteID;
     
@@ -158,5 +158,6 @@ public class Kuntosalilaite {
     public void setTila(Tila tila) {
         this.tilaID = tila;
     }
+    private static final Logger LOG = Logger.getLogger(Kuntosalilaite.class.getName());
 
 }

@@ -1,8 +1,10 @@
 package otp.mavenkuntosalijarjestelma;
 
+import java.util.logging.Logger;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;
+import static javafx.fxml.FXMLLoader.load;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -33,7 +35,7 @@ public class MainApp extends Application {
     public void start(Stage stage) throws Exception {
         FXMLLoader loader = new FXMLLoader();
 
-        Parent root = loader.load(getClass().getResource("/fxml/main.fxml"), controller.getControllerBundle(controller));
+        Parent root = load(getClass().getResource("/fxml/main.fxml"), controller.getControllerBundle(controller));
         
         scene = new Scene(root);
         scene.getStylesheets().add("/styles/Styles.css");
@@ -54,5 +56,6 @@ public class MainApp extends Application {
     public static void main(String[] args) {
         launch(args);
     }
+    private static final Logger LOG = Logger.getLogger(MainApp.class.getName());
 
 }

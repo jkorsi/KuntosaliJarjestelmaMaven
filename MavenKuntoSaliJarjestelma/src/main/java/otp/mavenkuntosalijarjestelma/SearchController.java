@@ -6,9 +6,10 @@ import Entities.KertaJasen;
 import Entities.KuukausiJasen;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Logger;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
+import static javafx.collections.FXCollections.observableList;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -20,7 +21,13 @@ import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.util.Callback;
+import static otp.mavenkuntosalijarjestelma.MainController.getKertaDAO;
+import static otp.mavenkuntosalijarjestelma.MainController.getKuukausiDAO;
 
+/**
+ *
+ * @author juhos
+ */
 public class SearchController extends AbstractController {
 
     @FXML // ResourceBundle that was given to the FXMLLoader
@@ -88,13 +95,19 @@ public class SearchController extends AbstractController {
     ObservableList<KuukausiJasen> kklista;
     ObservableList<KertaJasen> kertalista;
 
-    private final KuukausiJasenDao kuukausiDao = MainController.getKuukausiDAO();
-    private final KertaJasenDao kertaDao = MainController.getKertaDAO();
+    private final KuukausiJasenDao kuukausiDao = getKuukausiDAO();
+    private final KertaJasenDao kertaDao = getKertaDAO();
 
+    /**
+     *
+     */
     public SearchController() {
         localeBundleBaseString = "Bundles.SearchScene";
     }
 
+    /**
+     *
+     */
     public void initialize() {
         fillKuukausiJasenDataToTable();
         fillKertaJasenDataToCell();
@@ -126,19 +139,25 @@ public class SearchController extends AbstractController {
         }
     }
 
+    /**
+     *
+     * @param nimi
+     */
     public void findUsers(String nimi) {
         KuukausiJasenTaulu.getItems().clear();
         KertaJasenTaulu.getItems().clear();
 
         // kuukausijasenet
-        KuukausiJasenTaulu.setItems(kklista = FXCollections.observableList(kuukausiDao.getJasen(nimi)));
+        
+        KuukausiJasenTaulu.setItems(kklista = observableList(kuukausiDao.getJasen(nimi)));
 
         // kertajasenet
-        KertaJasenTaulu.setItems(kertalista = FXCollections.observableList(kertaDao.getJasen(nimi)));
+        KertaJasenTaulu.setItems(kertalista = observableList(kertaDao.getJasen(nimi)));
     }
 
     private void kertaJasenLoadMaksuTapaToCell() {
         KertaJasenTableMaksutapa.setCellValueFactory(new Callback<CellDataFeatures<KertaJasen, String>, ObservableValue<String>>() {
+            @Override
             public ObservableValue<String> call(CellDataFeatures<KertaJasen, String> p) {
                 // p.getValue() returns the Person instance for a particular TableView row
                 return new ReadOnlyObjectWrapper(p.getValue().getMaksuTapa());
@@ -149,6 +168,7 @@ public class SearchController extends AbstractController {
     //INITIALIZE METHODS BELOW
     private void kertaJasenLoadKayntiKerratToCell() {
         KertaJasenTableKertojaJaljella.setCellValueFactory(new Callback<CellDataFeatures<KertaJasen, Integer>, ObservableValue<Integer>>() {
+            @Override
             public ObservableValue<Integer> call(CellDataFeatures<KertaJasen, Integer> p) {
                 // p.getValue() returns the Person instance for a particular TableView row
                 return new ReadOnlyObjectWrapper(p.getValue().getKayntikertojaJaljella());
@@ -158,6 +178,7 @@ public class SearchController extends AbstractController {
 
     private void kertaJasenLoadJasenyysBooleanToCell() {
         KertaJasenTableJasenyysVoimassa.setCellValueFactory(new Callback<CellDataFeatures<KertaJasen, Boolean>, ObservableValue<Boolean>>() {
+            @Override
             public ObservableValue<Boolean> call(CellDataFeatures<KertaJasen, Boolean> p) {
                 // p.getValue() returns the Person instance for a particular TableView row
                 return new ReadOnlyObjectWrapper(p.getValue().isOnkoJasenyysVoimassa());
@@ -167,6 +188,7 @@ public class SearchController extends AbstractController {
 
     private void kertaJasenLoadNimiToCell() {
         KertaJasenTableNimi.setCellValueFactory(new Callback<CellDataFeatures<KertaJasen, String>, ObservableValue<String>>() {
+            @Override
             public ObservableValue<String> call(CellDataFeatures<KertaJasen, String> p) {
                 // p.getValue() returns the Person instance for a particular TableView row
                 return new ReadOnlyObjectWrapper(p.getValue().getNimi());
@@ -177,6 +199,7 @@ public class SearchController extends AbstractController {
     private void kertaJasenLoadIDToCell() {
         // kertajäsenelle alla
         KertaJasenTableID.setCellValueFactory(new Callback<CellDataFeatures<KertaJasen, Integer>, ObservableValue<Integer>>() {
+            @Override
             public ObservableValue<Integer> call(CellDataFeatures<KertaJasen, Integer> p) {
                 // p.getValue() returns the Person instance for a particular TableView row
                 return new ReadOnlyObjectWrapper(p.getValue().getJasenID());
@@ -186,6 +209,7 @@ public class SearchController extends AbstractController {
 
     private void kuukausiJasenLoadMaksuTapaToCell() {
         KuukaisuJasenTableMaksuTapa.setCellValueFactory(new Callback<CellDataFeatures<KuukausiJasen, String>, ObservableValue<String>>() {
+            @Override
             public ObservableValue<String> call(CellDataFeatures<KuukausiJasen, String> p) {
                 // p.getValue() returns the Person instance for a particular TableView row
                 return new ReadOnlyObjectWrapper(p.getValue().getMaksuTapa());
@@ -195,6 +219,7 @@ public class SearchController extends AbstractController {
 
     private void kuukausiJasenLoadKuukaudetToCell() {
         KuukaisuJasenTableKkJaljella.setCellValueFactory(new Callback<CellDataFeatures<KuukausiJasen, Integer>, ObservableValue<Integer>>() {
+            @Override
             public ObservableValue<Integer> call(CellDataFeatures<KuukausiJasen, Integer> p) {
                 // p.getValue() returns the Person instance for a particular TableView row
                 return new ReadOnlyObjectWrapper(p.getValue().getKuukausiaJaljella());
@@ -204,6 +229,7 @@ public class SearchController extends AbstractController {
 
     private void kuukausiJasenLoadJasenBooleanToCell() {
         KuukaisuJasenTableJasenyysVoimassa.setCellValueFactory(new Callback<CellDataFeatures<KuukausiJasen, Boolean>, ObservableValue<Boolean>>() {
+            @Override
             public ObservableValue<Boolean> call(CellDataFeatures<KuukausiJasen, Boolean> p) {
                 // p.getValue() returns the Person instance for a particular TableView row
                 return new ReadOnlyObjectWrapper(p.getValue().isOnkoJasenyysVoimassa());
@@ -213,6 +239,7 @@ public class SearchController extends AbstractController {
 
     private void kuukausiJasenLoadNimiToCell() {
         KuukaisuJasenTableNimi.setCellValueFactory(new Callback<CellDataFeatures<KuukausiJasen, String>, ObservableValue<String>>() {
+            @Override
             public ObservableValue<String> call(CellDataFeatures<KuukausiJasen, String> p) {
                 // p.getValue() returns the Person instance for a particular TableView row
                 return new ReadOnlyObjectWrapper(p.getValue().getNimi());
@@ -222,11 +249,13 @@ public class SearchController extends AbstractController {
 
     private void kuukausiJasenLoadIDToCell() {
         KuukaisuJasenTableID.setCellValueFactory(new Callback<CellDataFeatures<KuukausiJasen, Integer>, ObservableValue<Integer>>() {
+            @Override
             public ObservableValue<Integer> call(CellDataFeatures<KuukausiJasen, Integer> p) {
                 // p.getValue() returns the Person instance for a particular TableView row
                 return new ReadOnlyObjectWrapper(p.getValue().getJasenID());
             }
         });
     }
+    private static final Logger LOG = Logger.getLogger(SearchController.class.getName());
 
 }

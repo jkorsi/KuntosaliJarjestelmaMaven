@@ -5,6 +5,7 @@
  */
 package Entities;
 
+import java.util.logging.Logger;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -43,5 +44,6 @@ public class TilaMaksu extends MaksuTapahtuma{
     public void setTilaID(int tilaID) {
         this.tilaID = tilaID;
     }
+    private static final Logger LOG = Logger.getLogger(TilaMaksu.class.getName());
     
 }

@@ -1,6 +1,6 @@
 package Entities;
 
-import Entities.Jasen;
+import java.util.logging.Logger;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -45,5 +45,6 @@ public class KertaJasen extends Jasen {
     public void setKayntikertojaJaljella(int kayntikertojaJaljella) {
         this.kayntikertojaJaljella = kayntikertojaJaljella;
     }
+    private static final Logger LOG = Logger.getLogger(KertaJasen.class.getName());
 
 }

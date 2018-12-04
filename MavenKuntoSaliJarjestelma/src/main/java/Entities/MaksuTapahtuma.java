@@ -1,12 +1,13 @@
 package Entities;
 
 //import javax.persistence.Entity;
+import java.util.logging.Logger;
 import javax.persistence.Column;
-import javax.persistence.Table;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.Table;
 
 /**
  *
@@ -29,7 +30,7 @@ public class MaksuTapahtuma {
     private String kommentti;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = IDENTITY)
     @Column(name = "Viite_ID")
     private int viite;
 
@@ -141,5 +142,6 @@ public class MaksuTapahtuma {
     public void setMaksuTapa(String maksuTapa) {
         this.maksuTapa = maksuTapa;
     }
+    private static final Logger LOG = Logger.getLogger(MaksuTapahtuma.class.getName());
 
 }

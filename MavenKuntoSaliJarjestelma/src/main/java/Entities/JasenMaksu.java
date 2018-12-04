@@ -1,8 +1,7 @@
 package Entities;
-import Entities.MaksuTapahtuma;
+import java.util.logging.Logger;
  import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -78,4 +77,5 @@ public class JasenMaksu extends MaksuTapahtuma {
     public void setJasenID(int jasenID) {
         this.jasenID = jasenID;
     }
+    private static final Logger LOG = Logger.getLogger(JasenMaksu.class.getName());
  }

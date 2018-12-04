@@ -1,6 +1,6 @@
 package Entities;
 
-import Entities.Jasen;
+import java.util.logging.Logger;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -37,5 +37,6 @@ public class KuukausiJasen extends Jasen {
     public void setKuukausiaJaljella(int kuukausiaJaljella) {
         this.kuukausiaJaljella = kuukausiaJaljella;
     }
+    private static final Logger LOG = Logger.getLogger(KuukausiJasen.class.getName());
 
 }

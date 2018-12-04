@@ -7,6 +7,8 @@ package Dao;
 
 import Entities.KertaJasen;
 import java.util.List;
+import java.util.logging.Logger;
+import org.hibernate.HibernateException;
 import org.hibernate.SessionFactory;
 
 /**
@@ -36,7 +38,7 @@ public class KertaJasenDao extends JasenDao {
             openAndBeginTransaction();
 
             saveAndCommitJasen(jasen);
-        } catch (Exception sqlException) {
+        } catch (HibernateException sqlException) {
             throwJasenTrasactionException(sqlException);
 
         } finally {
@@ -58,7 +60,7 @@ public class KertaJasenDao extends JasenDao {
 
             KertaJasen poistettavaJasen = getKertajasen(JasenId);
             deleteJasen(poistettavaJasen);
-        } catch (Exception sqlException) {
+        } catch (HibernateException sqlException) {
             throwJasenTrasactionException(sqlException);
 
         } finally {
@@ -77,7 +79,7 @@ public class KertaJasenDao extends JasenDao {
             openAndBeginTransaction(); // avataan uusi sessio
 
              deleteJasen(jasen);
-        } catch (Exception sqlException) {
+        } catch (HibernateException sqlException) {
             throwJasenTrasactionException(sqlException);
             // virhe tapahtui palautetaan kaikki tehdyt muutokset
 
@@ -107,9 +109,9 @@ public class KertaJasenDao extends JasenDao {
         try {
             openAndBeginTransaction(); // avataan uusi sessio
 
-            haettu = (KertaJasen) session.load(KertaJasen.class, jasenId);
+            haettu = session.load(KertaJasen.class, jasenId);
 
-        } catch (Exception sqlException) {
+        } catch (HibernateException sqlException) {
             throwJasenTrasactionException(sqlException);
 
         } finally {
@@ -131,7 +133,7 @@ public class KertaJasenDao extends JasenDao {
 
             kertaJasenet = session.createQuery("FROM KertaJasen").list();
 
-        } catch (Exception sqlException) {
+        } catch (HibernateException sqlException) {
             throwJasenTrasactionException(sqlException);
 
         } finally {
@@ -141,6 +143,12 @@ public class KertaJasenDao extends JasenDao {
     }
 
     // HAKU NIMELLÄ
+
+    /**
+     *
+     * @param nimi
+     * @return
+     */
     public List<KertaJasen> getJasen(String nimi) {
         List<KertaJasen> haku = null;
         try {
@@ -149,12 +157,13 @@ public class KertaJasenDao extends JasenDao {
             String hqlString = "FROM KertaJasen AS haku WHERE nimi = :muuttuja";
             haku = session.createQuery(hqlString).setParameter("muuttuja", nimi).list();
             session.getTransaction().commit();
-        } catch (Exception e) {
+        } catch (HibernateException e) {
             throwJasenTrasactionException(e);
         } finally {
             closeTransaction();
         }
         return haku;
     }
+    private static final Logger LOG = Logger.getLogger(KertaJasenDao.class.getName());
 
 }

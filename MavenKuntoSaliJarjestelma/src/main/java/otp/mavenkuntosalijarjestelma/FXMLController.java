@@ -9,11 +9,13 @@ import Entities.Jasen;
 import Entities.KertaJasen;
 import Entities.KuukausiJasen;
 import java.io.IOException;
+import static java.lang.System.out;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Logger;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
+import static javafx.collections.FXCollections.observableList;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -31,10 +33,14 @@ import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.input.MouseButton;
+import static javafx.scene.input.MouseButton.PRIMARY;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import static otp.mavenkuntosalijarjestelma.MainController.getKertaDAO;
+import static otp.mavenkuntosalijarjestelma.MainController.getKuukausiDAO;
+import static otp.mavenkuntosalijarjestelma.MainController.getMainController;
+import static otp.mavenkuntosalijarjestelma.MainController.getUpdateController;
 
 /**
  *
@@ -162,9 +168,12 @@ public class FXMLController extends AbstractController {
     ObservableList<KuukausiJasen> kuukau;
     ObservableList<KertaJasen> kerta;
 
-    private final KuukausiJasenDao kuukausiDao = MainController.getKuukausiDAO();
-    private final KertaJasenDao kertaDao = MainController.getKertaDAO();
+    private final KuukausiJasenDao kuukausiDao = getKuukausiDAO();
+    private final KertaJasenDao kertaDao = getKertaDAO();
 
+    /**
+     *
+     */
     public FXMLController() {
         localeBundleBaseString = "Bundles.AddDeleteScene"; // String lokalisaatiota varten. Hakee tällä oikean bundlen scenelle
 
@@ -172,22 +181,22 @@ public class FXMLController extends AbstractController {
 
     @FXML
     void Aikaa1KKAction(ActionEvent event) {
-        System.out.println("AIKAA 1KK");
+        out.println("AIKAA 1KK");
     }
 
     @FXML
     void Aikaa3KKAction(ActionEvent event) {
-        System.out.println("AIKAA 3KK");
+        out.println("AIKAA 3KK");
     }
 
     @FXML
     void JasenLisausButtonAction(ActionEvent event) {
-        System.out.println("JASEN LISÄYS fxml");
-        System.out.println("KertajasenTaulu: " + KertaJasenTaulu);
-        System.out.println("KuukausijasenTaulu: " + KuukausiJasenTaulu);
+        out.println("JASEN LISÄYS fxml");
+        out.println("KertajasenTaulu: " + KertaJasenTaulu);
+        out.println("KuukausijasenTaulu: " + KuukausiJasenTaulu);
         if (KausiJasen.isSelected()) {
             KuukausiJasen kuuJasen = new KuukausiJasen();
-            System.out.println(JasenNimiField.getText());
+            out.println(JasenNimiField.getText());
             String nimi = JasenNimiField.getText();
             kuuJasen.setNimi(nimi);
             if (Aikaa1KK.isSelected()) {
@@ -238,8 +247,8 @@ public class FXMLController extends AbstractController {
      * näkyviin
      */
     public void update() {
-        kuukau = FXCollections.observableList(kuukausiDao.getALLKuukausiJasen());
-        kerta = FXCollections.observableList(kertaDao.getALLKertajasen());
+        kuukau = observableList(kuukausiDao.getALLKuukausiJasen());
+        kerta = observableList(kertaDao.getALLKertajasen());
         KuukausiJasenTaulu.getItems().clear();
         KertaJasenTaulu.getItems().clear();
         KuukausiJasenTaulu.setItems(kuukau);
@@ -266,7 +275,7 @@ public class FXMLController extends AbstractController {
     @FXML
     void KausiJäsenAction(ActionEvent event) {
         selectionModel = JasenTabPane.getSelectionModel();
-        System.out.println("KAUSIJÄSEN");
+        out.println("KAUSIJÄSEN");
         Aikaa1KK.setDisable(false);
         Aikaa3KK.setDisable(false);
         Kerrat10.setDisable(true);
@@ -276,18 +285,18 @@ public class FXMLController extends AbstractController {
 
     @FXML
     void Kerrat10Action(ActionEvent event) {
-        System.out.println("10 KERTAA");
+        out.println("10 KERTAA");
     }
 
     @FXML
     void Kerrat1Action(ActionEvent event) {
-        System.out.println("1 KERTA");
+        out.println("1 KERTA");
     }
 
     @FXML
     void KertaJasenAction(ActionEvent event) {
         selectionModel = JasenTabPane.getSelectionModel();
-        System.out.println("KERTAJÄSEN");
+        out.println("KERTAJÄSEN");
         Aikaa1KK.setDisable(true);
         Aikaa3KK.setDisable(true);
         Kerrat10.setDisable(false);
@@ -297,33 +306,39 @@ public class FXMLController extends AbstractController {
 
     @FXML
     void MaksutapaKorttiAction(ActionEvent event) {
-        System.out.println("MAKSU KORTTI");
+        out.println("MAKSU KORTTI");
 
     }
 
     @FXML
     void MaksutapaKäteinenAction(ActionEvent event) {
-        System.out.println("MAKSU KÄTEINEN");
+        out.println("MAKSU KÄTEINEN");
     }
 
+    /**
+     *
+     * @param event
+     * @param editType
+     * @throws IOException
+     */
     public void openJasenEditWindow(MouseEvent event, int editType) throws IOException {
-        if (event.getButton().equals(MouseButton.PRIMARY) && event.getClickCount() == 2) {
+        if (event.getButton().equals(PRIMARY) && event.getClickCount() == 2) {
 
             FXMLLoader updateSceneLoader = loadScene("/fxml/Updater.fxml");
 
             Jasen kertaJasen = KertaJasenTaulu.getSelectionModel().getSelectedItem();
             Jasen kuukausiJasen = KuukausiJasenTaulu.getSelectionModel().getSelectedItem();
 
-            updateSceneLoader.setResources(MainController.getMainController().getControllerBundle(MainController.getUpdateController()));
+            updateSceneLoader.setResources(getMainController().getControllerBundle(getUpdateController()));
 
-            System.out.println("Pop-Up click recocgnized.");
+            out.println("Pop-Up click recocgnized.");
             Stage popUpStage = new Stage();
             popUpStage.setScene(new Scene((Parent) updateSceneLoader.load()));
 
             UpdaterController updateController = (UpdaterController) updateSceneLoader.getController();
 
             if (editType == 0) {
-                System.out.println(updateController);
+                out.println(updateController);
                 updateController.loadData(kertaJasen, editType);
             } else {
                 updateController.loadData(kuukausiJasen, editType);
@@ -356,13 +371,12 @@ public class FXMLController extends AbstractController {
     void initialize() {
 
 //        localize(String sceneLocaleBundleString, Locale currentLocale);
-        System.out.println("KertajasenTaulu: " + KertaJasenTaulu);
-        System.out.println("KuukausijasenTaulu: " + KuukausiJasenTaulu);
-        
+        out.println("KertajasenTaulu: " + KertaJasenTaulu);
+        out.println("KuukausijasenTaulu: " + KuukausiJasenTaulu);
         fillCellsOnTable();
 
-        kuukau = FXCollections.observableList(kuukausiDao.getALLKuukausiJasen());
-        kerta = FXCollections.observableList(kertaDao.getALLKertajasen());
+        kuukau = observableList(kuukausiDao.getALLKuukausiJasen());
+        kerta = observableList(kertaDao.getALLKertajasen());
 
         KuukausiJasenTaulu.setItems(kuukau);
         KertaJasenTaulu.setItems(kerta);
@@ -409,7 +423,7 @@ public class FXMLController extends AbstractController {
 
     }
 
-    private void fillCellsOnTable() {
+    private void fillCellsOnTable() {        
         kuukausiJasenLoadIDtoCell();
         kuukausiJasenLoadNimiToCell();
         kuukausiJasenLoadJasenyysBooleanToCell();
@@ -425,6 +439,7 @@ public class FXMLController extends AbstractController {
 
     private void kertaJasenLoadMaksuTapaToCell() {
         KertaJasenTableMaksutapa.setCellValueFactory(new Callback<CellDataFeatures<KertaJasen, String>, ObservableValue<String>>() {
+            @Override
             public ObservableValue<String> call(CellDataFeatures<KertaJasen, String> p) {
                 // p.getValue() returns the Person instance for a particular TableView row
                 return new ReadOnlyObjectWrapper(p.getValue().getMaksuTapa());
@@ -434,6 +449,7 @@ public class FXMLController extends AbstractController {
 
     private void kertaJasenLoadKayntiKerratToCell() {
         KertaJasenTableKertojaJaljella.setCellValueFactory(new Callback<CellDataFeatures<KertaJasen, Integer>, ObservableValue<Integer>>() {
+            @Override
             public ObservableValue<Integer> call(CellDataFeatures<KertaJasen, Integer> p) {
                 // p.getValue() returns the Person instance for a particular TableView row
                 return new ReadOnlyObjectWrapper(p.getValue().getKayntikertojaJaljella());
@@ -443,6 +459,7 @@ public class FXMLController extends AbstractController {
 
     private void kertaJasenLoadJasenyysBooleanToCell() {
         KertaJasenTableJasenyysVoimassa.setCellValueFactory(new Callback<CellDataFeatures<KertaJasen, Boolean>, ObservableValue<Boolean>>() {
+            @Override
             public ObservableValue<Boolean> call(CellDataFeatures<KertaJasen, Boolean> p) {
                 // p.getValue() returns the Person instance for a particular TableView row
                 return new ReadOnlyObjectWrapper(p.getValue().isOnkoJasenyysVoimassa());
@@ -452,6 +469,7 @@ public class FXMLController extends AbstractController {
 
     private void kertaJasenLoadNimiToCell() {
         KertaJasenTableNimi.setCellValueFactory(new Callback<CellDataFeatures<KertaJasen, String>, ObservableValue<String>>() {
+            @Override
             public ObservableValue<String> call(CellDataFeatures<KertaJasen, String> p) {
                 // p.getValue() returns the Person instance for a particular TableView row
                 return new ReadOnlyObjectWrapper(p.getValue().getNimi());
@@ -462,6 +480,7 @@ public class FXMLController extends AbstractController {
     private void kertaJasenLoadIDToCell() {
         // kertajäsenelle alla
         KertaJasenTableID.setCellValueFactory(new Callback<CellDataFeatures<KertaJasen, Integer>, ObservableValue<Integer>>() {
+            @Override
             public ObservableValue<Integer> call(CellDataFeatures<KertaJasen, Integer> p) {
                 // p.getValue() returns the Person instance for a particular TableView row
                 return new ReadOnlyObjectWrapper(p.getValue().getJasenID());
@@ -471,6 +490,7 @@ public class FXMLController extends AbstractController {
 
     private void kuukausiJasenLoadMaksuTapaToCell() {
         KuukaisuJasenTableMaksuTapa.setCellValueFactory(new Callback<CellDataFeatures<KuukausiJasen, String>, ObservableValue<String>>() {
+            @Override
             public ObservableValue<String> call(CellDataFeatures<KuukausiJasen, String> p) {
                 // p.getValue() returns the Person instance for a particular TableView row
                 return new ReadOnlyObjectWrapper(p.getValue().getMaksuTapa());
@@ -480,6 +500,7 @@ public class FXMLController extends AbstractController {
 
     private void kuukausiJasenLoadKuukaudetToCell() {
         KuukaisuJasenTableKkJaljella.setCellValueFactory(new Callback<CellDataFeatures<KuukausiJasen, Integer>, ObservableValue<Integer>>() {
+            @Override
             public ObservableValue<Integer> call(CellDataFeatures<KuukausiJasen, Integer> p) {
                 // p.getValue() returns the Person instance for a particular TableView row
                 return new ReadOnlyObjectWrapper(p.getValue().getKuukausiaJaljella());
@@ -489,6 +510,7 @@ public class FXMLController extends AbstractController {
 
     private void kuukausiJasenLoadJasenyysBooleanToCell() {
         KuukaisuJasenTableJasenyysVoimassa.setCellValueFactory(new Callback<CellDataFeatures<KuukausiJasen, Boolean>, ObservableValue<Boolean>>() {
+            @Override
             public ObservableValue<Boolean> call(CellDataFeatures<KuukausiJasen, Boolean> p) {
                 // p.getValue() returns the Person instance for a particular TableView row
                 return new ReadOnlyObjectWrapper(p.getValue().isOnkoJasenyysVoimassa());
@@ -498,6 +520,7 @@ public class FXMLController extends AbstractController {
 
     private void kuukausiJasenLoadNimiToCell() {
         KuukaisuJasenTableNimi.setCellValueFactory(new Callback<CellDataFeatures<KuukausiJasen, String>, ObservableValue<String>>() {
+            @Override
             public ObservableValue<String> call(CellDataFeatures<KuukausiJasen, String> p) {
                 // p.getValue() returns the Person instance for a particular TableView row
                 return new ReadOnlyObjectWrapper(p.getValue().getNimi());
@@ -507,11 +530,13 @@ public class FXMLController extends AbstractController {
 
     private void kuukausiJasenLoadIDtoCell() {
         KuukaisuJasenTableID.setCellValueFactory(new Callback<CellDataFeatures<KuukausiJasen, Integer>, ObservableValue<Integer>>() {
+            @Override
             public ObservableValue<Integer> call(CellDataFeatures<KuukausiJasen, Integer> p) {
                 // p.getValue() returns the Person instance for a particular TableView row
                 return new ReadOnlyObjectWrapper(p.getValue().getJasenID());
             }
         });
     }
+    private static final Logger LOG = Logger.getLogger(FXMLController.class.getName());
 
 }

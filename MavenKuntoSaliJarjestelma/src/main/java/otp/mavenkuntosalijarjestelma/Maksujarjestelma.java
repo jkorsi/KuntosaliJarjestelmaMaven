@@ -1,9 +1,10 @@
 package otp.mavenkuntosalijarjestelma;
 
+import java.util.logging.Logger;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 
 /**
@@ -14,7 +15,7 @@ import javax.persistence.Id;
 public class Maksujarjestelma {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = IDENTITY)
     @Column(name = "maksuJarjestelmaID")
     private int maksuJarjestelmaID;
     
@@ -96,5 +97,6 @@ public class Maksujarjestelma {
     public void setMenot(int menot) {
         this.menot = menot;
     }
+    private static final Logger LOG = Logger.getLogger(Maksujarjestelma.class.getName());
 
 }

@@ -4,11 +4,13 @@
  * and open the template in the editor.
  */
 package otp.mavenkuntosalijarjestelma;
+import java.util.logging.Logger;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.Metadata;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import static org.hibernate.boot.registry.StandardServiceRegistryBuilder.destroy;
 
 /**
  * @author imssbora
@@ -30,9 +32,8 @@ public class HibernateUtil {
         sessionFactory = metadata.getSessionFactoryBuilder().build();
 
       } catch (Exception e) {
-        e.printStackTrace();
         if (registry != null) {
-          StandardServiceRegistryBuilder.destroy(registry);
+                    destroy(registry);
         }
       }
     }
@@ -56,8 +57,9 @@ public class HibernateUtil {
      */
     public static void shutdown() {
     if (registry != null) {
-      StandardServiceRegistryBuilder.destroy(registry);
+            destroy(registry);
     }
   }
+    private static final Logger LOG = Logger.getLogger(HibernateUtil.class.getName());
 }
 

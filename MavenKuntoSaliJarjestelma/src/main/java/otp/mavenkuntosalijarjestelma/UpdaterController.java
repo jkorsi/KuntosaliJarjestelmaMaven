@@ -8,8 +8,11 @@ package otp.mavenkuntosalijarjestelma;
 import Entities.Jasen;
 import Entities.KertaJasen;
 import Entities.KuukausiJasen;
+import static java.lang.Integer.parseInt;
+import static java.lang.System.out;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -19,6 +22,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import static otp.mavenkuntosalijarjestelma.MainController.getKertaDAO;
+import static otp.mavenkuntosalijarjestelma.MainController.getKuukausiDAO;
 
 /**
  * FXML Controller class
@@ -89,19 +94,31 @@ public class UpdaterController extends AbstractController implements Initializab
     private int jasenTyyppi;
     private Jasen jasen;
 
+    /**
+     *
+     */
     public UpdaterController() {
         localeBundleBaseString = "Bundles.UpdaterScene"; // String lokalisaatiota varten. Hakee tällä oikean bundlen scenelle
     }
 
+    /**
+     *
+     * @return
+     */
     public Stage getStage() {
         return (Stage) anchorPaneRoot.getScene().getWindow();
     }
 
+    /**
+     *
+     * @param jasen
+     * @param jasenTyyppi
+     */
     public void loadData(Jasen jasen, int jasenTyyppi) { // lataa jasenen tiedot muokkausikkunaan
         this.jasenTyyppi = jasenTyyppi;
         this.jasen = jasen;
-        System.out.println(jasen.getNimi());
-        System.out.println(nimi_textField);
+        out.println(jasen.getNimi());
+        out.println(nimi_textField);
         nimi_textField.setText(jasen.getNimi());
         getID_label.setText("" + jasen.getJasenID());
         maksutapa_textField.setText(jasen.getMaksuTapa());
@@ -114,7 +131,7 @@ public class UpdaterController extends AbstractController implements Initializab
             kuukaudet_textField.setText("" + ((KuukausiJasen) jasen).getKuukausiaJaljella());
 
         }
-        System.out.println("Tiedot ladattu muokkausikkunaan");
+        out.println("Tiedot ladattu muokkausikkunaan");
     }
 
     @FXML
@@ -128,11 +145,11 @@ public class UpdaterController extends AbstractController implements Initializab
         jasen.setMaksuTapa(maksutapa_textField.getText());
         jasen.setOnkoJasenyysVoimassa(jasenyys_checkbox.isSelected());
         if (jasenTyyppi == 0) {
-            ((KertaJasen) jasen).setKayntikertojaJaljella(Integer.parseInt(kerrat_textField.getText()));
-            MainController.getKertaDAO().updateKertaJasen((KertaJasen) jasen);
+            ((KertaJasen) jasen).setKayntikertojaJaljella(parseInt(kerrat_textField.getText()));
+            getKertaDAO().updateKertaJasen((KertaJasen) jasen);
         } else {
-            ((KuukausiJasen) jasen).setKuukausiaJaljella(Integer.parseInt(kuukaudet_textField.getText()));
-            MainController.getKuukausiDAO().updateKuukausiJasen((KuukausiJasen) jasen);
+            ((KuukausiJasen) jasen).setKuukausiaJaljella(parseInt(kuukaudet_textField.getText()));
+            getKuukausiDAO().updateKuukausiJasen((KuukausiJasen) jasen);
         }
         getStage().close();
     }
@@ -156,4 +173,5 @@ public class UpdaterController extends AbstractController implements Initializab
         assert tallenna_button != null : "fx:id=\"tallenna_button\" was not injected: check your FXML file 'Updater.fxml'.";
 
     }
+    private static final Logger LOG = Logger.getLogger(UpdaterController.class.getName());
 }

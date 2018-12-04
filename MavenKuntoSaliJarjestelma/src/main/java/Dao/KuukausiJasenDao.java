@@ -7,6 +7,8 @@ package Dao;
 
 import Entities.KuukausiJasen;
 import java.util.List;
+import java.util.logging.Logger;
+import org.hibernate.HibernateException;
 import org.hibernate.SessionFactory;
 
 /**
@@ -35,7 +37,7 @@ public class KuukausiJasenDao extends JasenDao {
             openAndBeginTransaction();
             saveAndCommitJasen(jasen);
 
-        } catch (Exception sqlException) {
+        } catch (HibernateException sqlException) {
             throwJasenTrasactionException(sqlException);
 
         } finally {
@@ -53,8 +55,8 @@ public class KuukausiJasenDao extends JasenDao {
             openAndBeginTransaction();
 
             KuukausiJasen poistettavaJasen = getKuukausiJasen(JasenId);
-            deleteJasen((KuukausiJasen)poistettavaJasen);
-        } catch (Exception sqlException) {
+            deleteJasen(poistettavaJasen);
+        } catch (HibernateException sqlException) {
             throwJasenTrasactionException(sqlException);
 
         } finally {
@@ -71,15 +73,14 @@ public class KuukausiJasenDao extends JasenDao {
         try {
             openAndBeginTransaction();
 
-            deleteJasen((KuukausiJasen)jasen);
-        } catch (Exception sqlException) {
+            deleteJasen(jasen);
+        } catch (HibernateException sqlException) {
             throwJasenTrasactionException(sqlException);
 
         } finally {
             closeTransaction();
         }
     }
-
 
     /**
      * Päivitää KuukausiJasenen tietokannassa sen Olion perusteella
@@ -102,9 +103,9 @@ public class KuukausiJasenDao extends JasenDao {
         try {
             openAndBeginTransaction();
 
-            haettu = (KuukausiJasen) session.load(KuukausiJasen.class, jasenId);
+            haettu = session.load(KuukausiJasen.class, jasenId);
 
-        } catch (Exception sqlException) {
+        } catch (HibernateException sqlException) {
             throwJasenTrasactionException(sqlException);
 
         } finally {
@@ -128,7 +129,7 @@ public class KuukausiJasenDao extends JasenDao {
 
             KuukausiJasenet = session.createQuery("FROM KuukausiJasen").list();
 
-        } catch (Exception sqlException) {
+        } catch (HibernateException sqlException) {
             throwJasenTrasactionException(sqlException);
 
         } finally {
@@ -138,6 +139,11 @@ public class KuukausiJasenDao extends JasenDao {
     }
 
     // HAKU NIMELLÄ
+    /**
+     *
+     * @param nimi
+     * @return
+     */
     public List<KuukausiJasen> getJasen(String nimi) {
         List<KuukausiJasen> lista = null;
         KuukausiJasen eka;
@@ -146,15 +152,20 @@ public class KuukausiJasenDao extends JasenDao {
 
             String hqlString = "FROM KuukausiJasen AS haku WHERE nimi = :muuttuja";
             lista = session.createQuery(hqlString).setParameter("muuttuja", nimi).list();
-            eka = lista.get(0);
+            if (!lista.isEmpty()) {
+                    eka = lista.get(0);   
+            }else{
+                System.out.println("Ei löytynyt");
+            }
 
             session.getTransaction().commit();
-        } catch (Exception e) {
+        } catch (HibernateException e) {
             throwJasenTrasactionException(e);
         } finally {
             closeTransaction();
         }
         return lista;
     }
+    private static final Logger LOG = Logger.getLogger(KuukausiJasenDao.class.getName());
 
 }
