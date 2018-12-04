@@ -309,8 +309,7 @@ public class FXMLController extends AbstractController {
     public void openJasenEditWindow(MouseEvent event, int editType) throws IOException {
         if (event.getButton().equals(MouseButton.PRIMARY) && event.getClickCount() == 2) {
 
-            FXMLLoader updateSceneLoader = new FXMLLoader();
-            updateSceneLoader.setLocation(getClass().getResource("/fxml/Updater.fxml"));
+            FXMLLoader updateSceneLoader = loadScene("/fxml/Updater.fxml");
 
             Jasen kertaJasen = KertaJasenTaulu.getSelectionModel().getSelectedItem();
             Jasen kuukausiJasen = KuukausiJasenTaulu.getSelectionModel().getSelectedItem();
@@ -334,6 +333,12 @@ public class FXMLController extends AbstractController {
             update();
 
         }
+    }
+
+    private FXMLLoader loadScene(String fxmlUpdaterfxml) {
+        FXMLLoader updateSceneLoader = new FXMLLoader();
+        updateSceneLoader.setLocation(getClass().getResource(fxmlUpdaterfxml));
+        return updateSceneLoader;
     }
 
     @FXML
@@ -507,10 +512,6 @@ public class FXMLController extends AbstractController {
                 return new ReadOnlyObjectWrapper(p.getValue().getJasenID());
             }
         });
-    }
-
-    Object getSessionFactory() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

@@ -53,7 +53,7 @@ public class KuukausiJasenDao extends JasenDao {
             openAndBeginTransaction();
 
             KuukausiJasen poistettavaJasen = getKuukausiJasen(JasenId);
-            deleteJasen(poistettavaJasen);
+            deleteJasen((KuukausiJasen)poistettavaJasen);
         } catch (Exception sqlException) {
             throwJasenTrasactionException(sqlException);
 
@@ -71,7 +71,7 @@ public class KuukausiJasenDao extends JasenDao {
         try {
             openAndBeginTransaction();
 
-            deleteJasen(jasen);
+            deleteJasen((KuukausiJasen)jasen);
         } catch (Exception sqlException) {
             throwJasenTrasactionException(sqlException);
 

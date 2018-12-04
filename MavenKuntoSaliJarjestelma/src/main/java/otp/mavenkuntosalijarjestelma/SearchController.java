@@ -21,24 +21,22 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.util.Callback;
 
-public class SearchController extends AbstractController{
-    
+public class SearchController extends AbstractController {
+
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
 
     @FXML // URL location of the FXML file that was given to the FXMLLoader
     private URL location;
-    
+
     // SEARCH FIELD, BUTTON
-    
     @FXML // fx:id="searchField"
     private TextField searchField;
-    
+
     @FXML // fx:id="searchButton"
     private Button searchButton;
-    
+
     // TABPANE
-    
     @FXML // fx:id="JasenTabPane"
     private TabPane JasenTabPane; // Value injected by FXMLLoader
 
@@ -86,98 +84,52 @@ public class SearchController extends AbstractController{
 
     @FXML // fx:id="JasenNimiField"
     private TextField JasenNimiField; // Value injected by FXMLLoader
-    
+
     ObservableList<KuukausiJasen> kklista;
     ObservableList<KertaJasen> kertalista;
-    
+
     private final KuukausiJasenDao kuukausiDao = MainController.getKuukausiDAO();
     private final KertaJasenDao kertaDao = MainController.getKertaDAO();
-    
-    public SearchController(){
+
+    public SearchController() {
         localeBundleBaseString = "Bundles.SearchScene";
     }
-    
+
     public void initialize() {
-        KuukaisuJasenTableID.setCellValueFactory(new Callback<CellDataFeatures<KuukausiJasen, Integer>, ObservableValue<Integer>>() {
-            public ObservableValue<Integer> call(CellDataFeatures<KuukausiJasen, Integer> p) {
-                // p.getValue() returns the Person instance for a particular TableView row
-                return new ReadOnlyObjectWrapper(p.getValue().getJasenID());
-            }
-        });
-
-        KuukaisuJasenTableNimi.setCellValueFactory(new Callback<CellDataFeatures<KuukausiJasen, String>, ObservableValue<String>>() {
-            public ObservableValue<String> call(CellDataFeatures<KuukausiJasen, String> p) {
-                // p.getValue() returns the Person instance for a particular TableView row
-                return new ReadOnlyObjectWrapper(p.getValue().getNimi());
-            }
-        });
-        KuukaisuJasenTableJasenyysVoimassa.setCellValueFactory(new Callback<CellDataFeatures<KuukausiJasen, Boolean>, ObservableValue<Boolean>>() {
-            public ObservableValue<Boolean> call(CellDataFeatures<KuukausiJasen, Boolean> p) {
-                // p.getValue() returns the Person instance for a particular TableView row
-                return new ReadOnlyObjectWrapper(p.getValue().isOnkoJasenyysVoimassa());
-            }
-        });
-        KuukaisuJasenTableKkJaljella.setCellValueFactory(new Callback<CellDataFeatures<KuukausiJasen, Integer>, ObservableValue<Integer>>() {
-            public ObservableValue<Integer> call(CellDataFeatures<KuukausiJasen, Integer> p) {
-                // p.getValue() returns the Person instance for a particular TableView row
-                return new ReadOnlyObjectWrapper(p.getValue().getKuukausiaJaljella());
-            }
-        });
-        KuukaisuJasenTableMaksuTapa.setCellValueFactory(new Callback<CellDataFeatures<KuukausiJasen, String>, ObservableValue<String>>() {
-            public ObservableValue<String> call(CellDataFeatures<KuukausiJasen, String> p) {
-                // p.getValue() returns the Person instance for a particular TableView row
-                return new ReadOnlyObjectWrapper(p.getValue().getMaksuTapa());
-            }
-        });
-
-        // kertajäsenelle alla
-        KertaJasenTableID.setCellValueFactory(new Callback<CellDataFeatures<KertaJasen, Integer>, ObservableValue<Integer>>() {
-            public ObservableValue<Integer> call(CellDataFeatures<KertaJasen, Integer> p) {
-                // p.getValue() returns the Person instance for a particular TableView row
-                return new ReadOnlyObjectWrapper(p.getValue().getJasenID());
-            }
-        });
-
-        KertaJasenTableNimi.setCellValueFactory(new Callback<CellDataFeatures<KertaJasen, String>, ObservableValue<String>>() {
-            public ObservableValue<String> call(CellDataFeatures<KertaJasen, String> p) {
-                // p.getValue() returns the Person instance for a particular TableView row
-                return new ReadOnlyObjectWrapper(p.getValue().getNimi());
-            }
-        });
-        KertaJasenTableJasenyysVoimassa.setCellValueFactory(new Callback<CellDataFeatures<KertaJasen, Boolean>, ObservableValue<Boolean>>() {
-            public ObservableValue<Boolean> call(CellDataFeatures<KertaJasen, Boolean> p) {
-                // p.getValue() returns the Person instance for a particular TableView row
-                return new ReadOnlyObjectWrapper(p.getValue().isOnkoJasenyysVoimassa());
-            }
-        });
-        KertaJasenTableKertojaJaljella.setCellValueFactory(new Callback<CellDataFeatures<KertaJasen, Integer>, ObservableValue<Integer>>() {
-            public ObservableValue<Integer> call(CellDataFeatures<KertaJasen, Integer> p) {
-                // p.getValue() returns the Person instance for a particular TableView row
-                return new ReadOnlyObjectWrapper(p.getValue().getKayntikertojaJaljella());
-            }
-        });
-        KertaJasenTableMaksutapa.setCellValueFactory(new Callback<CellDataFeatures<KertaJasen, String>, ObservableValue<String>>() {
-            public ObservableValue<String> call(CellDataFeatures<KertaJasen, String> p) {
-                // p.getValue() returns the Person instance for a particular TableView row
-                return new ReadOnlyObjectWrapper(p.getValue().getMaksuTapa());
-            }
-        });
+        fillKuukausiJasenDataToTable();
+        fillKertaJasenDataToCell();
 
     }
-    
+
+    private void fillKertaJasenDataToCell() {
+        kertaJasenLoadIDToCell();
+        kertaJasenLoadNimiToCell();
+        kertaJasenLoadJasenyysBooleanToCell();
+        kertaJasenLoadKayntiKerratToCell();
+        kertaJasenLoadMaksuTapaToCell();
+    }
+
+    private void fillKuukausiJasenDataToTable() {
+        kuukausiJasenLoadIDToCell();
+        kuukausiJasenLoadNimiToCell();
+        kuukausiJasenLoadJasenBooleanToCell();
+        kuukausiJasenLoadKuukaudetToCell();
+        kuukausiJasenLoadMaksuTapaToCell();
+    }
+
     @FXML
     private void handleSubmitButtonAction(ActionEvent event) throws Exception {
-    	String nimi = searchField.getText();
-    	if (nimi.equals("")) {
-    	} else{
+        String nimi = searchField.getText();
+        if (nimi.equals("")) {
+        } else {
             findUsers(nimi);
         }
     }
-    
+
     public void findUsers(String nimi) {
         KuukausiJasenTaulu.getItems().clear();
         KertaJasenTaulu.getItems().clear();
-        
+
         // kuukausijasenet
         KuukausiJasenTaulu.setItems(kklista = FXCollections.observableList(kuukausiDao.getJasen(nimi)));
 
@@ -185,5 +137,96 @@ public class SearchController extends AbstractController{
         KertaJasenTaulu.setItems(kertalista = FXCollections.observableList(kertaDao.getJasen(nimi)));
     }
 
+    private void kertaJasenLoadMaksuTapaToCell() {
+        KertaJasenTableMaksutapa.setCellValueFactory(new Callback<CellDataFeatures<KertaJasen, String>, ObservableValue<String>>() {
+            public ObservableValue<String> call(CellDataFeatures<KertaJasen, String> p) {
+                // p.getValue() returns the Person instance for a particular TableView row
+                return new ReadOnlyObjectWrapper(p.getValue().getMaksuTapa());
+            }
+        });
+    }
+
+    //INITIALIZE METHODS BELOW
+    private void kertaJasenLoadKayntiKerratToCell() {
+        KertaJasenTableKertojaJaljella.setCellValueFactory(new Callback<CellDataFeatures<KertaJasen, Integer>, ObservableValue<Integer>>() {
+            public ObservableValue<Integer> call(CellDataFeatures<KertaJasen, Integer> p) {
+                // p.getValue() returns the Person instance for a particular TableView row
+                return new ReadOnlyObjectWrapper(p.getValue().getKayntikertojaJaljella());
+            }
+        });
+    }
+
+    private void kertaJasenLoadJasenyysBooleanToCell() {
+        KertaJasenTableJasenyysVoimassa.setCellValueFactory(new Callback<CellDataFeatures<KertaJasen, Boolean>, ObservableValue<Boolean>>() {
+            public ObservableValue<Boolean> call(CellDataFeatures<KertaJasen, Boolean> p) {
+                // p.getValue() returns the Person instance for a particular TableView row
+                return new ReadOnlyObjectWrapper(p.getValue().isOnkoJasenyysVoimassa());
+            }
+        });
+    }
+
+    private void kertaJasenLoadNimiToCell() {
+        KertaJasenTableNimi.setCellValueFactory(new Callback<CellDataFeatures<KertaJasen, String>, ObservableValue<String>>() {
+            public ObservableValue<String> call(CellDataFeatures<KertaJasen, String> p) {
+                // p.getValue() returns the Person instance for a particular TableView row
+                return new ReadOnlyObjectWrapper(p.getValue().getNimi());
+            }
+        });
+    }
+
+    private void kertaJasenLoadIDToCell() {
+        // kertajäsenelle alla
+        KertaJasenTableID.setCellValueFactory(new Callback<CellDataFeatures<KertaJasen, Integer>, ObservableValue<Integer>>() {
+            public ObservableValue<Integer> call(CellDataFeatures<KertaJasen, Integer> p) {
+                // p.getValue() returns the Person instance for a particular TableView row
+                return new ReadOnlyObjectWrapper(p.getValue().getJasenID());
+            }
+        });
+    }
+
+    private void kuukausiJasenLoadMaksuTapaToCell() {
+        KuukaisuJasenTableMaksuTapa.setCellValueFactory(new Callback<CellDataFeatures<KuukausiJasen, String>, ObservableValue<String>>() {
+            public ObservableValue<String> call(CellDataFeatures<KuukausiJasen, String> p) {
+                // p.getValue() returns the Person instance for a particular TableView row
+                return new ReadOnlyObjectWrapper(p.getValue().getMaksuTapa());
+            }
+        });
+    }
+
+    private void kuukausiJasenLoadKuukaudetToCell() {
+        KuukaisuJasenTableKkJaljella.setCellValueFactory(new Callback<CellDataFeatures<KuukausiJasen, Integer>, ObservableValue<Integer>>() {
+            public ObservableValue<Integer> call(CellDataFeatures<KuukausiJasen, Integer> p) {
+                // p.getValue() returns the Person instance for a particular TableView row
+                return new ReadOnlyObjectWrapper(p.getValue().getKuukausiaJaljella());
+            }
+        });
+    }
+
+    private void kuukausiJasenLoadJasenBooleanToCell() {
+        KuukaisuJasenTableJasenyysVoimassa.setCellValueFactory(new Callback<CellDataFeatures<KuukausiJasen, Boolean>, ObservableValue<Boolean>>() {
+            public ObservableValue<Boolean> call(CellDataFeatures<KuukausiJasen, Boolean> p) {
+                // p.getValue() returns the Person instance for a particular TableView row
+                return new ReadOnlyObjectWrapper(p.getValue().isOnkoJasenyysVoimassa());
+            }
+        });
+    }
+
+    private void kuukausiJasenLoadNimiToCell() {
+        KuukaisuJasenTableNimi.setCellValueFactory(new Callback<CellDataFeatures<KuukausiJasen, String>, ObservableValue<String>>() {
+            public ObservableValue<String> call(CellDataFeatures<KuukausiJasen, String> p) {
+                // p.getValue() returns the Person instance for a particular TableView row
+                return new ReadOnlyObjectWrapper(p.getValue().getNimi());
+            }
+        });
+    }
+
+    private void kuukausiJasenLoadIDToCell() {
+        KuukaisuJasenTableID.setCellValueFactory(new Callback<CellDataFeatures<KuukausiJasen, Integer>, ObservableValue<Integer>>() {
+            public ObservableValue<Integer> call(CellDataFeatures<KuukausiJasen, Integer> p) {
+                // p.getValue() returns the Person instance for a particular TableView row
+                return new ReadOnlyObjectWrapper(p.getValue().getJasenID());
+            }
+        });
+    }
 
 }

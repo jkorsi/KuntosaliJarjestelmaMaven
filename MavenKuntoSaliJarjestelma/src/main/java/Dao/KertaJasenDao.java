@@ -57,9 +57,7 @@ public class KertaJasenDao extends JasenDao {
             // avataan uusi sessio
 
             KertaJasen poistettavaJasen = getKertajasen(JasenId);
-            session.delete(poistettavaJasen);
-
-            session.getTransaction().commit();//tallennetaan muutokset tietokantaan
+            deleteJasen(poistettavaJasen);
         } catch (Exception sqlException) {
             throwJasenTrasactionException(sqlException);
 
