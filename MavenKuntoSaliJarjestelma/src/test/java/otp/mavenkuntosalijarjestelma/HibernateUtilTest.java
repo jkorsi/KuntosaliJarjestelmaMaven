@@ -5,14 +5,18 @@
  */
 package otp.mavenkuntosalijarjestelma;
 
+import static java.lang.System.out;
+import java.util.logging.Logger;
 import org.hibernate.SessionFactory;
 import org.junit.After;
 import org.junit.AfterClass;
+import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.BeforeClass;
-import org.junit.Test;
-import static org.junit.Assert.*;
 import org.junit.Ignore;
+import org.junit.Test;
+import static otp.mavenkuntosalijarjestelma.HibernateUtil.getSessionFactory;
+import static otp.mavenkuntosalijarjestelma.HibernateUtil.shutdown;
 
 /**
  *
@@ -21,21 +25,36 @@ import org.junit.Ignore;
 @Ignore
 public class HibernateUtilTest {
     
+    /**
+     *
+     */
     public HibernateUtilTest() {
     }
     
+    /**
+     *
+     */
     @BeforeClass
     public static void setUpClass() {
     }
     
+    /**
+     *
+     */
     @AfterClass
     public static void tearDownClass() {
     }
     
+    /**
+     *
+     */
     @Before
     public void setUp() {
     }
     
+    /**
+     *
+     */
     @After
     public void tearDown() {
     }
@@ -45,9 +64,9 @@ public class HibernateUtilTest {
      */
     @Test
     public void testGetSessionFactory() {
-        System.out.println("getSessionFactory");
+        out.println("getSessionFactory");
         SessionFactory expResult = null;
-        SessionFactory result = HibernateUtil.getSessionFactory();
+        SessionFactory result = getSessionFactory();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
@@ -58,10 +77,11 @@ public class HibernateUtilTest {
      */
     @Test
     public void testShutdown() {
-        System.out.println("shutdown");
-        HibernateUtil.shutdown();
+        out.println("shutdown");
+        shutdown();
         // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
     }
+    private static final Logger LOG = Logger.getLogger(HibernateUtilTest.class.getName());
     
 }

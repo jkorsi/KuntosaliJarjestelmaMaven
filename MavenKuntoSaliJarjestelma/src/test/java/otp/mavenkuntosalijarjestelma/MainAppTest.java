@@ -5,14 +5,16 @@
  */
 package otp.mavenkuntosalijarjestelma;
 
+import static java.lang.System.out;
+import java.util.logging.Logger;
 import javafx.stage.Stage;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
-import org.junit.Test;
-import static org.junit.Assert.*;
 import org.junit.Ignore;
+import org.junit.Test;
+import static otp.mavenkuntosalijarjestelma.MainApp.main;
 
 /**
  *
@@ -21,21 +23,36 @@ import org.junit.Ignore;
 @Ignore
 public class MainAppTest {
     
+    /**
+     *
+     */
     public MainAppTest() {
     }
     
+    /**
+     *
+     */
     @BeforeClass
     public static void setUpClass() {
     }
     
+    /**
+     *
+     */
     @AfterClass
     public static void tearDownClass() {
     }
     
+    /**
+     *
+     */
     @Before
     public void setUp() {
     }
     
+    /**
+     *
+     */
     @After
     public void tearDown() {
     }
@@ -45,7 +62,7 @@ public class MainAppTest {
      */
     @Test
     public void testInit() {
-        System.out.println("init");
+        out.println("init");
         MainApp instance = new MainApp();
         instance.init();
         // TODO review the generated test code and remove the default call to fail.
@@ -54,10 +71,11 @@ public class MainAppTest {
 
     /**
      * Test of start method, of class MainApp.
+     * @throws java.lang.Exception
      */
     @Test
     public void testStart() throws Exception {
-        System.out.println("start");
+        out.println("start");
         Stage stage = null;
         MainApp instance = new MainApp();
         instance.start(stage);
@@ -70,9 +88,9 @@ public class MainAppTest {
      */
     @Test
     public void testMain() {
-        System.out.println("main");
+        out.println("main");
         String[] args = null;
-        MainApp.main(args);
+        main(args);
         // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
     }
@@ -82,11 +100,12 @@ public class MainAppTest {
      */
     @Test
     public void testStop() {
-        System.out.println("stop");
+        out.println("stop");
         MainApp instance = new MainApp();
         instance.stop();
         // TODO review the generated test code and remove the default call to fail.
        // fail("The test case is a prototype.");
     }
+    private static final Logger LOG = Logger.getLogger(MainAppTest.class.getName());
     
 }

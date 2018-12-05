@@ -6,22 +6,23 @@
 package otp.mavenkuntosalijarjestelma;
 
 import java.io.IOException;
-import java.util.logging.Level;
+import static java.lang.System.currentTimeMillis;
+import static java.lang.System.out;
+import static java.util.logging.Level.SEVERE;
 import java.util.logging.Logger;
+import static java.util.logging.Logger.getLogger;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
+import static javafx.fxml.FXMLLoader.load;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
-import org.hibernate.SessionFactory;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
-import org.junit.Test;
-import static org.junit.Assert.*;
 import org.junit.Ignore;
+import org.junit.Test;
 import static org.loadui.testfx.Assertions.verifyThat;
 import org.loadui.testfx.GuiTest;
 import static org.loadui.testfx.controls.TableViews.containsCell;
@@ -33,40 +34,62 @@ import static org.loadui.testfx.controls.TableViews.containsCell;
 //@Ignore
 public class FXMLControllerTest extends GuiTest {
 
-    long time = System.currentTimeMillis();
+    long time = currentTimeMillis();
     String sTime = Long.toString(time);
 
+    /**
+     *
+     */
     public FXMLControllerTest() {
     }
 
+    /**
+     *
+     */
     @BeforeClass
     public static void setUpClass() {
     }
 
+    /**
+     *
+     */
     @AfterClass
     public static void tearDownClass() {
     }
 
+    /**
+     *
+     */
     @Before
     public void setUp() {
     }
 
+    /**
+     *
+     */
     @After
     public void tearDown() {
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     protected Parent getRootNode() {
         Parent parent = null;
         try {
-            parent = FXMLLoader.load(getClass().getResource("/fxml/Scene.fxml"));
+            parent = load(getClass().getResource("/fxml/Scene.fxml"));
         } catch (IOException ex) {
-            Logger.getLogger(FXMLControllerTest.class.getName()).log(Level.SEVERE, null, ex);
+            getLogger(FXMLControllerTest.class.getName()).log(SEVERE, null, ex);
         }
         return parent;
 
     }
 
+    /**
+     *
+     */
     @Test
     public void testLisaaJasen() {
         TextField nimi = find("#JasenNimiField");
@@ -107,7 +130,7 @@ public class FXMLControllerTest extends GuiTest {
      */
     @Test
     public void testAikaa1KKAction() {
-        System.out.println("Aikaa1KKAction");
+        out.println("Aikaa1KKAction");
         ActionEvent event = null;
         FXMLController instance = new FXMLController();
         instance.Aikaa1KKAction(event);
@@ -120,7 +143,7 @@ public class FXMLControllerTest extends GuiTest {
      */
     @Test
     public void testAikaa3KKAction() {
-        System.out.println("Aikaa3KKAction");
+        out.println("Aikaa3KKAction");
         ActionEvent event = null;
         FXMLController instance = new FXMLController();
         instance.Aikaa3KKAction(event);
@@ -134,7 +157,7 @@ public class FXMLControllerTest extends GuiTest {
     @Ignore
     @Test
     public void testJasenLisausButtonAction() {
-        System.out.println("JasenLisausButtonAction");
+        out.println("JasenLisausButtonAction");
         ActionEvent event = null;
         FXMLController instance = new FXMLController();
         instance.JasenLisausButtonAction(event);
@@ -159,7 +182,7 @@ public class FXMLControllerTest extends GuiTest {
     @Ignore
     @Test
     public void testKausiJäsenAction() {
-        System.out.println("KausiJ\u00e4senAction");
+        out.println("KausiJ\u00e4senAction");
         ActionEvent event = null;
         FXMLController instance = new FXMLController();
         instance.KausiJäsenAction(event);
@@ -172,7 +195,7 @@ public class FXMLControllerTest extends GuiTest {
      */
     @Test
     public void testKerrat10Action() {
-        System.out.println("Kerrat10Action");
+        out.println("Kerrat10Action");
         ActionEvent event = null;
         FXMLController instance = new FXMLController();
         instance.Kerrat10Action(event);
@@ -185,7 +208,7 @@ public class FXMLControllerTest extends GuiTest {
      */
     @Test
     public void testKerrat1Action() {
-        System.out.println("Kerrat1Action");
+        out.println("Kerrat1Action");
         ActionEvent event = null;
         FXMLController instance = new FXMLController();
         instance.Kerrat1Action(event);
@@ -199,7 +222,7 @@ public class FXMLControllerTest extends GuiTest {
     @Ignore
     @Test
     public void testKertaJasenAction() {
-        System.out.println("KertaJasenAction");
+        out.println("KertaJasenAction");
         ActionEvent event = null;
         FXMLController instance = new FXMLController();
         instance.KertaJasenAction(event);
@@ -212,7 +235,7 @@ public class FXMLControllerTest extends GuiTest {
      */
     @Test
     public void testMaksutapaKorttiAction() {
-        System.out.println("MaksutapaKorttiAction");
+        out.println("MaksutapaKorttiAction");
         ActionEvent event = null;
         FXMLController instance = new FXMLController();
         instance.MaksutapaKorttiAction(event);
@@ -225,7 +248,7 @@ public class FXMLControllerTest extends GuiTest {
      */
     @Test
     public void testMaksutapaKäteinenAction() {
-        System.out.println("MaksutapaKäteinenAction");
+        out.println("MaksutapaKäteinenAction");
         ActionEvent event = null;
         FXMLController instance = new FXMLController();
         instance.MaksutapaKäteinenAction(event);
@@ -239,11 +262,12 @@ public class FXMLControllerTest extends GuiTest {
     @Ignore
     @Test
     public void testInitialize() {
-        System.out.println("initialize");
+        out.println("initialize");
         FXMLController instance = new FXMLController();
         instance.initialize();
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
     }
+    private static final Logger LOG = Logger.getLogger(FXMLControllerTest.class.getName());
 
 }

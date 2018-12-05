@@ -5,13 +5,14 @@
  */
 package Entities;
 
+import static java.lang.System.out;
+import java.util.logging.Logger;
 import org.junit.After;
 import org.junit.AfterClass;
+import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
-import org.junit.Ignore;
 
 /**
  *
@@ -22,22 +23,37 @@ public class KuukausiJasenTest {
     
     KuukausiJasen kuukausijasen;
     
+    /**
+     *
+     */
     public KuukausiJasenTest() {
     }
     
+    /**
+     *
+     */
     @BeforeClass
     public static void setUpClass() {
     }
     
+    /**
+     *
+     */
     @AfterClass
     public static void tearDownClass() {
     }
     
+    /**
+     *
+     */
     @Before
     public void setUp() {
         kuukausijasen = new KuukausiJasen();
     }
     
+    /**
+     *
+     */
     @After
     public void tearDown() {
     }
@@ -47,7 +63,7 @@ public class KuukausiJasenTest {
      */
     @Test
     public void testGetKuukausiaJaljella() {
-        System.out.println("getKuukausiaJaljella");
+        out.println("getKuukausiaJaljella");
         kuukausijasen.setKuukausiaJaljella(3);
         int expResult = 3;
         int result = kuukausijasen.getKuukausiaJaljella();
@@ -61,7 +77,7 @@ public class KuukausiJasenTest {
      */
     @Test
     public void testSetKuukausiaJaljella() {
-        System.out.println("setKuukausiaJaljella");
+        out.println("setKuukausiaJaljella");
         kuukausijasen.setKuukausiaJaljella(3);
         int expResult = 3;
         int result = kuukausijasen.getKuukausiaJaljella();
@@ -69,5 +85,6 @@ public class KuukausiJasenTest {
         // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
     }
+    private static final Logger LOG = Logger.getLogger(KuukausiJasenTest.class.getName());
     
 }

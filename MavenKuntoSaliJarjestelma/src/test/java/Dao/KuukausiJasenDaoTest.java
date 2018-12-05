@@ -6,14 +6,16 @@
 package Dao;
 
 import Entities.KuukausiJasen;
+import static java.lang.System.out;
 import java.util.List;
+import java.util.logging.Logger;
 import org.junit.After;
 import org.junit.AfterClass;
+import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.BeforeClass;
-import org.junit.Test;
-import static org.junit.Assert.*;
 import org.junit.Ignore;
+import org.junit.Test;
 
 /**
  *
@@ -22,21 +24,36 @@ import org.junit.Ignore;
 @Ignore
 public class KuukausiJasenDaoTest {
     
+    /**
+     *
+     */
     public KuukausiJasenDaoTest() {
     }
     
+    /**
+     *
+     */
     @BeforeClass
     public static void setUpClass() {
     }
     
+    /**
+     *
+     */
     @AfterClass
     public static void tearDownClass() {
     }
     
+    /**
+     *
+     */
     @Before
     public void setUp() {
     }
     
+    /**
+     *
+     */
     @After
     public void tearDown() {
     }
@@ -46,7 +63,7 @@ public class KuukausiJasenDaoTest {
      */
     @Test
     public void testCreateKuukausiJasen() {
-        System.out.println("createKuukausiJasen");
+        out.println("createKuukausiJasen");
         KuukausiJasen jasen = null;
         KuukausiJasenDao instance = null;
         instance.createKuukausiJasen(jasen);
@@ -59,7 +76,7 @@ public class KuukausiJasenDaoTest {
      */
     @Test
     public void testDeleteKuukausiJasen() {
-        System.out.println("deleteKuukausiJasen");
+        out.println("deleteKuukausiJasen");
         int JasenId = 0;
         KuukausiJasenDao instance = null;
         instance.deleteKuukausiJasen(JasenId);
@@ -72,7 +89,7 @@ public class KuukausiJasenDaoTest {
      */
     @Test
     public void testUpdateKuukausiJasen() {
-        System.out.println("updateKuukausiJasen");
+        out.println("updateKuukausiJasen");
         KuukausiJasen jasen = null;
         KuukausiJasenDao instance = null;
         instance.updateKuukausiJasen(jasen);
@@ -85,7 +102,7 @@ public class KuukausiJasenDaoTest {
      */
     @Test
     public void testGetKuukausiJasen() {
-        System.out.println("getKuukausiJasen");
+        out.println("getKuukausiJasen");
         int jasenId = 0;
         KuukausiJasenDao instance = null;
         KuukausiJasen expResult = null;
@@ -100,7 +117,7 @@ public class KuukausiJasenDaoTest {
      */
     @Test
     public void testGetALLKuukausiJasen() {
-        System.out.println("getALLKuukausiJasen");
+        out.println("getALLKuukausiJasen");
         KuukausiJasenDao instance = null;
         List<KuukausiJasen> expResult = null;
         List<KuukausiJasen> result = instance.getALLKuukausiJasen();
@@ -108,5 +125,6 @@ public class KuukausiJasenDaoTest {
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
     }
+    private static final Logger LOG = Logger.getLogger(KuukausiJasenDaoTest.class.getName());
     
 }

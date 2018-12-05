@@ -5,12 +5,14 @@
  */
 package Entities;
 
+import static java.lang.System.out;
+import java.util.logging.Logger;
 import org.junit.After;
 import org.junit.AfterClass;
+import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  *
@@ -20,22 +22,37 @@ public class KertaJasenTest {
     
     KertaJasen kertajasen;
     
+    /**
+     *
+     */
     public KertaJasenTest() {
     }
     
+    /**
+     *
+     */
     @BeforeClass
     public static void setUpClass() {
     }
     
+    /**
+     *
+     */
     @AfterClass
     public static void tearDownClass() {
     }
     
+    /**
+     *
+     */
     @Before
     public void setUp() {
         kertajasen = new KertaJasen();
     }
     
+    /**
+     *
+     */
     @After
     public void tearDown() {
     }
@@ -45,7 +62,7 @@ public class KertaJasenTest {
      */
     @Test
     public void testGetKayntikertojaJaljella() {
-        System.out.println("getKayntikertojaJaljella");
+        out.println("getKayntikertojaJaljella");
         kertajasen.setKayntikertojaJaljella(10);
         int expResult = 10;
         int result = kertajasen.getKayntikertojaJaljella();
@@ -59,7 +76,7 @@ public class KertaJasenTest {
      */
     @Test
     public void testSetKayntikertojaJaljella() {
-        System.out.println("setKayntikertojaJaljella");
+        out.println("setKayntikertojaJaljella");
         kertajasen.setKayntikertojaJaljella(10);
         int expResult = 10;
         int result = kertajasen.getKayntikertojaJaljella();
@@ -67,5 +84,6 @@ public class KertaJasenTest {
         // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
     }
+    private static final Logger LOG = Logger.getLogger(KertaJasenTest.class.getName());
     
 }

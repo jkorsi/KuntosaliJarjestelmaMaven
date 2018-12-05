@@ -176,7 +176,6 @@ public class FXMLController extends AbstractController {
      */
     public FXMLController() {
         localeBundleBaseString = "Bundles.AddDeleteScene"; // String lokalisaatiota varten. Hakee tällä oikean bundlen scenelle
-
     }
 
     @FXML
@@ -373,6 +372,7 @@ public class FXMLController extends AbstractController {
 //        localize(String sceneLocaleBundleString, Locale currentLocale);
         out.println("KertajasenTaulu: " + KertaJasenTaulu);
         out.println("KuukausijasenTaulu: " + KuukausiJasenTaulu);
+        
         fillCellsOnTable();
 
         kuukau = observableList(kuukausiDao.getALLKuukausiJasen());
@@ -382,7 +382,11 @@ public class FXMLController extends AbstractController {
         KertaJasenTaulu.setItems(kerta);
 //        KertaJasenTaulu.getItems().setAll(kertaDao.getALLKertajasen());
 //        KuukausiJasenTaulu.getItems().setAll(kuukausiDao.getALLKuukausiJasen());
+        assertAll();
 
+    }
+
+    private void assertAll() {
         assert MaksutapaLabel != null : "fx:id=\"MaksutapaLabel\" was not injected: check your FXML file 'Scene.fxml'.";
         assert NimiLabel != null : "fx:id=\"NimiLabel\" was not injected: check your FXML file 'Scene.fxml'.";
         assert TyyppiLabel != null : "fx:id=\"TyyppiLabel\" was not injected: check your FXML file 'Scene.fxml'.";
@@ -420,10 +424,10 @@ public class FXMLController extends AbstractController {
         assert KertaJasenTableJasenyysVoimassa != null : "fx:id=\"KertaJasenTableJasenyysVoimassa\" was not injected: check your FXML file 'Scene.fxml'.";
         assert KertaJasenTableKertojaJaljella != null : "fx:id=\"KertaJasenTableKertojaJaljella\" was not injected: check your FXML file 'Scene.fxml'.";
         assert KertaJasenTableMaksutapa != null : "fx:id=\"KertaJasenTableMaksutapa\" was not injected: check your FXML file 'Scene.fxml'.";
-
     }
 
-    private void fillCellsOnTable() {        
+    private void fillCellsOnTable() {
+        
         kuukausiJasenLoadIDtoCell();
         kuukausiJasenLoadNimiToCell();
         kuukausiJasenLoadJasenyysBooleanToCell();
@@ -435,6 +439,7 @@ public class FXMLController extends AbstractController {
         kertaJasenLoadJasenyysBooleanToCell();
         kertaJasenLoadKayntiKerratToCell();
         kertaJasenLoadMaksuTapaToCell();
+        
     }
 
     private void kertaJasenLoadMaksuTapaToCell() {

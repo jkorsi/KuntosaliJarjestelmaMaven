@@ -5,13 +5,15 @@
  */
 package Entities;
 
+import static java.lang.System.out;
+import java.util.logging.Logger;
 import org.junit.After;
 import org.junit.AfterClass;
+import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.BeforeClass;
-import org.junit.Test;
-import static org.junit.Assert.*;
 import org.junit.Ignore;
+import org.junit.Test;
 
 /**
  *
@@ -20,21 +22,36 @@ import org.junit.Ignore;
 @Ignore
 public class JasenTest {
     
+    /**
+     *
+     */
     public JasenTest() {
     }
     
+    /**
+     *
+     */
     @BeforeClass
     public static void setUpClass() {
     }
     
+    /**
+     *
+     */
     @AfterClass
     public static void tearDownClass() {
     }
     
+    /**
+     *
+     */
     @Before
     public void setUp() {
     }
     
+    /**
+     *
+     */
     @After
     public void tearDown() {
     }
@@ -44,7 +61,7 @@ public class JasenTest {
      */
     @Test
     public void testGetNimi() {
-        System.out.println("getNimi");
+        out.println("getNimi");
         Jasen instance = new JasenImpl();
         String expResult = "";
         String result = instance.getNimi();
@@ -58,7 +75,7 @@ public class JasenTest {
      */
     @Test
     public void testSetNimi() {
-        System.out.println("setNimi");
+        out.println("setNimi");
         String nimi = "";
         Jasen instance = new JasenImpl();
         instance.setNimi(nimi);
@@ -71,7 +88,7 @@ public class JasenTest {
      */
     @Test
     public void testGetJasenID() {
-        System.out.println("getJasenID");
+        out.println("getJasenID");
         Jasen instance = new JasenImpl();
         int expResult = 0;
         int result = instance.getJasenID();
@@ -85,7 +102,7 @@ public class JasenTest {
      */
     @Test
     public void testSetJasenID() {
-        System.out.println("setJasenID");
+        out.println("setJasenID");
         int jasenID = 0;
         Jasen instance = new JasenImpl();
         instance.setJasenID(jasenID);
@@ -98,7 +115,7 @@ public class JasenTest {
      */
     @Test
     public void testGetMaksuTapa() {
-        System.out.println("getMaksuTapa");
+        out.println("getMaksuTapa");
         Jasen instance = new JasenImpl();
         String expResult = "";
         String result = instance.getMaksuTapa();
@@ -112,7 +129,7 @@ public class JasenTest {
      */
     @Test
     public void testSetMaksuTapa() {
-        System.out.println("setMaksuTapa");
+        out.println("setMaksuTapa");
         String maksuTapa = "";
         Jasen instance = new JasenImpl();
         instance.setMaksuTapa(maksuTapa);
@@ -125,7 +142,7 @@ public class JasenTest {
      */
     @Test
     public void testIsOnkoJasenyysVoimassa() {
-        System.out.println("isOnkoJasenyysVoimassa");
+        out.println("isOnkoJasenyysVoimassa");
         Jasen instance = new JasenImpl();
         boolean expResult = false;
         boolean result = instance.isOnkoJasenyysVoimassa();
@@ -139,7 +156,7 @@ public class JasenTest {
      */
     @Test
     public void testSetOnkoJasenyysVoimassa() {
-        System.out.println("setOnkoJasenyysVoimassa");
+        out.println("setOnkoJasenyysVoimassa");
         boolean onkoJasenyysVoimassa = false;
         Jasen instance = new JasenImpl();
         instance.setOnkoJasenyysVoimassa(onkoJasenyysVoimassa);
@@ -147,7 +164,11 @@ public class JasenTest {
 //        fail("The test case is a prototype.");
     }
 
+    /**
+     *
+     */
     public class JasenImpl extends Jasen {
     }
+    private static final Logger LOG = Logger.getLogger(JasenTest.class.getName());
     
 }

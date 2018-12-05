@@ -5,13 +5,14 @@
  */
 package Entities;
 
+import static java.lang.System.out;
+import java.util.logging.Logger;
 import org.junit.After;
 import org.junit.AfterClass;
+import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
-import org.junit.Ignore;
 
 /**
  *
@@ -21,22 +22,37 @@ public class TilaTest {
     
     Tila tila;
     
+    /**
+     *
+     */
     public TilaTest() {
     }
     
+    /**
+     *
+     */
     @BeforeClass
     public static void setUpClass() {
     }
     
+    /**
+     *
+     */
     @AfterClass
     public static void tearDownClass() {
     }
     
+    /**
+     *
+     */
     @Before
     public void setUp() {
         tila = new Tila();
     }
     
+    /**
+     *
+     */
     @After
     public void tearDown() {
     }
@@ -46,7 +62,7 @@ public class TilaTest {
      */
     @Test
     public void testGetTilaID() {
-        System.out.println("getTilaID");
+        out.println("getTilaID");
         tila.setTilaID(4);
         int expResult = 4;
         int result = tila.getTilaID();
@@ -60,7 +76,7 @@ public class TilaTest {
      */
     @Test
     public void testSetTilaID() {
-        System.out.println("setTilaID");
+        out.println("setTilaID");
         tila.setTilaID(4);
         int expResult = 4;
         int result = tila.getTilaID();
@@ -74,7 +90,7 @@ public class TilaTest {
      */
     @Test
     public void testGetSuosituinKuntoSaliLaite() {
-        System.out.println("getSuosituinKuntoSaliLaite");
+        out.println("getSuosituinKuntoSaliLaite");
         Tila instance = new Tila();
         int expResult = 0;
         int result = instance.getSuosituinKuntoSaliLaite();
@@ -88,7 +104,7 @@ public class TilaTest {
      */
     @Test
     public void testSetSuosituinKuntoSaliLaite() {
-        System.out.println("setSuosituinKuntoSaliLaite");
+        out.println("setSuosituinKuntoSaliLaite");
         int suosituinKuntoSaliLaite = 0;
         Tila instance = new Tila();
         instance.setSuosituinKuntoSaliLaite(suosituinKuntoSaliLaite);
@@ -101,7 +117,7 @@ public class TilaTest {
      */
     @Test
     public void testGetLaitteidenMaara() {
-        System.out.println("getLaitteidenMaara");
+        out.println("getLaitteidenMaara");
         tila.setLaitteidenMaara(3);
         int expResult = 3;
         int result = tila.getLaitteidenMaara();
@@ -115,7 +131,7 @@ public class TilaTest {
      */
     @Test
     public void testSetLaitteidenMaara() {
-        System.out.println("setLaitteidenMaara");
+        out.println("setLaitteidenMaara");
         tila.setLaitteidenMaara(3);
         int expResult = 3;
         int result = tila.getLaitteidenMaara();
@@ -129,7 +145,7 @@ public class TilaTest {
      */
     @Test
     public void testGetTilanKulut() {
-        System.out.println("getTilanKulut");
+        out.println("getTilanKulut");
         tila.setTilanKulut(1000);
         int expResult = 1000;
         int result = tila.getTilanKulut();
@@ -143,7 +159,7 @@ public class TilaTest {
      */
     @Test
     public void testSetTilanKulut() {
-        System.out.println("setTilanKulut");
+        out.println("setTilanKulut");
         tila.setTilanKulut(1000);
         int expResult = 1000;
         int result = tila.getTilanKulut();
@@ -157,7 +173,7 @@ public class TilaTest {
      */
     @Test
     public void testGetKuntosalilaite() {
-        System.out.println("getKuntosalilaite");
+        out.println("getKuntosalilaite");
         Tila instance = new Tila();
         Kuntosalilaite[] expResult = null;
         Kuntosalilaite[] result = instance.getKuntosalilaite();
@@ -171,12 +187,13 @@ public class TilaTest {
      */
     @Test
     public void testSetKuntosalilaite() {
-        System.out.println("setKuntosalilaite");
+        out.println("setKuntosalilaite");
         Kuntosalilaite[] kuntosalilaite = null;
         Tila instance = new Tila();
         instance.setKuntosalilaite(kuntosalilaite);
         // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
     }
+    private static final Logger LOG = Logger.getLogger(TilaTest.class.getName());
     
 }

@@ -6,14 +6,16 @@
 package Dao;
 
 import Entities.KertaJasen;
+import static java.lang.System.out;
 import java.util.List;
+import java.util.logging.Logger;
 import org.junit.After;
 import org.junit.AfterClass;
+import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.BeforeClass;
-import org.junit.Test;
-import static org.junit.Assert.*;
 import org.junit.Ignore;
+import org.junit.Test;
 
 /**
  *
@@ -22,21 +24,37 @@ import org.junit.Ignore;
 @Ignore
 public class KertaJasenDaoTest {
     
+    /**
+     *
+     */
     public KertaJasenDaoTest() {
     }
+
+    /**
+     *
+     */
     @Ignore
     @BeforeClass
     public static void setUpClass() {
     }
     
+    /**
+     *
+     */
     @AfterClass
     public static void tearDownClass() {
     }
     
+    /**
+     *
+     */
     @Before
     public void setUp() {
     }
     
+    /**
+     *
+     */
     @After
     public void tearDown() {
     }
@@ -46,7 +64,7 @@ public class KertaJasenDaoTest {
      */
     @Test
     public void testCreateKertaJasen() {
-        System.out.println("createKertaJasen");
+        out.println("createKertaJasen");
         KertaJasen jasen = null;
         KertaJasenDao instance = null;
         instance.createKertaJasen(jasen);
@@ -59,7 +77,7 @@ public class KertaJasenDaoTest {
      */
     @Test
     public void testDeleteKertaJasen() {
-        System.out.println("deleteKertaJasen");
+        out.println("deleteKertaJasen");
         int JasenId = 0;
         KertaJasenDao instance = null;
         instance.deleteKertaJasen(JasenId);
@@ -72,7 +90,7 @@ public class KertaJasenDaoTest {
      */
     @Test
     public void testUpdateKertaJasen() {
-        System.out.println("updateKertaJasen");
+        out.println("updateKertaJasen");
         KertaJasen jasen = null;
         KertaJasenDao instance = null;
         instance.updateKertaJasen(jasen);
@@ -85,7 +103,7 @@ public class KertaJasenDaoTest {
      */
     @Test
     public void testGetKertajasen() {
-        System.out.println("getKertajasen");
+        out.println("getKertajasen");
         int jasenId = 0;
         KertaJasenDao instance = null;
         KertaJasen expResult = null;
@@ -100,7 +118,7 @@ public class KertaJasenDaoTest {
      */
     @Test
     public void testGetALLKertajasen() {
-        System.out.println("getALLKertajasen");
+        out.println("getALLKertajasen");
         KertaJasenDao instance = null;
         List<KertaJasen> expResult = null;
         List<KertaJasen> result = instance.getALLKertajasen();
@@ -108,5 +126,6 @@ public class KertaJasenDaoTest {
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
     }
+    private static final Logger LOG = Logger.getLogger(KertaJasenDaoTest.class.getName());
     
 }

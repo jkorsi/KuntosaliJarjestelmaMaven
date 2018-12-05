@@ -5,13 +5,14 @@
  */
 package Entities;
 
+import static java.lang.System.out;
+import java.util.logging.Logger;
 import org.junit.After;
 import org.junit.AfterClass;
+import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
-import org.junit.Ignore;
 
 /**
  *
@@ -19,24 +20,39 @@ import org.junit.Ignore;
  */
 public class TilaMaksuTest {
     
+    /**
+     *
+     */
     public TilaMaksuTest() {
     }
     
     TilaMaksu tilamaksu; 
     
+    /**
+     *
+     */
     @BeforeClass
     public static void setUpClass() {
     }
     
+    /**
+     *
+     */
     @AfterClass
     public static void tearDownClass() {
     }
     
+    /**
+     *
+     */
     @Before
     public void setUp() {
         tilamaksu = new TilaMaksu();
     }
     
+    /**
+     *
+     */
     @After
     public void tearDown() {
     }
@@ -46,7 +62,7 @@ public class TilaMaksuTest {
      */
     @Test
     public void testGetTilaID() {
-        System.out.println("getTilaID");
+        out.println("getTilaID");
         tilamaksu.setTilaID(5);
         int expResult = 5;
         int result = tilamaksu.getTilaID();
@@ -60,7 +76,7 @@ public class TilaMaksuTest {
      */
     @Test
     public void testSetTilaID() {
-        System.out.println("setTilaID");
+        out.println("setTilaID");
         tilamaksu.setTilaID(5);
         int expResult = 5;
         int result = tilamaksu.getTilaID();
@@ -68,5 +84,6 @@ public class TilaMaksuTest {
         // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
     }
+    private static final Logger LOG = Logger.getLogger(TilaMaksuTest.class.getName());
     
 }

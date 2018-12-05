@@ -5,12 +5,14 @@
  */
 package otp.mavenkuntosalijarjestelma;
 
+import static java.lang.System.out;
+import java.util.logging.Logger;
 import org.junit.After;
 import org.junit.AfterClass;
+import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  *
@@ -18,21 +20,36 @@ import static org.junit.Assert.*;
  */
 public class MaksujarjestelmaTest {
     
+    /**
+     *
+     */
     public MaksujarjestelmaTest() {
     }
     
+    /**
+     *
+     */
     @BeforeClass
     public static void setUpClass() {
     }
     
+    /**
+     *
+     */
     @AfterClass
     public static void tearDownClass() {
     }
     
+    /**
+     *
+     */
     @Before
     public void setUp() {
     }
     
+    /**
+     *
+     */
     @After
     public void tearDown() {
     }
@@ -42,7 +59,7 @@ public class MaksujarjestelmaTest {
      */
     @Test
     public void testGetMaksuJarjestelmaID() {
-        System.out.println("getMaksuJarjestelmaID");
+        out.println("getMaksuJarjestelmaID");
         Maksujarjestelma instance = new Maksujarjestelma();
         int expResult = 0;
         int result = instance.getMaksuJarjestelmaID();
@@ -56,7 +73,7 @@ public class MaksujarjestelmaTest {
      */
     @Test
     public void testSetMaksuJarjestelmaID() {
-        System.out.println("setMaksuJarjestelmaID");
+        out.println("setMaksuJarjestelmaID");
         int maksuJarjestelmaID = 0;
         Maksujarjestelma instance = new Maksujarjestelma();
         instance.setMaksuJarjestelmaID(maksuJarjestelmaID);
@@ -69,7 +86,7 @@ public class MaksujarjestelmaTest {
      */
     @Test
     public void testGetTilillaJaljella() {
-        System.out.println("getTilillaJaljella");
+        out.println("getTilillaJaljella");
         Maksujarjestelma instance = new Maksujarjestelma();
         int expResult = 0;
         int result = instance.getTilillaJaljella();
@@ -83,7 +100,7 @@ public class MaksujarjestelmaTest {
      */
     @Test
     public void testSetTilillaJaljella() {
-        System.out.println("setTilillaJaljella");
+        out.println("setTilillaJaljella");
         int tilillaJaljella = 0;
         Maksujarjestelma instance = new Maksujarjestelma();
         instance.setTilillaJaljella(tilillaJaljella);
@@ -96,7 +113,7 @@ public class MaksujarjestelmaTest {
      */
     @Test
     public void testGetTulot() {
-        System.out.println("getTulot");
+        out.println("getTulot");
         Maksujarjestelma instance = new Maksujarjestelma();
         int expResult = 0;
         int result = instance.getTulot();
@@ -110,7 +127,7 @@ public class MaksujarjestelmaTest {
      */
     @Test
     public void testSetTulot() {
-        System.out.println("setTulot");
+        out.println("setTulot");
         int tulot = 0;
         Maksujarjestelma instance = new Maksujarjestelma();
         instance.setTulot(tulot);
@@ -123,7 +140,7 @@ public class MaksujarjestelmaTest {
      */
     @Test
     public void testGetMenot() {
-        System.out.println("getMenot");
+        out.println("getMenot");
         Maksujarjestelma instance = new Maksujarjestelma();
         int expResult = 0;
         int result = instance.getMenot();
@@ -137,12 +154,13 @@ public class MaksujarjestelmaTest {
      */
     @Test
     public void testSetMenot() {
-        System.out.println("setMenot");
+        out.println("setMenot");
         int menot = 0;
         Maksujarjestelma instance = new Maksujarjestelma();
         instance.setMenot(menot);
         // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
     }
+    private static final Logger LOG = Logger.getLogger(MaksujarjestelmaTest.class.getName());
     
 }

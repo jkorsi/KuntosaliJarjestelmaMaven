@@ -5,12 +5,14 @@
  */
 package Entities;
 
+import static java.lang.System.out;
+import java.util.logging.Logger;
 import org.junit.After;
 import org.junit.AfterClass;
+import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  *
@@ -20,22 +22,37 @@ public class JasenMaksuTest {
     
     JasenMaksu jasenmaksu;
     
+    /**
+     *
+     */
     public JasenMaksuTest() {
     }
     
+    /**
+     *
+     */
     @BeforeClass
     public static void setUpClass() {
     }
     
+    /**
+     *
+     */
     @AfterClass
     public static void tearDownClass() {
     }
     
+    /**
+     *
+     */
     @Before
     public void setUp() {
         jasenmaksu = new JasenMaksu();
     }
     
+    /**
+     *
+     */
     @After
     public void tearDown() {
     }
@@ -45,7 +62,7 @@ public class JasenMaksuTest {
      */
     @Test
     public void testGetKkHinta() {
-        System.out.println("getKkHinta");
+        out.println("getKkHinta");
         jasenmaksu.setKkHinta(20);
         int expResult = 20;
         int result = jasenmaksu.getKkHinta();
@@ -59,7 +76,7 @@ public class JasenMaksuTest {
      */
     @Test
     public void testSetKkHinta() {
-        System.out.println("setKkHinta");
+        out.println("setKkHinta");
         jasenmaksu.setKkHinta(20);
         int expResult = 20;
         int result = jasenmaksu.getKkHinta();
@@ -73,7 +90,7 @@ public class JasenMaksuTest {
      */
     @Test
     public void testGetKertaHinta() {
-        System.out.println("getKertaHinta");
+        out.println("getKertaHinta");
         jasenmaksu.setKertaHinta(5);
         int expResult = 5;
         int result = jasenmaksu.getKertaHinta();
@@ -87,7 +104,7 @@ public class JasenMaksuTest {
      */
     @Test
     public void testSetKertaHinta() {
-        System.out.println("setKertaHinta");
+        out.println("setKertaHinta");
         jasenmaksu.setKertaHinta(5);
         int expResult = 5;
         int result = jasenmaksu.getKertaHinta();
@@ -101,7 +118,7 @@ public class JasenMaksuTest {
      */
     @Test
     public void testGetJasenID() {
-        System.out.println("getJasenID");
+        out.println("getJasenID");
         jasenmaksu.setJasenID(4);
         int expResult = 4;
         int result = jasenmaksu.getJasenID();
@@ -115,8 +132,8 @@ public class JasenMaksuTest {
      */
     @Test
     public void testSetJasenID() {
-        System.out.println("setJasenID");
-        System.out.println("getJasenID");
+        out.println("setJasenID");
+        out.println("getJasenID");
         jasenmaksu.setJasenID(4);
         int expResult = 4;
         int result = jasenmaksu.getJasenID();
@@ -124,5 +141,6 @@ public class JasenMaksuTest {
         // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
     }
+    private static final Logger LOG = Logger.getLogger(JasenMaksuTest.class.getName());
     
 }
