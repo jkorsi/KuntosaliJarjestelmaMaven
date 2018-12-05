@@ -1,6 +1,7 @@
 package otp.mavenkuntosalijarjestelma;
 
 import java.util.logging.Logger;
+import Entities.Kayttaja;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;
@@ -20,27 +21,23 @@ public class MainApp extends Application {
     
     @Override
     public void init(){
-       controller = new MainController();
+        controller = new MainController();
     }
-    
     @Override
     public void stop(){
-        
        controller.getSessionFactory().close();
-
     }
-    
 
     @Override
     public void start(Stage stage) throws Exception {
         FXMLLoader loader = new FXMLLoader();
 
-        Parent root = load(getClass().getResource("/fxml/main.fxml"), controller.getControllerBundle(controller));
+        Parent root = loader.load(getClass().getResource("/fxml/login.fxml"));
         
-        scene = new Scene(root);
+        scene = new Scene(root, 1300, 900);
         scene.getStylesheets().add("/styles/Styles.css");
 
-        stage.setTitle("JavaFX and Maven");
+        stage.setTitle("Login");
         stage.setScene(scene);
         stage.show();
     }
