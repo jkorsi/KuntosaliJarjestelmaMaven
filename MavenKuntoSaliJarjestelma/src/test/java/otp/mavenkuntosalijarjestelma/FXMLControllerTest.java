@@ -12,6 +12,7 @@ import static java.util.logging.Level.SEVERE;
 import java.util.logging.Logger;
 import static java.util.logging.Logger.getLogger;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
 import static javafx.fxml.FXMLLoader.load;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
@@ -79,7 +80,8 @@ public class FXMLControllerTest extends GuiTest {
     protected Parent getRootNode() {
         Parent parent = null;
         try {
-            parent = load(getClass().getResource("/fxml/Scene.fxml"));
+            MainController mc = new MainController();
+            parent = FXMLLoader.load(getClass().getResource("/fxml/Scene.fxml"), mc.getControllerBundle(new FXMLController()));
         } catch (IOException ex) {
             getLogger(FXMLControllerTest.class.getName()).log(SEVERE, null, ex);
         }

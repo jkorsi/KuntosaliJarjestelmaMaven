@@ -6,6 +6,7 @@ import java.util.List;
 import static java.util.logging.Level.SEVERE;
 import java.util.logging.Logger;
 import static java.util.logging.Logger.getLogger;
+import javafx.fxml.FXMLLoader;
 import static javafx.fxml.FXMLLoader.load;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
@@ -48,7 +49,8 @@ public class SearchControllerTest extends GuiTest {
     protected Parent getRootNode() {
         Parent parent = null;
         try {
-            parent = load(getClass().getResource("/fxml/Search.fxml"));
+            MainController mc = new MainController();
+            parent = FXMLLoader.load(getClass().getResource("/fxml/Search.fxml"), mc.getControllerBundle(new SearchController()));
         } catch (IOException ex) {
             getLogger(FXMLControllerTest.class.getName()).log(SEVERE, null, ex);
         }
