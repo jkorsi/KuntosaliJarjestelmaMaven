@@ -9,10 +9,20 @@ import org.hibernate.SessionFactory;
 
 public class KayttajaDao extends SuperDao{
     
+    /**
+     * KayttajaDao-luokan konstruktori
+     *
+     * @param factory SessionFactory hibernate sessioita varten
+     */
     public KayttajaDao (SessionFactory factory) {
         this.factory = factory;
     }
 
+    /**
+     * Lisää Kayttaja-olion tietokantaan
+     *
+     * @param kayttaja
+     */
     public void addKayttaja(Kayttaja kayttaja) {
         try {
             if (getKayttaja(kayttaja.getTunnus()) == null) {
@@ -26,6 +36,11 @@ public class KayttajaDao extends SuperDao{
         }
     }
 
+    /**
+     * Poistaa Kayttaja-olion tietokannasta id:n perusteella
+     *
+     * @param id
+     */
     public boolean deleteKayttaja(int id) {
         boolean success = true;
         try {
@@ -43,11 +58,21 @@ public class KayttajaDao extends SuperDao{
         return success;
     }
 
+     /**
+     * Päivitää Kayttaja-olion tietokannassa sen ilmentymän perusteella
+     *
+     * @param jasen
+     */
     public void updateKayttaja(Kayttaja kayttaja) {
         saveOrUpdateObject(kayttaja);
     }
 
-    // HAKU ID-NUMEROLLA
+    /**
+     * Hakee tietokannasta Kayttaja-olion id:n perusteella
+     *
+     * @param kayttajaId
+     * @return haettu Kayttaja-olio, mikäli olemassa
+     */
     public Kayttaja getKayttaja(int kayttajaId) {
         Kayttaja k = null;
         try {
@@ -61,7 +86,12 @@ public class KayttajaDao extends SuperDao{
         return k;
     }
     
-    // HAKU TUNNUKSELLA
+    /**
+     * Hakee tietokannasta Kayttaja-olion tunnuksen perusteella
+     *
+     * @param tunnus
+     * @return haettu Kayttaja-olio, mikäli olemassa
+     */
     public Kayttaja getKayttaja(String tunnus) {
         Kayttaja k = null;
         try {
