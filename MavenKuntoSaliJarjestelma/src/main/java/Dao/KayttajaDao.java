@@ -2,14 +2,12 @@ package Dao;
 
 import Entities.Kayttaja;
 import java.util.List;
+import java.util.logging.Logger;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-public class KayttajaDao {
-    
-    protected SessionFactory factory;
-    protected Session session;
+public class KayttajaDao extends SuperDao{
     
     public KayttajaDao (SessionFactory factory) {
         this.factory = factory;
@@ -19,10 +17,10 @@ public class KayttajaDao {
         try {
             if (getKayttaja(kayttaja.getTunnus()) == null) {
                 openAndBeginTransaction();
-                saveAndCommitKayttaja(kayttaja);
+                saveAndCommitObject(kayttaja);
             } 
         } catch (Exception sqlException) {
-            throwKayttajaTrasactionException(sqlException);
+            throwObjectTrasactionException(sqlException);
         } finally {
             closeTransaction();
         }
@@ -34,10 +32,10 @@ public class KayttajaDao {
             openAndBeginTransaction();
             Kayttaja k = (Kayttaja)session.get(Kayttaja.class, id);
             if (k!= null){
-		deleteKayttaja(k);
+		deleteObject(k);
             }
         } catch (Exception sqlException) {
-            throwKayttajaTrasactionException(sqlException);
+            throwObjectTrasactionException(sqlException);
             success = false;
         } finally {
             closeTransaction();
@@ -46,7 +44,7 @@ public class KayttajaDao {
     }
 
     public void updateKayttaja(Kayttaja kayttaja) {
-        saveOrUpdateKayttaja(kayttaja);
+        saveOrUpdateObject(kayttaja);
     }
 
     // HAKU ID-NUMEROLLA
@@ -56,7 +54,7 @@ public class KayttajaDao {
             openAndBeginTransaction(); // avataan uusi sessio
             k = (Kayttaja) session.load(Kayttaja.class, kayttajaId);
         } catch (Exception sqlException) {
-            throwKayttajaTrasactionException(sqlException);
+            throwObjectTrasactionException(sqlException);
         } finally {
             closeTransaction();
         }
@@ -73,48 +71,13 @@ public class KayttajaDao {
             k = lista.get(0);
             session.getTransaction().commit();
         } catch (Exception e) {
-            throwKayttajaTrasactionException(e);
+            throwObjectTrasactionException(e);
         } finally {
             closeTransaction();
         }
         return k;
     }
     
-    // apumetodit
-    
-    protected void saveAndCommitKayttaja(Kayttaja k) {
-        session.save(k);
-        session.getTransaction().commit();
-    }
-    protected void closeTransaction() {
-        if (session != null) {
-            session.close();
-        }
-    }
-    protected void openAndBeginTransaction() throws HibernateException {
-        session = factory.openSession();
-        session.beginTransaction();
-    }
-    protected void throwKayttajaTrasactionException(Exception sqlException) {
-        if (session.getTransaction() != null) {
-            session.getTransaction().rollback();
-        }
-        sqlException.printStackTrace();
-    }
-    protected void saveOrUpdateKayttaja(Kayttaja k) {
-        try {
-            openAndBeginTransaction(); // avataan uusi sessio
-            session.saveOrUpdate(k);
-            session.getTransaction().commit();
-        } catch (Exception sqlException) {
-            throwKayttajaTrasactionException(sqlException);
-        } finally {
-            closeTransaction();
-        }
-    }
-    protected void deleteKayttaja(Kayttaja k) {
-        session.delete(k);
-        session.getTransaction().commit(); //tallennetaan muutokset tietokantaan
-    }
+    private static final Logger LOG = Logger.getLogger(KayttajaDao.class.getName());
 
 }
