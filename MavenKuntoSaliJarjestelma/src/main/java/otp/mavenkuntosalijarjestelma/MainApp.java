@@ -14,26 +14,27 @@ import javafx.stage.Stage;
  *
  * @author Antti
  */
-
 public class MainApp extends Application {
+
     private MainController controller;
     private Scene scene;
-    
+
     @Override
-    public void init(){
+    public void init() {
         controller = new MainController();
     }
+
     @Override
-    public void stop(){
-       controller.getSessionFactory().close();
+    public void stop() {
+        controller.getSessionFactory().close();
     }
 
     @Override
     public void start(Stage stage) throws Exception {
-        FXMLLoader loader = new FXMLLoader();
-
-        Parent root = loader.load(getClass().getResource("/fxml/login.fxml"));
         
+
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/login.fxml"));
+
         scene = new Scene(root, 1300, 900);
         scene.getStylesheets().add("/styles/Styles.css");
 

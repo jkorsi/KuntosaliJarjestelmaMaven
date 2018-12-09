@@ -82,6 +82,7 @@ public class FXMLControllerTest extends GuiTest {
         try {
             MainController mc = new MainController();
             parent = FXMLLoader.load(getClass().getResource("/fxml/Scene.fxml"), mc.getControllerBundle(new FXMLController()));
+            
         } catch (IOException ex) {
             getLogger(FXMLControllerTest.class.getName()).log(SEVERE, null, ex);
         }
@@ -92,6 +93,8 @@ public class FXMLControllerTest extends GuiTest {
     /**
      *
      */
+    
+    
     @Test
     public void testLisaaJasen() {
         TextField nimi = find("#JasenNimiField");
