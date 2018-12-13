@@ -76,9 +76,9 @@ public class MainController extends AbstractController {
         
         mainController = this;
         sessionFactory = HibernateUtil.getSessionFactory();
-        kertaDao = new KertaJasenDao(sessionFactory);
-        kuukausiDao = new KuukausiJasenDao(sessionFactory);
-        kayttajaDao = new KayttajaDao(sessionFactory);
+        kertaDao = KertaJasenDao.getInstance();
+        kuukausiDao = KuukausiJasenDao.getInstance();
+        kayttajaDao = KayttajaDao.getInstance();
         
         fxmlController = new FXMLController();
         searchController = new SearchController();

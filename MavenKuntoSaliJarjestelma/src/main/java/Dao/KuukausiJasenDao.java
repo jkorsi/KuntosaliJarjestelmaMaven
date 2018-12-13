@@ -9,20 +9,29 @@ import Entities.KuukausiJasen;
 import java.util.List;
 import java.util.logging.Logger;
 import org.hibernate.SessionFactory;
+import otp.mavenkuntosalijarjestelma.HibernateUtil;
 
 /**
  *
  * @author Antti Käyhkö
  */
 public class KuukausiJasenDao extends SuperDao {
-
+    private static KuukausiJasenDao instance = null;
+    
     /**
      * KuukausiJasenDao luokan konstruktori
      *
      * @param factory SessionFactory hibernate sessioita varten
      */
-    public KuukausiJasenDao(SessionFactory factory) {
-        this.factory = factory;
+    private KuukausiJasenDao() {
+        this.factory = HibernateUtil.getSessionFactory();
+    }
+    
+    public static KuukausiJasenDao getInstance() {
+        if (instance == null) {
+            instance = new KuukausiJasenDao();
+        }
+        return instance;
     }
 
     /**

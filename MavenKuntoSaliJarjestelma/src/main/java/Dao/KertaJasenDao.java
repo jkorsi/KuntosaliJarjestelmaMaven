@@ -9,21 +9,30 @@ import Entities.KertaJasen;
 import java.util.List;
 import java.util.logging.Logger;
 import org.hibernate.SessionFactory;
+import otp.mavenkuntosalijarjestelma.HibernateUtil;
 
 /**
  *
  * @author Antti Käyhkö
  */
 public class KertaJasenDao extends SuperDao {
-
+    private static KertaJasenDao instance = null;
 
     /**
      * KertajasenDao luokan konstruktori
      *
      * @param factory SessionFactory hibernate sessioita varten
      */
-    public KertaJasenDao(SessionFactory factory) {
-        this.factory = factory;
+    
+    private KertaJasenDao() {
+        this.factory = HibernateUtil.getSessionFactory();
+    }
+    
+    public static KertaJasenDao getInstance() {
+        if (instance == null) {
+            instance = new KertaJasenDao();
+        }
+        return instance;
     }
 
     /**

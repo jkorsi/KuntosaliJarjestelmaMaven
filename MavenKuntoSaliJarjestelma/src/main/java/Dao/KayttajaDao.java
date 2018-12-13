@@ -6,16 +6,26 @@ import java.util.logging.Logger;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import otp.mavenkuntosalijarjestelma.HibernateUtil;
 
 public class KayttajaDao extends SuperDao{
+    private static KayttajaDao instance = null;
     
     /**
      * KayttajaDao-luokan konstruktori
      *
      * @param factory SessionFactory hibernate sessioita varten
      */
-    public KayttajaDao (SessionFactory factory) {
-        this.factory = factory;
+    
+    private KayttajaDao() {
+        this.factory = HibernateUtil.getSessionFactory();
+    }
+    
+    public static KayttajaDao getInstance() {
+        if (instance == null) {
+            instance = new KayttajaDao();
+        }
+        return instance;
     }
 
     /**
