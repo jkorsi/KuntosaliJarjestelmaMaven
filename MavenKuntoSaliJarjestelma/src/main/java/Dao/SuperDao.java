@@ -33,11 +33,7 @@ public class SuperDao {
      * @param obj
      */
     protected void saveAndCommitObject(Object obj) {
-        if (obj instanceof Kayttaja) {
-            session.save(Kayttaja.class.cast(obj));
-        } else {
-            session.save(Jasen.class.cast(obj));
-        }
+        session.save(obj);
         session.getTransaction().commit(); //tallennetaan muutokset tietokantaan
     }
 
@@ -80,12 +76,7 @@ public class SuperDao {
         // olettaa että jäsen oliolla on sama jasenid kuin päivitettävällä jäsenenllä
         try {
             openAndBeginTransaction(); // avataan uusi sessio
-            
-            if (obj instanceof Kayttaja) {
-                session.saveOrUpdate(Kayttaja.class.cast(obj));
-            } else {
-                session.saveOrUpdate(Jasen.class.cast(obj));
-            }
+            session.saveOrUpdate(obj);
             session.getTransaction().commit();
         } catch (Exception sqlException) {
             throwObjectTrasactionException(sqlException);
@@ -99,11 +90,7 @@ public class SuperDao {
      * @param obj
      */
     protected void deleteObject(Object obj) {
-        if (obj instanceof Kayttaja) {
-            session.delete(Kayttaja.class.cast(obj));
-        } else {
-            session.delete(Jasen.class.cast(obj));
-        }
+        session.delete(obj);
         session.getTransaction().commit(); //tallennetaan muutokset tietokantaan
     }
     

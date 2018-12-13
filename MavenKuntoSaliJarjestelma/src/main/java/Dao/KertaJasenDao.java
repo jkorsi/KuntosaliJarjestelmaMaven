@@ -159,7 +159,6 @@ public class KertaJasenDao extends SuperDao {
         List<KertaJasen> haku = null;
         try {
             openAndBeginTransaction();
-
             String hqlString = "FROM KertaJasen AS haku WHERE nimi = :muuttuja";
             haku = session.createQuery(hqlString).setParameter("muuttuja", nimi).list();
             session.getTransaction().commit();

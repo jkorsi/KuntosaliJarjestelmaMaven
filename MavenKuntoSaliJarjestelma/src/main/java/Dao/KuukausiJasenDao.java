@@ -154,14 +154,10 @@ public class KuukausiJasenDao extends SuperDao {
      */
     public List<KuukausiJasen> getJasen(String nimi) {
         List<KuukausiJasen> lista = null;
-        KuukausiJasen eka;
         try {
             openAndBeginTransaction();
-
             String hqlString = "FROM KuukausiJasen AS haku WHERE nimi = :muuttuja";
             lista = session.createQuery(hqlString).setParameter("muuttuja", nimi).list();
-            eka = lista.get(0);
-
             session.getTransaction().commit();
         } catch (Exception e) {
             throwObjectTrasactionException(e);
